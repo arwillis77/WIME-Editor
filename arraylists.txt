@@ -1,0 +1,136 @@
+Public Sub setData()                                ' Sets Data for Character Arrays
+        With characterData
+            .pcCharacterName = {"GANDALF", "GANDALF'", "ELROND", "GLORFINDEL", "ARAGORN", "BOROMIR", "FRODO", "SAM", "MERRY", "PIPPIN", "LEGOLAS",
+                               "GIMLI", "EOMER", "cavalry", "FARAMIR", "rangers", "DAIN", "dwarves", "BRAND", "infantry", "lt. infantry", "THRANDUIL",
+                               "elves", "CELEBORN", "THEODEN", "THEODRED", "ERKENBRAND", "DENETHOR", "tower guards", "DERNHELM", "ELFHELM", "GRIMBOLD", "DUNHERE",
+                                "IMRAHIL", "knights", "men at arms", "FORLONG", "DERVORIN", "DUINHIR", "GOLASGIL", "HIRLUIN", "elven guards", "ents", "huorns",
+                                "GOLLUM", "the NAZGUL LORD", "the 2ND NAZGUL", "the 3RD NAZGUL", "the 4TH NAZGUL", "the 5TH NAZGUL", "the 6TH NAZGUL", "the 7TH NAZGUL", "the 8TH NAZGUL", "the 9TH NAZGUL", "hand orcs",
+                                "orcs", "uruk hai", "Dunlendings", "Balchoth", "Wainriders", "Easterlings", "GOTHMOG", "trolls", "Southrons", "Haradrim", "Variags",
+                                "halftrolls", "Corsairs", "SAURON", "Shelob", "CIRDAN", "TOM BOMBADIL", "BILBO", "GALADRIEL", "TREEBEARD", "RADAGAST", "a ranger",
+                                "Rohirrim scouts", "a dwarf", "a hobbit", "an elf", "a wanderer", "a traveler", "an old man", "SARUMAN", "a troll", "a wight", "DEAD MEN", "bandits", "a balrog", "wolves", "spiders", "a spider"}
+            .pcValue = {20023, 20031, 20040, 20047, 20058, 20066, 20074, 20080, 20084, 20090, 20097,
+                        20105, 20111, 20117, 20125, 20133, 20141, 20146, 20154, 20160, 20169, 20182,
+                        20192, 20198, 20207, 20215, 20224, 20235, 20244, 20257, 20266, 20274, 20283,
+                        20291, 20299, 20307, 20319, 20327, 20336, 20344, 20353, 20361, 20374, 20379,
+                        20386, 20393, 20409, 20424, 20439, 20454, 20469, 20484, 20499, 20514, 20529,
+                        20534, 20539, 20548, 20560, 20569, 20580, 20592, 20600, 20607, 20617, 20626,
+                        20634, 20645, 20654, 20661, 20668, 20675, 20688, 20694, 20704, 20714, 20723,
+                        20732, 20748, 20756, 20765, 20772, 20783, 20794, 20805, 20813, 20821, 20829, 20838, 20846, 20855, 20862, 20870}
+            .otherCharacterName = {"GANDALF", "GANDALF'", "ELROND", "GLORFINDEL", "ARAGORN", "BOROMIR", "FRODO", "SAM", "MERRY", "PIPPIN", "LEGOLAS", "GIMLI", "EOMER", "cavalry",
+                                "FARAMIR", "rangers", "DAIN", "dwarves", "BRAND", "INFANTRY", "lt. infantry", "THRANDUIL", "elves", "CELEBORN", "elves", "THEODEN",
+                                "cavalry", "THEODRED", "cavalry", "ERKENBRAND", "cavalry", "DENETHOR", "tower guards", "infantry", "DERNHELM", "ELFHELM", "cavalry", "GRIMBOLD",
+                                "cavalry", "DUNHERE", "cavalry", "IMRAHIL", "knights", "men at arms", "FORLONG", "men at arms", "DERVORIN", "infantry", "DUINHIR", "infantry",
+                                "GOLASGIL", "infantry", "lt. infantry", "HIRLUIN", "infantry", "elven guards", "rangers", "dwarves", "elves", "elves", "elves", "elves", "elves", "elves",
+                                "ents", "huorns", "lt. infantry", "lt. infantry", "infantry", "infantry", "infantry", "infantry", "infantry", "infantry", "infantry", "infantry",
+                                "infantry", "GOLUM", "the Nazgul LORD", "the 2ND NAZGUL", "the 3RD NAZGUL", "the 4TH NAZGUL", "the 5TH NAZGUL", "the 6TH NAZGUL", "the 7TH NAZGUL",
+                                "the 8TH NAZGUL", "the 9TH NAZGUL", "hand-orcs", "hand-orcs", "hand-orcs", "uruk-hai", "Dunlendings", "hand orcs", "uruk-hai", "Dunlendings",
+                                "hand-orcs", "Balchoth", "Wainriders", "Balchoth", "Easterlings", "Wainriders", "Wainriders", "GOTHMOG", "orcs", "orcs", "orcs", "orcs", "orcs", "orcs",
+                                "trolls", "orcs", "trolls", "orcs", "orcs", "orcs", "orcs", "orcs", "trolls", "orcs", "orcs", "trolls", "orcs", "orcs", "trolls", "orcs", "trolls",
+                                "orcs", "orcs", "Southrons", "Southrons", "Haradrim", "Southrons", "Variags", "Haradrim", "halftrolls", "Southrons", "Variags", "Southrons", "Corsairs", "orcs",
+                                "orcs", "orcs", "orcs", "orcs", "orcs", "orcs", "orcs", "orcs", "trolls", "SAURON", "Shelob", "CIRDAN", "TOM BOMBADIL", "BILBO", "GALADRIEL",
+                                "TREEBEARD", "RADAGAST", "a Ranger", "Rohirrim scouts", "a dwarf", "a hobbit", "an elf", "a wanderer", "a traveler", "an old man", "SARUMAN", "orcs",
+                                "orcs", "orcs", "orcs", "orcs", "orcs", "trolls", "trolls", "a troll", "a troll", "a wight", "DEAD MEN", "Dunlendings", "Southrons", "bandits", "orcs",
+                                "a balrog", "a balrog", "a balrog", "a balrog", "a balrog", "wolves", "wolves", "wolves", "wolves", "spiders", "a spider", "spiders"}
+            .otherCharValue = {18890, 18898, 18907, 18914, 18925, 18933, 18941, 18947, 18951, 18957, 18964, 18972, 18978, 18984,
+                               18992, 19000, 19008, 19013, 19021, 19027, 19036, 19049, 19059, 19065, 19074, 19080, 19088, 19096,
+                               19105, 19113, 19124, 19132, 19141, 19154, 19163, 19172, 19180, 19188, 19197, 19205, 19213, 19221, 19229, 19237, 19249, 19257, 19269,
+                                19278, 19287, 19295, 19304, 19313, 19322, 19335, 19343, 19352, 19365, 19373, 19381, 19387, 19393, 19399, 19405, 19411, 19417, 19422, 19429, 19442, 19455, 19464, 19473,
+                                19482, 19491, 19500, 19509, 19518, 19527, 19536, 19543, 19559, 19574, 19589, 19604, 19619, 19634, 19649, 19664, 19679, 19689, 19699, 19709, 19718, 19730, 19740, 19749,
+                                19761, 19771, 19780, 19791, 19800, 19812, 19823, 19834, 19842, 19847, 19852, 19857, 19862, 19867, 19872, 19879, 19884, 19891, 19896, 19901, 19906, 19911, 19916, 19923,
+                                19928, 19933, 19940, 19945, 19950, 19957, 19962, 19969, 19974, 19979, 19989, 19999, 20008, 20018, 20026, 20035, 20046, 20056, 20064, 20074, 20083, 20088, 20093, 20098,
+                                20103, 20108, 20113, 20118, 20123, 20128, 20135, 20142, 20149, 20156, 20169, 20175, 20185, 20195, 20204, 20213, 20229, 20237, 20246, 20253, 20264, 20275, 20286, 20294,
+                                20299, 20304, 20309, 20314, 20319, 20324, 20331, 20338, 20346, 20354, 20362, 20371, 20383, 20393, 20401, 20406, 20415, 20424, 20433, 20442, 20451, 20458, 20465, 20472,
+                                20479, 20487, 20496}
+            .characterFollowName = {"GANDALF", "GANDALF'", "ELROND", "GLORFINDEL", "ARAGORN", "BOROMIR", "FRODO", "SAM", "PIPPIN", "MERRY", "LEGOLAS",
+                                    "GIMLI", "EOMER", "FARAMIR", "DAIN", "BRAND", "THRANDUIL", "CELEBORN", "THEODEN", "THEODRED", "ERKENBRAND", "DENETHOR",
+                                    "DERNHELM", "ELFHELM", "GRIMBOLD", "DUNHERE", "IMRAHIL", "FORLONG", "DERVORIN", "DUINHIR", "GOLASGIL", "HIRLUIN",
+                                    "GOLLUM", "the NAZGUL LORD", "the 2ND NAZGUL", "the 3RD NAZGUL", "the 4TH NAZGUL", "the 5TH NAZGUL", "the 6TH NAZGUL",
+                                    "the 7TH NAZGUL", "the 8TH NAZGUL", "the 9TH NAZGUL", "GOTHMOG", "SAURON", "Shelob", "SARUMAN"}
+            .characterFollowvalue = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15, 17, 19, 22, 24, 26, 28, 30, 32, 35, 36, 38, 40, 42, 45, 47, 49, 51, 54,
+                                     78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 103, 150, 151, 166}
+            'Data for Cities and Locations in Middle Earth
+            characterData.cityName(0) = "ANNUMINAS" : .cityXValue(0) = 640 : .cityYValue(0) = 272 : .cityIcon(0) = 1
+            .cityName(1) = "HOBBITON" : .cityXValue(1) = 640 : .cityYValue(1) = 370 : .cityIcon(1) = 2
+            .cityName(2) = "WAYMEET" : .cityXValue(2) = 624 : .cityYValue(2) = 384 : .cityIcon(2) = 3
+            .cityName(3) = "TUCKBOROUGH" : .cityXValue(3) = 640 : .cityYValue(3) = 400 : .cityIcon(3) = 4
+            .cityName(4) = "MICHEL DELVING" : .cityXValue(4) = 576 : .cityYValue(4) = 400 : .cityIcon(4) = 5
+            .cityName(5) = "FORLOND" : .cityXValue(5) = 176 : .cityYValue(5) = 352 : .cityIcon(5) = 6
+            .cityName(6) = "BELEGOST" : .cityXValue(6) = 352 : .cityYValue(6) = 224 : .cityIcon(6) = 1
+            .cityName(7) = "WHITE TOWERS" : .cityXValue(7) = 480 : .cityYValue(7) = 400 : .cityIcon(7) = 7
+            .cityName(8) = "GREY HAVENS" : .cityXValue(8) = 416 : .cityYValue(8) = 400 : .cityIcon(8) = 8
+            .cityName(9) = "WOODHALL" : .cityXValue(9) = 656 : .cityYValue(9) = 400 : .cityIcon(9) = 9
+            .cityName(10) = "BUCKLAND" : .cityXValue(10) = 704 : .cityYValue(10) = 416 : .cityIcon(10) = 10
+            .cityName(11) = "BOMBADIL'S HOUSE" : .cityXValue(11) = 752 : .cityYValue(11) = 416 : .cityIcon(11) = 11
+            .cityName(12) = "BARROW DOWNS" : .cityXValue(12) = 768 : .cityYValue(12) = 416 : .cityIcon(12) = 12
+            .cityName(13) = "STONEBOWS BRIDGE" : .cityXValue(13) = 704 : .cityYValue(13) = 384 : .cityIcon(13) = 13
+            .cityName(14) = "DEADMAN'S DIKE" : .cityXValue(14) = 752 : .cityYValue(14) = 256 : .cityIcon(14) = 14
+            .cityName(15) = "BREE" : .cityXValue(15) = 784 : .cityYValue(15) = 384 : .cityIcon(15) = 15
+            .cityName(16) = "SARN FORD" : .cityXValue(16) = 720 : .cityYValue(16) = 496 : .cityIcon(16) = 16
+            .cityName(17) = "MIDGEWATER MARSH" : .cityXValue(17) = 848 : .cityYValue(17) = 368 : .cityIcon(17) = 17
+            .cityName(18) = "WEATHERTOP" : .cityXValue(18) = 928 : .cityYValue(18) = 384 : .cityIcon(18) = 14
+            .cityName(19) = "THE LAST BRIDGE" : .cityXValue(19) = 1072 : .cityYValue(19) = 400 : .cityIcon(19) = 18
+            .cityName(20) = "MOUNT GRAM" : .cityXValue(20) = 1104 : .cityYValue(20) = 176 : .cityIcon(20) = 19
+            .cityName(21) = "FORD OF BRUINEN" : .cityXValue(21) = 1200 : .cityYValue(21) = 400 : .cityIcon(21) = 20
+            .cityName(22) = "RIVENDELL" : .cityXValue(22) = 1216 : .cityYValue(22) = 384 : .cityIcon(22) = 21
+            .cityName(23) = "MT. GUNDABAD" : .cityXValue(23) = 1280 : .cityYValue(23) = 144 : .cityIcon(23) = 19
+            .cityName(24) = "GOBLIN TOWN" : .cityXValue(24) = 1312 : .cityYValue(24) = 336 : .cityIcon(24) = 19
+            .cityName(25) = "THRANDUIL'S PALACE" : .cityXValue(25) = 1696 : .cityYValue(25) = 240 : .cityIcon(25) = 22
+            .cityName(26) = "EREBOR" : .cityXValue(26) = 1744 : .cityYValue(26) = 224 : .cityIcon(26) = 23
+            .cityName(27) = "DALE" : .cityXValue(27) = 1744 : .cityYValue(27) = 256 : .cityIcon(27) = 24
+            .cityName(28) = "IRON HILLS" : .cityXValue(28) = 1984 : .cityYValue(28) = 256 : .cityIcon(28) = 25
+            .cityName(29) = "OST-IN-EDHIL" : .cityXValue(29) = 1024 : .cityYValue(29) = 60 : .cityIcon(29) = 1
+            .cityName(30) = "HOLLIN GATE" : .cityXValue(30) = 1168 : .cityYValue(30) = 592 : .cityIcon(30) = 26
+            .cityName(31) = "DIMRILL DALE" : .cityXValue(31) = 1216 : .cityYValue(31) = 592 : .cityIcon(31) = 27
+            .cityName(32) = "LORIEN" : .cityXValue(32) = 1344 : .cityYValue(32) = 656 : .cityIcon(32) = 28
+            .cityName(33) = "DOL GULDUR" : .cityXValue(33) = 1456 : .cityYValue(33) = 672 : .cityIcon(33) = 29
+            .cityName(34) = "DERNDINGLE" : .cityXValue(34) = 1168 : .cityYValue(34) = 848 : .cityIcon(34) = 22
+            .cityName(35) = "ISENGARD" : .cityXValue(35) = 1088 : .cityYValue(35) = 896 : .cityIcon(35) = 30
+            .cityName(36) = "ISEN FORD" : .cityXValue(36) = 1104 : .cityYValue(36) = 928 : .cityIcon(36) = 16
+            .cityName(37) = "ROHAN" : .cityXValue(37) = 1168 : .cityYValue(37) = 912 : .cityIcon(37) = 31
+            .cityName(38) = "HORNBURG" : .cityXValue(38) = 1168 : .cityYValue(38) = 960 : .cityIcon(38) = 32
+            .cityName(39) = "EDORAS" : .cityXValue(39) = 1248 : .cityYValue(39) = 992 : .cityIcon(39) = 32
+            .cityName(40) = "DUNHARROW" : .cityXValue(40) = 1216 : .cityYValue(40) = 1040 : .cityIcon(40) = 33
+            .cityName(41) = "EAST EMNET" : .cityXValue(41) = 1360 : .cityYValue(41) = 960 : .cityIcon(41) = 34
+            .cityName(42) = "NORTH RHUN" : .cityXValue(42) = 2272 : .cityYValue(42) = 576 : .cityIcon(42) = 35
+            .cityName(43) = "SOUTH RHUN" : .cityXValue(43) = 1776 : .cityYValue(43) = 992 : .cityIcon(43) = 36
+            .cityName(44) = "MINAS TIRITH" : .cityXValue(44) = 1616 : .cityYValue(44) = 1184 : .cityIcon(44) = 37
+            .cityName(45) = "OSGILIATH" : .cityXValue(45) = 1632 : .cityYValue(45) = 1184 : .cityIcon(45) = 16
+            .cityName(46) = "CAIR ANDROS" : .cityXValue(46) = 1600 : .cityYValue(46) = 1136 : .cityIcon(46) = 38
+            .cityName(47) = "NORTH ITHILIEN" : .cityXValue(47) = 1632 : .cityYValue(47) = 1104 : .cityIcon(47) = 39
+            .cityName(48) = "DOL AMROTH" : .cityXValue(48) = 1168 : .cityYValue(48) = 1296 : .cityIcon(48) = 40
+            .cityName(49) = "LOSSARNACH" : .cityXValue(49) = 1600 : .cityYValue(49) = 1200 : .cityIcon(49) = 41
+            .cityName(50) = "ETHRING" : .cityXValue(50) = 1344 : .cityYValue(50) = 1200 : .cityIcon(50) = 6
+            .cityName(51) = "ERECH" : .cityXValue(51) = 1232 : .cityYValue(51) = 1136 : .cityIcon(51) = 42
+            .cityName(52) = "ANFALAS" : .cityXValue(52) = 896 : .cityYValue(52) = 1264 : .cityIcon(52) = 3
+            .cityName(53) = "PINNATH GELIN" : .cityXValue(53) = 944 : .cityYValue(53) = 1200 : .cityIcon(53) = 43
+            .cityName(54) = "CALEMBEL" : .cityXValue(54) = 1296 : .cityYValue(54) = 1168 : .cityIcon(54) = 6
+            .cityName(55) = "LINHIR" : .cityXValue(55) = 1360 : .cityYValue(55) = 1312 : .cityIcon(55) = 6
+            .cityName(56) = "PELARGIR" : .cityXValue(56) = 1552 : .cityYValue(56) = 1328 : .cityIcon(56) = 6
+            .cityName(57) = "MORANNON" : .cityXValue(57) = 1744 : .cityYValue(57) = 1008 : .cityIcon(57) = 44
+            .cityName(58) = "DAGORLAD" : .cityXValue(58) = 1728 : .cityYValue(58) = 992 : .cityIcon(38) = 35
+            .cityName(59) = "DURTHANG" : .cityXValue(59) = 1712 : .cityYValue(59) = 1072 : .cityIcon(59) = 19
+            .cityName(60) = "MINAS MORGUL" : .cityXValue(60) = 1664 : .cityYValue(60) = 1168 : .cityIcon(60) = 45
+            .cityName(61) = "CIRITH UNGOL" : .cityXValue(61) = 1744 : .cityYValue(61) = 1168 : .cityIcon(61) = 46
+            .cityName(62) = "CARACH ANGREN" : .cityXValue(62) = 1760 : .cityYValue(62) = 1072 : .cityIcon(62) = 46
+            .cityName(63) = "MT. DOOM" : .cityXValue(63) = 1808 : .cityYValue(63) = 1120 : .cityIcon(63) = 47
+            .cityName(64) = "BARAD-DUR" : .cityXValue(64) = 1856 : .cityYValue(64) = 1120 : .cityIcon(64) = 48
+            .cityName(65) = "NURN" : .cityXValue(65) = 1968 : .cityYValue(65) = 1296
+            .cityName(66) = "THE HARAD ROAD" : .cityXValue(66) = 1584 : .cityYValue(66) = 1504
+            .cityName(67) = "GREEN HILLS" : .cityXValue(67) = 656 : .cityYValue(67) = 400
+            .cityName(68) = "NONE" : .cityXValue(68) = 0 : .cityYValue(68) = 0
+            '.strCity(69) = "a ruined castle"
+            '.strCity(70) = "a large town"
+            '.strCity(71) = "a castle"
+            '.strCity(72) = "a ruin"
+            '.strCity(73) = "an evil citadel"
+            '.strCity(74) = "a small town"
+
+            ' **** MOBILIZATION ***
+            .mobilizedText(0) = "EVIL - NO" : .mobilizedValue(0) = 0
+            .mobilizedText(1) = "GOOD - NO" : .mobilizedValue(1) = 1
+            .mobilizedText(2) = "STATIONARY NPC'S - NO" : .mobilizedValue(2) = 3
+            .mobilizedText(3) = "RANDOM NPC'S - NO" : .mobilizedValue(3) = 4
+            .mobilizedText(4) = "SPECIAL CHARACTERS - GOLLUM" : .mobilizedValue(4) = 40
+            .mobilizedText(5) = "GOOD - YES" : .mobilizedValue(5) = 99
+        End With
+    End Sub
