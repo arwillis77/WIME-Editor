@@ -39,7 +39,7 @@
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
-    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\War in Middle Earth Game Editor\</OutputPath>
+    <OutputPath>\Program Files %28x86%29\War in Middle Earth Game Editor\</OutputPath>
     <DocumentationFile>War in Middle Earth Game Editor.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <UseVSHostingProcess>false</UseVSHostingProcess>
@@ -51,7 +51,7 @@
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\..\..\..\Program Files %28x86%29\War in Middle Earth Game Editor\</OutputPath>
+    <OutputPath>\Program Files %28x86%29\War in Middle Earth Game Editor\</OutputPath>
     <DocumentationFile>War in Middle Earth Game Editor.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <UseVSHostingProcess>false</UseVSHostingProcess>
