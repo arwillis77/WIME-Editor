@@ -239,11 +239,13 @@ Public Class Game
     Public Shared Function ParseColorIndex(parsedata As ParseList, index As PaletteData.ColorList) As resource.RGBColorList
         Dim p_Colors As New resource.RGBColorList
         Dim p_tempColor As New resource.RGBValues
+        MsgBox("Parsing Color Index ...." & parsedata.Count)
+
         For x As Integer = 0 To parsedata.Count - 1
             For y As Integer = 0 To index.Count - 1
                 If parsedata(x).ColorIndex = index(y).Slot Then
                     p_tempColor = resource.ConvertToRGB(index(y).ColorValue)
-                    'MsgBox("Color Slot " & parsedata(x).ColorSlot & " = COLOR VALUE: " & p_tempColor.RedValue & p_tempColor.GreenValue & p_tempColor.BlueValue)
+                    MsgBox("Color Slot " & parsedata(x).ColorSlot & " = COLOR VALUE: " & p_tempColor.RedValue & p_tempColor.GreenValue & p_tempColor.BlueValue)
                     p_Colors.add(p_tempColor)
                     Exit For
                 Else
@@ -251,6 +253,7 @@ Public Class Game
                 End If
             Next y
         Next x
+        MsgBox("ParseComplete")
         Return p_Colors
     End Function
 
@@ -680,7 +683,7 @@ Public Class Game
             Default Public Property Item(index As Integer) As RGBValues
                 Get
                     If index < 0 OrElse index >= p_colors.Count Then
-                        Throw New ArgumentOutOfRangeException("index", "The index must be between 0 and " & p_colors.Count - 1 & ".")
+                        Throw New ArgumentOutOfRangeException("index", "Index Value " & index & "The index must be between 0 and " & p_colors.Count - 1 & ".")
                     Else
                         Return p_colors(index)
                     End If

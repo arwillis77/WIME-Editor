@@ -64,6 +64,7 @@ Public Class frmViewResource
         IMAGView = New Game.resource.imageChunk
         IMAGView = GetIMAGChunk(filenameData, loadedGame.format, p_ResourceContainer.fileOffset, loadedGame.endianType)
         ResourcePalette = New resource.RGBColorList
+        MsgBox("Loading Palette " & p_resource & vbCrLf & Format & vbCrLf & SelectedResourceItem.resourceFile)
         ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
         loadImage(filenameData, p_ResourceContainer.fileOffset)
         p_endoffset = p_ResourceContainer.fileOffset + (p_ResourceContainer.dataSize + 4)

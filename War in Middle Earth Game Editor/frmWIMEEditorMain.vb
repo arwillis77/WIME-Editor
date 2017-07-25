@@ -318,22 +318,30 @@ Public Class frmWIMEEditorMain
         Dim p_slot As Int16 = 0
         Dim p_val As String = "" : Dim PAL_NAME As String = ""
         ColorIndex = New PaletteData.ColorList
+        'MsgBox("Preparing to open " & p_file & " " & format)
         Using xmlIndexRead As XmlReader = XmlReader.Create(p_file, p_settings)
             Do While xmlIndexRead.Read
-                If xmlIndexRead.ReadToDescendant(format) Then
-                    If xmlIndexRead.ReadToDescendant("COLORINDEX") Then        ' Parse to COLORINEX
-                        xmlIndexRead.ReadToFollowing("COLOR")                  ' Then go to first COLOR element.
-                        Do
-                            p_slot = xmlIndexRead.GetAttribute("SLOT")         ' Read and store slot attribute into temporary slot variable.
-                            xmlIndexRead.MoveToNextAttribute()
-                            p_val = xmlIndexRead.GetAttribute("VALUE")         ' Read and store slot attribute into temporary value variable.
-                            ColorIndex.Add(p_slot, p_val)               ' Add object for color slot and value of entry.
-                        Loop While xmlIndexRead.ReadToNextSibling("COLOR")     ' Loop to next element until no more elements.
-                    End If
+                If xmlIndexRead.IsStartElement() Then
+                    xmlIndexRead.ReadToDescendant(format)
+                    'MsgBox(format & " file found!" & p_file)
+                    xmlIndexRead.ReadToDescendant("COLORINDEX")         ' Parse to COLORINEX
+                    xmlIndexRead.ReadToFollowing("COLOR")                  ' Then go to first COLOR element.
+                    Do
+                        'xmlIndexRead.MoveToFirstAttribute()
+                        p_slot = xmlIndexRead.GetAttribute("SLOT")         ' Read and store slot attribute into temporary slot variable.
+                        'xmlIndexRead.MoveToNextAttribute()
+                        p_val = xmlIndexRead.GetAttribute("VALUE")         ' Read and store slot attribute into temporary value variable.
+                        MsgBox("SLOT: " & p_slot & vbTab & "Value: " & p_val)
+                        ColorIndex.Add(p_slot, p_val)               ' Add object for color slot and value of entry.
+                    Loop While xmlIndexRead.ReadToNextSibling("COLOR")     ' Loop to next element until no more elements.
                 End If
+
             Loop
         End Using
-
+        For x = 0 To ColorIndex.Count - 1
+            MsgBox(ColorIndex.item(x).Slot & " " & ColorIndex.item(x).ColorValue)
+        Next
+        MsgBox("Color Index Initialized!")
 
 
 
