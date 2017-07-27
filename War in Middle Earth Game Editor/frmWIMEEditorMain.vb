@@ -310,6 +310,10 @@ Public Class frmWIMEEditorMain
     Public Sub Init_ColorIndex(format As String)
         ' // Reads <COLORINDEX> in WIMEDATA.XML file and stated values into colorindex object to be parsed later.
         Dim p_file As String = DATA_FILES
+        Dim p_string As String = ""
+        Dim xmlIndexRead As XmlTextReader
+        Dim target_found As Boolean
+        Dim fileend_flag As Boolean
         Dim p_settings As New XmlReaderSettings
         With p_settings
             .IgnoreWhitespace = True
@@ -319,29 +323,89 @@ Public Class frmWIMEEditorMain
         Dim p_val As String = "" : Dim PAL_NAME As String = ""
         ColorIndex = New PaletteData.ColorList
         'MsgBox("Preparing to open " & p_file & " " & format)
-        Using xmlIndexRead As XmlReader = XmlReader.Create(p_file, p_settings)
-            Do While xmlIndexRead.Read
-                If xmlIndexRead.IsStartElement() Then
-                    xmlIndexRead.ReadToDescendant(format)
-                    'MsgBox(format & " file found!" & p_file)
-                    xmlIndexRead.ReadToDescendant("COLORINDEX")         ' Parse to COLORINEX
-                    xmlIndexRead.ReadToFollowing("COLOR")                  ' Then go to first COLOR element.
+
+        xmlIndexread = New XmlTextReader(p_file)
+        xmlIndexRead.MoveToContent()
+        Do While xmlIndexRead.Read
+            xmlIndexRead.Read()
+            If xmlIndexRead.Name = "FORMAT" Then
+                p_string = xmlIndexRead.GetAttribute("ID")
+                If p_string = format Then
+                    'MsgBox(format & "Found!")
+                    Do Until xmlIndexRead.Name = "COLORINDEX"
+                        xmlIndexRead.Read()
+
+                        If xmlIndexRead.EOF Then
+                            MsgBox("COLORINDEX EOF!")
+
+                            fileend_flag = True
+
+
+                            Exit Do
+
+                        End If
+
+                    Loop
+                    If fileend_flag = True Then
+                        MsgBox("End Of File Reached! ColorIndex Not found!")
+                    End If
+                    xmlIndexRead.ReadToDescendant("COLOR")
+                    ' MsgBox(xmlIndexRead.Name)
                     Do
-                        'xmlIndexRead.MoveToFirstAttribute()
-                        p_slot = xmlIndexRead.GetAttribute("SLOT")         ' Read and store slot attribute into temporary slot variable.
-                        'xmlIndexRead.MoveToNextAttribute()
-                        p_val = xmlIndexRead.GetAttribute("VALUE")         ' Read and store slot attribute into temporary value variable.
-                        MsgBox("SLOT: " & p_slot & vbTab & "Value: " & p_val)
-                        ColorIndex.Add(p_slot, p_val)               ' Add object for color slot and value of entry.
-                    Loop While xmlIndexRead.ReadToNextSibling("COLOR")     ' Loop to next element until no more elements.
+                        'xmlIndexRead.MoveToAttribute("SLOT")
+                        p_slot = xmlIndexRead.GetAttribute("SLOT")
+                        'xmlIndexRead.MoveToAttribute("VALUE")
+                        p_val = xmlIndexRead.GetAttribute("VALUE")
+                        ' MsgBox("SLOT:       " & p_slot & vbTab & "Value: " & p_val)
+                        ColorIndex.Add(p_slot, p_val)
+                    Loop While xmlIndexRead.ReadToNextSibling("COLOR")
+
+
+
+
+
+
+
+
                 End If
 
-            Loop
-        End Using
-        For x = 0 To ColorIndex.Count - 1
-            MsgBox(ColorIndex.item(x).Slot & " " & ColorIndex.item(x).ColorValue)
-        Next
-        MsgBox("Color Index Initialized!")
+            End If
+
+            If xmlIndexRead.EOF Then
+                MsgBox("End of File!")
+                Exit Do
+            End If
+        Loop
+
+
+
+
+
+
+        'Using xmlIndexRead As XmlReader = XmlReader.Create(p_file, p_settings)
+        '    xmlIndexRead.ReadToFollowing(format)
+        '    MsgBox(format & " file found!" & p_file)
+
+        '    xmlIndexRead.ReadToDescendant("COLORINDEX")
+        '    xmlIndexRead.ReadToDescendant("COLOR")
+
+        '    'MsgBox("Name: " & xmlIndexRead.ReadInnerXml)
+        '    'xmlIndexRead.ReadToDescendant("COLOR")                  ' Then go to first COLOR element.
+        '    MsgBox("Attibute Count: " & xmlIndexRead.Name & " " & xmlIndexRead.AttributeCount)
+        '    Do
+        '        xmlIndexRead.MoveToFirstAttribute()
+        '        p_slot = xmlIndexRead.GetAttribute("SLOT")         ' Read and store slot attribute into temporary slot variable.
+        '        'xmlIndexRead.MoveToNextAttribute()
+        '        p_val = xmlIndexRead.GetAttribute("VALUE")         ' Read and store slot attribute into temporary value variable.
+        '        MsgBox("SLOT:       " & p_slot & vbTab & "Value: " & p_val)
+        '        ColorIndex.Add(p_slot, p_val)               ' Add object for color slot and value of entry.
+        '    Loop While xmlIndexRead.ReadToNextSibling("COLOR")     ' Loop to next element until no more elements.
+
+        'End Using
+        'For x = 0 To ColorIndex.Count - 1
+        '    MsgBox(ColorIndex.item(x).Slot & " " & ColorIndex.item(x).ColorValue)
+        'Next
+        'MsgBox("Color Index Initialized!")
 
 
 
