@@ -180,6 +180,9 @@ Public Class frmViewResource
         loadedResource.Filename = filenameData
         loadedFRML.offset = p_ResourceContainer.fileOffset
         loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
+
+
+
         ResourcePalette = LoadPalette(p_resource, loadedGame.format, p_DefaultPaletteValue)
         p_spriteForm = New frmSpriteDraw(0, ResourcePalette, scaleFactor)
         p_spriteForm.Show()
