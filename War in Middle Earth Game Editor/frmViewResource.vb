@@ -56,6 +56,7 @@ Public Class frmViewResource
             ddScale.DropDownItems.Add(scale_values(x))
         Next
         ddScale.Text = scaleFactor
+
     End Sub
     Public Sub ViewIMAGResource()
         Dim p_endoffset As Integer = 0
@@ -70,6 +71,7 @@ Public Class frmViewResource
         p_endoffset = p_ResourceContainer.fileOffset + (p_ResourceContainer.dataSize + 4)
         gameStatus = p_ResourceContainer.Name & ", " & IMAGView.uncompressed_size & " bytes, (" & IMAGView.chunkSize & " bytes, compressed)" & " @ " & p_ResourceContainer.resourceFile & ".RES" & " (" & p_ResourceContainer.fileOffset & " - " & p_endoffset & ")"
         lblGameStatus.Text = gameStatus
+        ddSpriteColor.Visible = False
     End Sub
     Public Sub ViewCHARResource()
         LoadTile(filenameData, scaleFactor, CurrentTile)
@@ -120,6 +122,7 @@ Public Class frmViewResource
         pbTileView.Size = New Size(16 * scaleFactor, 16 * scaleFactor)
         Me.Controls.Add(pbTileView)
         pbTileView.Location = New Point(30, 30)
+
         ResourcePalette = New resource.RGBColorList
         MsgBox("Loading Palette " & p_resource & " Format: " & Format & " Resource Type: " & SelectedResourceItem.resourceFile)
         ResourcePalette = LoadPalette(p_resource, Format, p_type)
@@ -173,6 +176,9 @@ Public Class frmViewResource
         Dim p_datafile = DATA_FILES
         Dim p_endoffset As Integer
         Dim p_DefaultPaletteValue As String = "0"
+        lblSpriteColor.Visible = True
+        ddSpriteColor.Visible = True
+
         ResourcePalette = New RGBColorList
         loadedFRML = New Game.resource.animChunk
         loadedResource = New Game.resource
@@ -180,9 +186,6 @@ Public Class frmViewResource
         loadedResource.Filename = filenameData
         loadedFRML.offset = p_ResourceContainer.fileOffset
         loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
-
-
-
         ResourcePalette = LoadPalette(p_resource, loadedGame.format, p_DefaultPaletteValue)
         p_spriteForm = New frmSpriteDraw(0, ResourcePalette, scaleFactor)
         p_spriteForm.Show()
@@ -355,5 +358,7 @@ Public Class frmViewResource
         Next x
     End Sub
 
+    Private Sub ssResourceStatus_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ssResourceStatus.ItemClicked
 
+    End Sub
 End Class

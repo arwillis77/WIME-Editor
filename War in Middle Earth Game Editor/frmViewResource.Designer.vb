@@ -27,15 +27,15 @@ Partial Class frmViewResource
         Me.lblGameStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ddScale = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.pnlMainDisplay = New System.Windows.Forms.Panel()
-        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblSpriteColor = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ddSpriteColor = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.pnlMainDisplay = New System.Windows.Forms.Panel()
         Me.ssResourceStatus.SuspendLayout()
         Me.SuspendLayout()
         '
         'ssResourceStatus
         '
-        Me.ssResourceStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblGameStatus, Me.ToolStripStatusLabel2, Me.ddScale, Me.ToolStripStatusLabel1, Me.ddSpriteColor})
+        Me.ssResourceStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblGameStatus, Me.ToolStripStatusLabel2, Me.ddScale, Me.lblSpriteColor, Me.ddSpriteColor})
         Me.ssResourceStatus.Location = New System.Drawing.Point(0, 568)
         Me.ssResourceStatus.Name = "ssResourceStatus"
         Me.ssResourceStatus.Size = New System.Drawing.Size(1094, 24)
@@ -71,20 +71,12 @@ Partial Class frmViewResource
         Me.ddScale.Size = New System.Drawing.Size(13, 22)
         Me.ddScale.ToolTipText = "Choose Magnification Level"
         '
-        'pnlMainDisplay
+        'lblSpriteColor
         '
-        Me.pnlMainDisplay.BackColor = System.Drawing.Color.Black
-        Me.pnlMainDisplay.Location = New System.Drawing.Point(30, 30)
-        Me.pnlMainDisplay.Name = "pnlMainDisplay"
-        Me.pnlMainDisplay.Size = New System.Drawing.Size(640, 480)
-        Me.pnlMainDisplay.TabIndex = 0
-        '
-        'ToolStripStatusLabel1
-        '
-        Me.ToolStripStatusLabel1.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
-        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(69, 19)
-        Me.ToolStripStatusLabel1.Text = "Sprite Color"
+        Me.lblSpriteColor.BackColor = System.Drawing.SystemColors.ControlDark
+        Me.lblSpriteColor.Name = "lblSpriteColor"
+        Me.lblSpriteColor.Size = New System.Drawing.Size(69, 19)
+        Me.lblSpriteColor.Text = "Sprite Color"
         '
         'ddSpriteColor
         '
@@ -93,6 +85,14 @@ Partial Class frmViewResource
         Me.ddSpriteColor.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ddSpriteColor.Name = "ddSpriteColor"
         Me.ddSpriteColor.Size = New System.Drawing.Size(13, 22)
+        '
+        'pnlMainDisplay
+        '
+        Me.pnlMainDisplay.BackColor = System.Drawing.Color.Black
+        Me.pnlMainDisplay.Location = New System.Drawing.Point(30, 30)
+        Me.pnlMainDisplay.Name = "pnlMainDisplay"
+        Me.pnlMainDisplay.Size = New System.Drawing.Size(640, 480)
+        Me.pnlMainDisplay.TabIndex = 0
         '
         'frmViewResource
         '
@@ -118,6 +118,6 @@ Partial Class frmViewResource
     Friend WithEvents ToolStripStatusLabel2 As System.Windows.Forms.ToolStripStatusLabel
     Friend WithEvents ddScale As System.Windows.Forms.ToolStripDropDownButton
     Friend WithEvents pnlMainDisplay As System.Windows.Forms.Panel
-    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
+    Friend WithEvents lblSpriteColor As ToolStripStatusLabel
     Friend WithEvents ddSpriteColor As ToolStripDropDownButton
 End Class
