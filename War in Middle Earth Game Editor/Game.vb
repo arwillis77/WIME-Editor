@@ -137,55 +137,75 @@ Public Class Game
     End Function
     Public Shared Function GET_FRML_Bitplane(filename As String, format As String) As Integer
         Dim p_value As Integer
+        Dim p_string As String = ""
+        Dim p_file As String = DATA_FILES
         Dim settings As New XmlReaderSettings
+        Dim xmlIndexRead As XmlTextReader
         settings.IgnoreWhitespace = True
         settings.IgnoreComments = True
         settings.IgnoreWhitespace = True
         settings.IgnoreComments = True
-        Using input As XmlReader = XmlReader.Create(filename, settings)
-            Do While input.Read
-                If input.ReadToDescendant(format) Then
-                    input.ReadToDescendant("FRMLBITPLANES")
-                    p_value = input.ReadElementContentAsInt
+        xmlIndexRead = New XmlTextReader(p_file)
+        xmlIndexRead.MoveToContent()
+        Do While xmlIndexRead.Read
+            xmlIndexRead.Read()
+            If xmlIndexRead.Name = "FORMAT" Then
+                p_string = xmlIndexRead.GetAttribute("ID")
+                If p_string = format Then
+                    Do Until xmlIndexRead.Name = "FRMLBITPLANES"
+                        xmlIndexRead.Read()
+                        If xmlIndexRead.EOF Then
+                            MsgBox("EOF!")
+
+                            Exit Do
+                        End If
+                    Loop
+                    p_value = xmlIndexRead.ReadInnerXml
+
                 End If
+            End If
 
-
-            Loop
-        End Using
+        Loop
         Return p_value
-
-
-
     End Function
     Public Shared Function Get_FRML_Offset(ByVal filename As String, format As String, resource_name As String) As Game.resource.FRML_OFFSET
         ' /* FUNCTION DECLARATIONS
         Dim settings As New XmlReaderSettings
         settings.IgnoreWhitespace = True
         settings.IgnoreComments = True
-        Dim P_RESID As String = ""
-        Dim p_offset As New Game.resource.FRML_OFFSET
         settings.IgnoreWhitespace = True
         settings.IgnoreComments = True
-        Using input As XmlReader = XmlReader.Create(filename, settings)
-            Do While input.Read
-                If input.ReadToDescendant(format) Then
-                    If input.ReadToDescendant("FRMLOFFSETS") Then
-                        If input.ReadToDescendant("RESOURCE") Then
-                            Do
-                                P_RESID = input("ID")
-                                If P_RESID = resource_name Then
-                                    input.ReadStartElement("RESOURCE")
-                                    p_offset.Data_Offset = input.ReadElementContentAsInt
-                                    p_offset.Address_Offset = input.ReadElementContentAsInt
-                                    Exit Do
-                                Else
-                                End If
-                            Loop While input.ReadToNextSibling("RESOURCE")
+        Dim p_file As String = DATA_FILES
+        Dim p_string As String = ""
+        Dim p_offset As New Game.resource.FRML_OFFSET
+        Dim xmlOffsetRead As XmlTextReader
+        xmlOffsetRead = New XmlTextReader(p_file)
+        xmlOffsetRead.MoveToContent()
+        Do While xmlOffsetRead.Read
+            xmlOffsetRead.Read()
+            If xmlOffsetRead.Name = "FORMAT" Then
+                p_string = xmlOffsetRead.GetAttribute("ID")
+                'MsgBox("PSTRING " & p_string)
+                If p_string = format Then
+                    'MsgBox("Format " & format)
+                    xmlOffsetRead.ReadToDescendant("FRMLOFFSETS")
+                    xmlOffsetRead.ReadToDescendant("RESOURCE")
+                    Do
+                        p_string = xmlOffsetRead.GetAttribute("ID")
+                        If p_string = resource_name Then
+                            xmlOffsetRead.ReadToDescendant("DataOffset")
+                            p_offset.Data_Offset = xmlOffsetRead.ReadInnerXml
+                            xmlOffsetRead.Read()
+                            p_offset.Address_Offset = xmlOffsetRead.ReadInnerXml
                         End If
-                    End If
+                    Loop While xmlOffsetRead.ReadToNextSibling("RESOURCE")
                 End If
-            Loop
-        End Using
+            End If
+            If xmlOffsetRead.EOF Then
+                MsgBox("End of File!")
+                Exit Do
+            End If
+        Loop
         Return p_offset
     End Function
     Public Shared Function CreateParseObject(graphictype As String, format As String, resource As String) As ParseList
@@ -208,7 +228,7 @@ Public Class Game
                     input.ReadToFollowing("PALETTE")
                     t = input.GetAttribute("ID")
                     If t = resource Then
-                        MsgBox("RESOURCE " & graphictype & " " & t & " found.")
+                        'MsgBox("RESOURCE " & graphictype & " " & t & " found.")
                         ' Then go to first COLOR element.
                         input.ReadToFollowing("COLOR")
                         Do
@@ -239,11 +259,13 @@ Public Class Game
     Public Shared Function ParseColorIndex(parsedata As ParseList, index As PaletteData.ColorList) As resource.RGBColorList
         Dim p_Colors As New resource.RGBColorList
         Dim p_tempColor As New resource.RGBValues
+        ' MsgBox("Parsing Color Index ...." & parsedata.Count)
+
         For x As Integer = 0 To parsedata.Count - 1
             For y As Integer = 0 To index.Count - 1
                 If parsedata(x).ColorIndex = index(y).Slot Then
                     p_tempColor = resource.ConvertToRGB(index(y).ColorValue)
-                    'MsgBox("Color Slot " & parsedata(x).ColorSlot & " = COLOR VALUE: " & p_tempColor.RedValue & p_tempColor.GreenValue & p_tempColor.BlueValue)
+                    'MsgBox("Color Slot " & parsedata(x).ColorSlot & " = COLOR VALUE:  " & p_tempColor.RedValue & p_tempColor.GreenValue & p_tempColor.BlueValue)
                     p_Colors.add(p_tempColor)
                     Exit For
                 Else
@@ -251,15 +273,13 @@ Public Class Game
                 End If
             Next y
         Next x
+        'MsgBox("ParseComplete")
         Return p_Colors
     End Function
-
-
     Public Class ParseEntry
         'Class used to hold data in parsing the ColorIndex object
         Private m_Index As UShort
         Private m_Slot As UShort
-
         Public Property ColorIndex As UShort
             Get
                 Return m_Index
@@ -312,9 +332,7 @@ Public Class Game
             Dim p As New ParseEntry(slot, index)
             ParseColorKey.Add(p)
         End Sub
-
     End Class
-
     Public Shared Function getPlanes(format As String) As Integer
         Dim p_planes As Integer = 0
         For p As Integer = 0 To FORMAT_BITPLANES.Length - 1
@@ -680,7 +698,7 @@ Public Class Game
             Default Public Property Item(index As Integer) As RGBValues
                 Get
                     If index < 0 OrElse index >= p_colors.Count Then
-                        Throw New ArgumentOutOfRangeException("index", "The index must be between 0 and " & p_colors.Count - 1 & ".")
+                        Throw New ArgumentOutOfRangeException("index", "Index Value " & index & "The index must be between 0 and " & p_colors.Count - 1 & ".")
                     Else
                         Return p_colors(index)
                     End If

@@ -285,6 +285,7 @@
     <None Include="WIME Savegame Editor_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\WIMEDATA.xml" />
     <None Include="Resources\WIMEBOX.JPG" />
     <EmbeddedResource Include="Resources\apple2icon.png" />
     <None Include="Resources\handcursor.ico" />

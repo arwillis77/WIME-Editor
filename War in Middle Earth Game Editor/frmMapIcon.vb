@@ -33,6 +33,7 @@ Public Class frmMapIcon
             p_endoffset = p_contain.fileOffset + (p_contain.dataSize + 4)
             ImagViewGame = loadedGame
             Imagview = GetIMAGChunk(p_resfilename, ImagViewGame.format, p_contain.fileOffset, ImagViewGame.endianType)
+
             ResourcePalette = LoadPalette(IMAGES, loadedGame.format, p_contain.resourceFile)
             LoadMapIcons(p_resfilename, Imagview.offset)
             CutMapIcons()
