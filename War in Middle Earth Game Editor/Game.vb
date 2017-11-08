@@ -56,7 +56,7 @@ Public Class Game
     Public Shared OFFSET_SaveOffset = {0, 0, 25538, 0, 24064}
     Public Shared OFFSET_TileStart = {43907, 301405, 20, 8038, 8038}
     Public Shared AMIGA_CHUNK = 40992
-    Public Shared FORMAT_BITPLANES() As Integer = {PC_VGA_BITPLANES, PC_EGA_BITPLANES, IIGS_BITPLANES, AMIGA_BITPLANES, ST_BITPLANES}
+    ' Public Shared FORMAT_BITPLANES() As Integer = {PC_VGA_BITPLANES, PC_EGA_BITPLANES, IIGS_BITPLANES, AMIGA_BITPLANES, ST_BITPLANES}
     Public Shared gameExecutables() As String = {PC_VGA_EXE, PC_EGA_EXE, IIGS_EXE, AMIGA_EXE, ST_EXE}
     Public Shared FORMAT_ID() As String = {PC_VGA_FORMAT, PC_EGA_FORMAT, IIGS_FORMAT, AMIGA_FORMAT, ST_FORMAT}
     Public Shared FORMAT_DESC() As String = {PC_VGA_DESC, PC_EGA_DESC, IIGS_DESC, AMIGA_DESC, ST_DESC}
@@ -333,16 +333,7 @@ Public Class Game
             ParseColorKey.Add(p)
         End Sub
     End Class
-    Public Shared Function getPlanes(format As String) As Integer
-        Dim p_planes As Integer = 0
-        For p As Integer = 0 To FORMAT_BITPLANES.Length - 1
-            If format = FORMAT_ID(p) Then
-                p_planes = FORMAT_BITPLANES(p)
-                Exit For
-            End If
-        Next
-        Return p_planes
-    End Function
+
     Public Shared Function FileOpenDialog() As OpenFileDialog
         Dim dlgOpenGame As New OpenFileDialog
         Dim dr As DialogResult
@@ -698,6 +689,7 @@ Public Class Game
             Default Public Property Item(index As Integer) As RGBValues
                 Get
                     If index < 0 OrElse index >= p_colors.Count Then
+
                         Throw New ArgumentOutOfRangeException("index", "Index Value " & index & "The index must be between 0 and " & p_colors.Count - 1 & ".")
                     Else
                         Return p_colors(index)

@@ -137,10 +137,11 @@ Public Class frmResourceList
         Return p_value
     End Function
     Public Sub SetFRMLInfo()
+        Dim p_datafile = DATA_FILES
         loadedFRML.Name = listResourceItems.SelectedItems(0).SubItems(0).Text
         loadedResource.Filename = loadedSettings.wimeDIRECTORY & "\" & listResourceItems.SelectedItems(0).SubItems(4).Text & ".RES"
         loadedFRML.offset = Val(listResourceItems.SelectedItems(0).SubItems(5).Text)
-        loadedFRML.bitplanes = getPlanes(loadedGame.format)
+        loadedFRML.bitplanes = loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
     End Sub
     Private Sub listResourceItems_ItemActivate(sender As Object, e As EventArgs) Handles listResourceItems.ItemActivate
         DisplayResource(True)

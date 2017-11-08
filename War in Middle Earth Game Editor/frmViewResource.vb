@@ -4,7 +4,6 @@ Imports System.IO
 Imports WIMEEditor.BinaryFile
 Imports WIMEEditor.ByteRunUnpacker
 Public Class frmViewResource
-    Public Filename As String
     Public CHARTile As New Game.resource.tileChunk
     Public CurrentTile As Integer
     Public ResourcePalette As resource.RGBColorList
@@ -65,7 +64,10 @@ Public Class frmViewResource
         IMAGView = New Game.resource.imageChunk
         IMAGView = GetIMAGChunk(filenameData, loadedGame.format, p_ResourceContainer.fileOffset, loadedGame.endianType)
         ResourcePalette = New resource.RGBColorList
-        MsgBox("Loading Palette " & p_resource & vbCrLf & Format & vbCrLf & SelectedResourceItem.resourceFile)
+        ' Color correct icons used in scenes.  Others use palette from map as they are for mapview.
+        If SelectedResourceItem.resourceFile = "AMAPS" And IMAGView.bitplane = 5 Then
+            SelectedResourceItem.resourceFile = "BSCENE"
+        End If
         ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
         loadImage(filenameData, p_ResourceContainer.fileOffset)
         p_endoffset = p_ResourceContainer.fileOffset + (p_ResourceContainer.dataSize + 4)
@@ -122,9 +124,8 @@ Public Class frmViewResource
         pbTileView.Size = New Size(16 * scaleFactor, 16 * scaleFactor)
         Me.Controls.Add(pbTileView)
         pbTileView.Location = New Point(30, 30)
-
         ResourcePalette = New resource.RGBColorList
-        MsgBox("Loading Palette " & p_resource & " Format: " & Format & " Resource Type: " & SelectedResourceItem.resourceFile)
+        'MsgBox("Loading Palette " & p_resource & " Format: " & Format & " Resource Type: " & SelectedResourceItem.resourceFile)
         ResourcePalette = LoadPalette(p_resource, Format, p_type)
         'p_ParseObject = CreateParseObject(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         'p_colorlist = ParseColorIndex(p_ParseObject, ColorIndex)
@@ -205,12 +206,12 @@ Public Class frmViewResource
             Dim Unpacker As New ByteRunUnpacker(reader)
             Dim p_offsetmodifier As Integer
             Dim p_format As String : p_format = loadedSettings.fileFormat
+            Dim p_bitplanes As Integer = IMAGView.bitplane
             Dim Outputfile As New BinaryFile(oFilePath)
-
             p_offsetmodifier = getIMAGDataOffsetValue(p_format, IMAGView.imagePlane)
             addressOffset = 4
             Dim value As Integer = p_offsetmodifier
-            IMAGView.chunkData = Unpacker.Unpack(IMAGView.offset + value, IMAGView.uncompressed_size, IMAGView.canvassWidth, IMAGView.height, getPlanes(p_format))
+            IMAGView.chunkData = Unpacker.UnpackV2(IMAGView.offset + value, IMAGView.uncompressed_size, IMAGView.canvassWidth, IMAGView.height, p_bitplanes)
             Outputfile.Write(IMAGView.chunkData, 0, IMAGView.chunkData.Length)
             Outputfile.Close()
             Memory = IMAGView.chunkData
@@ -247,12 +248,9 @@ Public Class frmViewResource
         Else ' Even image width -> a bitplane contains (width + 1) \ 2 bytes
             PlaneSize = (IMAGView.canvassWidth + 1) \ 8
         End If
-        If IMAGView.bitplane = 0 Then  ' We treat the data as pixels, 
-            '                              each in one nibble (half-byte).
-
+        If IMAGView.bitplane = 0 Then  ' We treat the data as pixels, each in one nibble (half-byte).
             Dim tempFile As String = loadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
             Using objWriter As New StreamWriter(tempFile, True)
-
                 For Y = 0 To IMAGView.height - 1
                     If escape Then Exit Sub
                     For X = 0 To IMAGView.canvassWidth - 1
@@ -300,7 +298,6 @@ Public Class frmViewResource
                         objWriter.Write(ControlChars.Tab)
                     Next
                     objWriter.WriteLine(ControlChars.Tab)
-
                 Next
             End Using
         End If
@@ -356,9 +353,5 @@ Public Class frmViewResource
                 dest_x = (dest_x) + (loadedFRML.cel_canvasswidth(x) * scaleFactor)
             End If
         Next x
-    End Sub
-
-    Private Sub ssResourceStatus_ItemClicked(sender As Object, e As ToolStripItemClickedEventArgs) Handles ssResourceStatus.ItemClicked
-
     End Sub
 End Class

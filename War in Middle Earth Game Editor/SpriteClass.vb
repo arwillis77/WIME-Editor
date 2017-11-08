@@ -74,22 +74,6 @@ Public Class Sprite
 
             End If
         Next
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         ' Loads the sprite names and values to be used in drop down CBO boxes.
         'Dim p_sprite As New Archive_Sprite
         'Dim counter As Integer = 0

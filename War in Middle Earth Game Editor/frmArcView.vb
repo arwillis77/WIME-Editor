@@ -291,7 +291,7 @@ Public Class frmArcView
         RefreshSpriteDrawingArea()
     End Sub
     Public Sub DisplaySprite()
-        Initialize_SpriteData()
+        'Initialize_SpriteData()
         ProcessSprites()
         ChangeAnimationCycle(nbrLoop.Value)
         nbrLoop.Maximum = currentSprite.totalLoops - 1
@@ -378,6 +378,7 @@ Public Class frmArcView
         End Select
     End Sub
     Public Sub LoadAnimationData(spriteNumber As Integer)
+        Dim p_datafile = DATA_FILES
         Dim p_size As Integer = 2
         Dim p_palettedata As resource.RGBColorList
         p_palettedata = New resource.RGBColorList
@@ -391,7 +392,7 @@ Public Class frmArcView
                 loadedFRML.Name = FRMLName
                 loadedResource.Filename = (loadedSettings.wimeDIRECTORY & "\" & GameResourceList(x).File & ".RES")
                 loadedFRML.offset = Val(GameResourceList(x).Offset)
-                loadedFRML.bitplanes = getPlanes(loadedGame.format)
+                loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
                 p_palettedata = LoadPalette(SPRITES, loadedGame.format, selectedCharacter.spriteColor)
                 p_spriteForm = New frmSpriteDraw(selectedCharacter.spriteColor, p_palettedata, p_size)
                 p_spriteForm.Show()
@@ -427,10 +428,10 @@ Public Class frmArcView
         nbrCel.Value = spriteCurCel : nbrCel.Maximum = currentSprite.loopFrames(spriteCurLoop) - 1
         FillSpriteColors()
         'nbrSpriteColor.Value = selectedCharacter.spriteColor : nbrSpriteColor.Maximum = currentSprite.totalSpriteColors - 1
-        'cboSpriteName.Items.Clear()
-        'For i As Integer = 0 To SpriteTypes.Length - 1
-        '    cboSpriteName.Items.Add(SpriteTypes(i))
-        'Next
+        cboSpriteName.Items.Clear()
+        For i As Integer = 0 To SpriteTypes.Length - 1
+            cboSpriteName.Items.Add(SpriteTypes(i))
+        Next
         cboSpriteName.SelectedItem = currentSprite.spriteType
     End Sub
     Private Sub loadObjects()

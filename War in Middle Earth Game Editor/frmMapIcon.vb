@@ -50,6 +50,7 @@ Public Class frmMapIcon
         escape = False
     End Sub
     Public Sub LoadMapIcons(ByVal filename As String, ByVal offset As Integer)
+
         Try
             Using reader As New BinaryFile(filename)
                 Dim Unpacker As New ByteRunUnpacker(reader)
@@ -61,7 +62,7 @@ Public Class frmMapIcon
                 addressOffset = OFFSET_BANNERICONS(P_formatvalue)
                 If Imagview.canvassWidth > 255 Then addressOffset = 5
                 Dim value As Integer = p_offsetmodifier
-                Imagview.chunkData = Unpacker.Unpack(Imagview.offset + value, Imagview.uncompressed_size, Imagview.canvassWidth, Imagview.height, getPlanes(p_format))
+                Imagview.chunkData = Unpacker.Unpack(Imagview.offset + value, Imagview.uncompressed_size, Imagview.canvassWidth, Imagview.height, 4)
                 Memory = Imagview.chunkData
                 escape = False
                 LForm = True

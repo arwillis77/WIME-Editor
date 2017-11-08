@@ -3,8 +3,8 @@ Imports System.IO
 Imports WIMEEditor.Game
 Public Class EditorSettings
     Public Const progName As String = "WAR IN MIDDLE-EARTH GAME EDITOR"
-    Public Const progVersion As String = ".09A BUILD 4"
-    Public Const progDate As String = "7/27/2017"
+    Public Const progVersion As String = ".09A BUILD 5"
+    Public Const progDate As String = "11/08/2017"
     Public Const settingsFilename = "WIMEEDITOR.CFG"
     Public Shared PaletteFolder = "PALETTE"
     Public Shared settingsFullFilename As String = (Application_Path & "\" & settingsFilename)
