@@ -1,7 +1,7 @@
 # War in Middle Earth Game Editor
 
 As the name suggests, this software aims to be an editor for the game War in Middle Earth 
-by Synergistic Software & Melbourne Studios, © 1988. See https://en.wikipedia.org/wiki/War_in_Middle_Earth.
+by Synergistic Software & Melbourne House, © 1988. See https://en.wikipedia.org/wiki/War_in_Middle_Earth.
 
 If you are an owner of a copy of the game, you can use its files to go through the various game resources 
 (images, map tiles, animations, and texts). You can also view the whole map of Middle Earth as a single image and save it, 
