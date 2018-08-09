@@ -99,10 +99,11 @@ Public Class frmMapIcon
         Else ' Even image width -> a bitplane contains (width + 1) \ 2 bytes
             PlaneSize = (Imagview.canvassWidth + 1) \ 8
         End If
+        MsgBox("Bitplane " & Imagview.bitplane)
         If Imagview.bitplane = 0 Then  ' We treat the data as pixels, 
             '                              each in one nibble (half-byte).
             Dim tempFile As String = loadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
-            'MsgBox("No Bitplanes")
+            MsgBox("No Bitplanes")
             Using objWriter As New StreamWriter(tempFile, True)
 
                 For Y = 0 To Imagview.height - 1

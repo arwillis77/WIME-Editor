@@ -40,6 +40,7 @@
 ' The Endian togglers:
 '   The SwapWord and SwapLongword just swap the bytes in the argument 
 '     so they toggle the Endian of the argument.
+Imports System.IO
 Public Enum Endianness
     endLittle
     endBig

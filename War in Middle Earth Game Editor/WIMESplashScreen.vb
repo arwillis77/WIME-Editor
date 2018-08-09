@@ -10,7 +10,7 @@ Public NotInheritable Class WIMESplashScreen
         'Copyright.Text = My.Application.Info.Copyright
         ApplicationTitle.Text = progName
         Version.Text = "Version " & progVersion & " " & progDate & " - Special Version for Donors"
-        Copyright.Text = "Copyright (C) 2017 Aaron R. Willis"
+        Copyright.Text = "Copyright (C) 2018 Aaron R. Willis"
         Copyright2.Text = "War in Middle Earth -- Copyright (C) 1988 Melbourne House"
     End Sub
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick

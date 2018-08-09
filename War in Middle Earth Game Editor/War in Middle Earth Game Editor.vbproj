@@ -118,9 +118,11 @@
     <Compile Include="AboutBox1.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BinaryFileClass.vb" />
-    <Compile Include="Bitplane.vb" />
-    <Compile Include="EditorSettings.vb" />
+    <Compile Include="Classes\BinaryFileClass.vb" />
+    <Compile Include="Classes\Bitplane.vb" />
+    <Compile Include="Classes\EditorSettings.vb" />
+    <Compile Include="Classes\ResourceFile.vb" />
+    <Compile Include="Classes\ResourceIndex.vb" />
     <Compile Include="frmResourceList.Designer.vb">
       <DependentUpon>frmResourceList.vb</DependentUpon>
     </Compile>
@@ -139,7 +141,7 @@
     <Compile Include="frmInventory.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ByteRunUnpacker.vb" />
+    <Compile Include="Classes\ByteRunUnpacker.vb" />
     <Compile Include="frmSpriteDraw.Designer.vb">
       <DependentUpon>frmSpriteDraw.vb</DependentUpon>
     </Compile>
@@ -152,7 +154,7 @@
     <Compile Include="frmViewResource.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Game.vb" />
+    <Compile Include="Classes\Game.vb" />
     <Compile Include="MapView.Designer.vb">
       <DependentUpon>MapView.vb</DependentUpon>
     </Compile>
@@ -175,7 +177,7 @@
     <Compile Include="frmArcView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SpriteClass.vb" />
+    <Compile Include="Classes\SpriteClass.vb" />
     <Compile Include="ApplicationEvents.vb" />
     <Compile Include="frmWIMEEditorMain.vb">
       <SubType>Form</SubType>

@@ -6,6 +6,7 @@ Imports System.IO
 Imports System.Xml
 Imports WIMEEditor.EditorSettings
 Imports WIMEEditor.Game
+Imports WIMEEditor.ResourceIndex
 Public Class frmWIMEEditorMain
     ' / frmWIMEEditorMaiin -- Form for the Main Editor */
     ' CONSTANT AND SHARED VARIABLES
@@ -93,6 +94,7 @@ Public Class frmWIMEEditorMain
         tclExplorerMain.Show()
         tclResourceTabs.Show()
         loadedSettings = loadConfig(settingsFullFilename)
+        'MsgBox(Application_Path.ToString)
         LoadGame()
     End Sub
     Public Sub LoadGame()
@@ -328,8 +330,10 @@ Public Class frmWIMEEditorMain
             If xmlIndexRead.Name = "FORMAT" Then
                 p_string = xmlIndexRead.GetAttribute("ID")
                 If p_string = format Then
+                    'MsgBox("Color Index Init Format " & format)
                     Do Until xmlIndexRead.Name = "COLORINDEX"
                         xmlIndexRead.Read()
+                        'MsgBox(xmlIndexRead.Name)
                         If xmlIndexRead.EOF Then
                             MsgBox("COLORINDEX EOF!")
                             fileend_flag = True
@@ -345,6 +349,7 @@ Public Class frmWIMEEditorMain
                         p_slot = xmlIndexRead.GetAttribute("SLOT")
                         p_val = xmlIndexRead.GetAttribute("VALUE")
                         ColorIndex.Add(p_slot, p_val)
+                        'MsgBox(format & " " & p_slot & " " & p_val)
                     Loop While xmlIndexRead.ReadToNextSibling("COLOR")
                 End If
             End If
@@ -421,6 +426,10 @@ Public Class frmWIMEEditorMain
         Dim p_form As New Form
         p_form = frmCoordinates
         p_form.Show()
+    End Sub
+
+    Private Sub pnlEditor_Paint(sender As Object, e As PaintEventArgs) Handles pnlEditor.Paint
+
     End Sub
 End Class
 

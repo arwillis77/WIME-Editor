@@ -29,16 +29,14 @@ Public Class MapView
     Private Sub MapView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RemoveHandler mapPanel.Paint, AddressOf mapPanel_Paint
         ResourcePalette = New resource.RGBColorList
-        MsgBox(TILES & loadedGame.format & SelectedResourceItem.resourceFile)
-        ResourcePalette = LoadPalette(IMAGES, loadedGame.format, TILES)
+        MsgBox(TILES & " " & loadedGame.format & "  " & SelectedResourceItem.resourceFile)
+        ResourcePalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         'MMAPPalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         ' // Transfer settings for MMAP and CHAR resources to local classes
         MMAPTiles = loadedTile
         iTileOrigin = OFFSET_TileStart(loadedGame.formatVal)
         mapPanel.AutoScroll = True
         MMAPSettings = loadConfig(settingsFullFilename)
-
-
         ProcessMap()
     End Sub
     Public Sub New(MAP_data As Game.resource.MapChunk)
@@ -49,7 +47,7 @@ Public Class MapView
     End Sub
     Public Sub ProcessMap()
         Dim inputfile As New BinaryFile(Filename)
-        Dim outputfile As New BinaryFile(MMAPSettings.dataDirectory & "\" & rawMapFile)
+        Dim outputfile As New BinaryFile(Application_Path & "\" & rawMapFile)
         Dim unpacker As New ByteRunUnpacker(inputfile)
         Dim result As Byte() = unpacker.Unpack(MMAPSettings.mapFileOffset, loadedMMAP.chunkSize, loadedMMAP.width, loadedMMAP.height, loadedMMAP.planes)
         outputfile.Write(result, 0, result.Length)
@@ -141,11 +139,9 @@ Public Class MapView
         Dim mapX As Integer = 0 : Dim mapY As Integer = 0
         Dim timage As Image
         Dim tempByte As Integer
-        Dim tempdatadir As String
         Dim filePTR As Long = 0
         Dim mapTileSize = 16
-        tempdatadir = MMAPSettings.dataDirectory
-        Dim filename As String = tempdatadir & "\" & rawMapFile
+        Dim filename As String = Application_Path & "\" & rawMapFile
         Using resReader As New BinaryFile(filename)
             For i As Integer = 0 To 98
                 Do

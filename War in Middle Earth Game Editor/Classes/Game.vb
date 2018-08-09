@@ -223,7 +223,9 @@ Public Class Game
             Dim t As String = ""
             Do While input.Read
                 input.ReadToDescendant(format)
+
                 input.ReadToDescendant(graphictype)
+                'MsgBox(format & "found!" & graphictype)
                 Do Until t = resource
                     input.ReadToFollowing("PALETTE")
                     t = input.GetAttribute("ID")
@@ -260,7 +262,6 @@ Public Class Game
         Dim p_Colors As New resource.RGBColorList
         Dim p_tempColor As New resource.RGBValues
         ' MsgBox("Parsing Color Index ...." & parsedata.Count)
-
         For x As Integer = 0 To parsedata.Count - 1
             For y As Integer = 0 To index.Count - 1
                 If parsedata(x).ColorIndex = index(y).Slot Then
@@ -368,12 +369,8 @@ Public Class Game
         Public Filename As String
         Public EndianType As Integer
         Public Format As String
-        Public HeaderSize As UShort
-        Public DataSegmentSize As UInteger
-        Public DataSize As UInteger
-        Public FileEndLength As UInteger
         Public totalChunks As UShort
-        Public ResourceKey(0 To 5, 0 To 1) As Integer
+
         ' ==================================================== SUB CLASSES ===============================================================================
         Public Shared Sub UNPACKAMIGATILES(ByVal tilefile As String, datadir As String, toffset As Integer, tchunk As Integer)
             Dim inputfile As New BinaryFile(tilefile)
@@ -503,13 +500,7 @@ Public Class Game
             Inherits Chunk
             Public filename As String
         End Class
-        Public Class resourceIdentifier
-            ' =================================================================== RESOURCEIDENTIFIER SUB-CLASS =====================================================
-            ' CLASS ARRAY FOR ORGANIZING RESOURCE ID AND LENGTHS WHEN PARSING RESOURCE FILES.
-            ' ======================================================================================================================================================
-            Public resourceID(RES_ID.Length) As String
-            Public resourceQTY(RES_ID.Length) As Integer
-        End Class
+
         Structure newResourceIdentifier
             Public resourceID As String
             Public resourceQTY As Integer
@@ -854,7 +845,7 @@ Public Class Game
         tempHeader = _readResourceHeader(filename, tempend)
         chunkTypeQTY = _getChunkTypeQTY(filename, tempend)
         filepointer = (tempHeader.DataSegmentSize + tempHeader.Size) + (18)
-        Dim rID(chunkTypeQTY) As resource.resourceIdentifier
+
         chunkpos = getResKeyPosition(filename, tempend)
         For x = 0 To chunkTypeQTY - 1
             tempChunkQTY = tempChunkQTY + _getChunkQTY(filename, filepointer, tempend)

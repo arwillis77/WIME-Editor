@@ -23,6 +23,7 @@ Public Class frmViewResource
     Private Sub frmViewResource_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.BackColor = Color.FromArgb(35, 35, 35)
         Format = loadedGame.format
+        'MsgBox("Format is " & Format)
         If p_ResourceContainer.resourceType = Game.resource.RES_ID_ELEMENTS(4) Then
             ViewIMAGResource()
         ElseIf p_ResourceContainer.resourceType = Game.resource.RES_ID_ELEMENTS(3) Then
@@ -118,17 +119,22 @@ Public Class frmViewResource
         Dim bPix As Byte
         Dim iTileOrigin As Integer
         Dim CHARTile As New Game.resource.tileChunk
-        Dim p_resource = IMAGES
-        Dim p_type = TILES
+        Dim p_resource = TILES
+        'Dim p_type = TILES
         pnlMainDisplay.Hide()
         pbTileView.Size = New Size(16 * scaleFactor, 16 * scaleFactor)
         Me.Controls.Add(pbTileView)
         pbTileView.Location = New Point(30, 30)
         ResourcePalette = New resource.RGBColorList
         'MsgBox("Loading Palette " & p_resource & " Format: " & Format & " Resource Type: " & SelectedResourceItem.resourceFile)
-        ResourcePalette = LoadPalette(p_resource, Format, p_type)
+        ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
         'p_ParseObject = CreateParseObject(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         'p_colorlist = ParseColorIndex(p_ParseObject, ColorIndex)
+        'Dim t As String = ""
+        'For x As Integer = 0 To ResourcePalette.Count - 1
+        '    t = t & x & "  " & ResourcePalette.Item(x).RedValue & vbTab & ResourcePalette.Item(x).GreenValue & vbTab & ResourcePalette.Item(x).BlueValue & vbCrLf
+        'Next
+        'MsgBox(t)
         iTileOrigin = OFFSET_TileStart(loadedGame.formatVal)
         If loadedGame.format = AMIGA_FORMAT Then
             Game.resource.UNPACKAMIGATILES(filename, loadedSettings.dataDirectory, CHARTile.offset + 8, AMIGA_CHUNK)
@@ -155,6 +161,7 @@ Public Class frmViewResource
             For yBit As Integer = 0 To (16 * scale) - 1 Step scale
                 For xBit As Integer = 0 To (16 * scale) - 1 Step scale
                     tempCol = dChunkData(intCByte)
+                    'MsgBox("Color " & tempCol)
                     mybrush = New SolidBrush(resource.imageColorNew(tempCol, ResourcePalette))
                     gfxTilePixel.FillRectangle(mybrush, xBit, yBit, (xBit + scale), (yBit + scale))
                     pbTileView.Image = bmpTileOriginal

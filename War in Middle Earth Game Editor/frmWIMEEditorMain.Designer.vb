@@ -74,7 +74,7 @@ Partial Class frmWIMEEditorMain
         Me.menuToolbarView.CheckOnClick = True
         Me.menuToolbarView.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuToolbarView.Name = "menuToolbarView"
-        Me.menuToolbarView.Size = New System.Drawing.Size(126, 22)
+        Me.menuToolbarView.Size = New System.Drawing.Size(180, 22)
         Me.menuToolbarView.Text = "Toolbar"
         '
         'menuStatusBarView
@@ -83,7 +83,7 @@ Partial Class frmWIMEEditorMain
         Me.menuStatusBarView.CheckOnClick = True
         Me.menuStatusBarView.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuStatusBarView.Name = "menuStatusBarView"
-        Me.menuStatusBarView.Size = New System.Drawing.Size(126, 22)
+        Me.menuStatusBarView.Size = New System.Drawing.Size(180, 22)
         Me.menuStatusBarView.Text = "Status Bar"
         '
         'menWIMESaveGameEditor
@@ -91,7 +91,7 @@ Partial Class frmWIMEEditorMain
         Me.menWIMESaveGameEditor.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.ViewToolStripMenuItem, Me.ToolsMenu, Me.mnuTitleWindow, Me.HelpToolStripMenuItem})
         Me.menWIMESaveGameEditor.Location = New System.Drawing.Point(0, 0)
         Me.menWIMESaveGameEditor.Name = "menWIMESaveGameEditor"
-        Me.menWIMESaveGameEditor.Size = New System.Drawing.Size(1321, 24)
+        Me.menWIMESaveGameEditor.Size = New System.Drawing.Size(1008, 24)
         Me.menWIMESaveGameEditor.TabIndex = 0
         Me.menWIMESaveGameEditor.Text = "MenuStrip1"
         Me.menWIMESaveGameEditor.Visible = False
@@ -148,7 +148,7 @@ Partial Class frmWIMEEditorMain
         '
         Me.ToolsMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripSeparator1, Me.SaveGameOverview, Me.CopyProtectionCodesToolStripMenuItem})
         Me.ToolsMenu.Name = "ToolsMenu"
-        Me.ToolsMenu.Size = New System.Drawing.Size(48, 20)
+        Me.ToolsMenu.Size = New System.Drawing.Size(47, 20)
         Me.ToolsMenu.Text = "&Tools"
         '
         'ToolStripSeparator1
@@ -300,7 +300,7 @@ Partial Class frmWIMEEditorMain
         Me.Controls.Add(Me.toolbarStrip)
         Me.Controls.Add(Me.menWIMESaveGameEditor)
         Me.DoubleBuffered = True
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
         Me.HelpButton = True
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.IsMdiContainer = True
