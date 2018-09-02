@@ -28,9 +28,12 @@ Public Class MapView
     Public iTileOrigin As Integer
     Private Sub MapView_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         RemoveHandler mapPanel.Paint, AddressOf mapPanel_Paint
+        Dim p_resource As String = TILES
         ResourcePalette = New resource.RGBColorList
-        MsgBox(TILES & " " & loadedGame.format & "  " & SelectedResourceItem.resourceFile)
-        ResourcePalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
+        'MsgBox(TILES & " " & loadedGame.format & "  " & SelectedResourceItem.resourceFile)
+        ResourcePalette = ParseIndex(P_RESOURCE)
+
+        'ResourcePalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         'MMAPPalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         ' // Transfer settings for MMAP and CHAR resources to local classes
         MMAPTiles = loadedTile

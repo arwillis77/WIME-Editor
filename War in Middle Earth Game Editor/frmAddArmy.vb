@@ -25,7 +25,7 @@ Public Class frmAddArmy
             tempCharData = archiveCharacterArray(x)
             tempFollowValue = tempCharData.valueLeaderFollow
             If tempFollowValue = curCharVal Then
-                tempCharacterNumber = x
+                tempCharacternumber = x
                 intCNum(x) = tempCharacternumber
                 Dim lv As ListViewItem = lvwCharacterFollowActual.Items.Add(intCNum(x))
                 'The remaining columns are subitems  

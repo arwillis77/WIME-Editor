@@ -18,10 +18,12 @@ Public Class frmMapIcon
     Public ImagViewGame As Game
     Public Imagview As New Game.resource.imageChunk
     Public ResourcePalette As New resource.RGBColorList
+    Dim p_resource As String = IMAGES
     Private Sub frmMapIcon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         loadedSettings = loadConfig(settingsFullFilename)
         Dim p_resfilename As String
         Dim p_resfilecut As String
+
         Dim p_contain As New Game.resource.ResourceDetails
         Dim p_endoffset As Integer
         ResourcePalette = New resource.RGBColorList
@@ -33,8 +35,7 @@ Public Class frmMapIcon
             p_endoffset = p_contain.fileOffset + (p_contain.dataSize + 4)
             ImagViewGame = loadedGame
             Imagview = GetIMAGChunk(p_resfilename, ImagViewGame.format, p_contain.fileOffset, ImagViewGame.endianType)
-
-            ResourcePalette = LoadPalette(IMAGES, loadedGame.format, p_contain.resourceFile)
+            ResourcePalette = ParseIndex(p_resfilecut)
             LoadMapIcons(p_resfilename, Imagview.offset)
             CutMapIcons()
             LForm = False
@@ -99,11 +100,9 @@ Public Class frmMapIcon
         Else ' Even image width -> a bitplane contains (width + 1) \ 2 bytes
             PlaneSize = (Imagview.canvassWidth + 1) \ 8
         End If
-        MsgBox("Bitplane " & Imagview.bitplane)
         If Imagview.bitplane = 0 Then  ' We treat the data as pixels, 
             '                              each in one nibble (half-byte).
             Dim tempFile As String = loadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
-            MsgBox("No Bitplanes")
             Using objWriter As New StreamWriter(tempFile, True)
 
                 For Y = 0 To Imagview.height - 1

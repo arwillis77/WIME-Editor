@@ -50,8 +50,11 @@ Public Class BinaryFile
     Private memFilename As String
     Private memFile As IO.FileStream
     Public Sub New(ByVal Filename As String)
+
         MyBase.New(Filename, IO.FileMode.OpenOrCreate)
         memFilename = Filename
+
+
     End Sub
     Public ReadOnly Property Filename As String
         Get

@@ -12,9 +12,10 @@ Public Class frmCoordinates
         Dim p_file As String = DATA_FILES
         Dim cityName As String
         Dim value As String
-        Dim settings As New XmlReaderSettings
-        settings.IgnoreWhitespace = True
-        settings.IgnoreComments = True
+        Dim settings As New XmlReaderSettings With {
+            .IgnoreWhitespace = True,
+            .IgnoreComments = True
+        }
         Using input As XmlReader = XmlReader.Create(p_file, settings)
             Do While input.Read
                 If input.ReadToDescendant("COPYPROTECTION") Then

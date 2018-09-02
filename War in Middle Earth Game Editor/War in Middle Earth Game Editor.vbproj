@@ -121,6 +121,7 @@
     <Compile Include="Classes\BinaryFileClass.vb" />
     <Compile Include="Classes\Bitplane.vb" />
     <Compile Include="Classes\EditorSettings.vb" />
+    <Compile Include="Classes\Palette.vb" />
     <Compile Include="Classes\ResourceFile.vb" />
     <Compile Include="Classes\ResourceIndex.vb" />
     <Compile Include="frmResourceList.Designer.vb">
@@ -155,14 +156,16 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Classes\Game.vb" />
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="MapView.Designer.vb">
       <DependentUpon>MapView.vb</DependentUpon>
     </Compile>
     <Compile Include="MapView.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="modAnimationData.vb" />
-    <Compile Include="modMemory.vb" />
+    <Compile Include="Modules\modAnimationData.vb" />
+    <Compile Include="Modules\modMemory.vb" />
+    <Compile Include="Modules\modPalette.vb" />
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

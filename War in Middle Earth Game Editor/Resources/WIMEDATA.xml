@@ -11,81 +11,81 @@
     <BITPLANES>5</BITPLANES>
     <COLORINDEX>
       <!---COLOR INDEX TABLE -->
-      <COLOR SLOT ="0" VALUE = "000000"/>
-      <COLOR SLOT ="1" VALUE = "868686"/>
-      <COLOR SLOT ="2" VALUE = "555555"/>
-      <COLOR SLOT ="3" VALUE = "755555"/>
-      <COLOR SLOT ="4" VALUE = "EBAA86"/>
-      <COLOR SLOT ="5" VALUE = "204110"/>
-      <COLOR SLOT ="6" VALUE = "306510"/>
-      <COLOR SLOT ="7" VALUE = "659655"/>
-      <COLOR SLOT ="8" VALUE = "5586FF"/>
-      <COLOR SLOT ="9" VALUE = "86BAFF"/>
-      <COLOR SLOT ="10" VALUE = "CB0041"/>
-      <COLOR SLOT ="11" VALUE = "FFFFFF"/>
-      <COLOR SLOT ="12" VALUE = "00FFFF"/>
-      <COLOR SLOT ="13" VALUE = "DB75CB"/>
-      <COLOR SLOT ="14" VALUE = "65BA00"/>
-      <COLOR SLOT ="15" VALUE = "EBEBBA"/>
-      <COLOR SLOT ="16" VALUE = "FFFFDB"/>
-      <COLOR SLOT ="17" VALUE = "101010"/>
-      <COLOR SLOT ="18" VALUE = "100000"/>
-      <COLOR SLOT ="19" VALUE = "BA0000"/>
-      <COLOR SLOT ="20" VALUE = "864120"/>
-      <COLOR SLOT ="21" VALUE = "AA6541"/>
-      <COLOR SLOT ="22" VALUE = "553020"/>
-      <COLOR SLOT ="23" VALUE = "414141"/>
-      <COLOR SLOT ="24" VALUE = "554141"/>
-      <COLOR SLOT ="25" VALUE = "755541"/>
-      <COLOR SLOT ="26" VALUE = "756555"/>
-      <COLOR SLOT ="27" VALUE = "757565"/>
-      <COLOR SLOT ="28" VALUE = "757575"/>
-      <COLOR SLOT ="29" VALUE = "967565"/>
-      <COLOR SLOT ="30" VALUE = "968665"/>
-      <COLOR SLOT ="31" VALUE = "AA7586"/>
-      <COLOR SLOT ="32" VALUE = "969686"/>
-      <COLOR SLOT ="33" VALUE = "BA9675"/>
-      <COLOR SLOT ="34" VALUE = "BAAA86"/>
-      <COLOR SLOT ="35" VALUE = "BAAA96"/>
-      <COLOR SLOT ="36" VALUE = "DBBA86"/>
-      <COLOR SLOT ="37" VALUE = "CBBAAA"/>
-      <COLOR SLOT ="38" VALUE = "EBCB96"/>
-      <COLOR SLOT ="39" VALUE = "EBDBAA"/>
-      <COLOR SLOT ="40" VALUE = "EBDBBA"/>
-      <COLOR SLOT ="41" VALUE = "FFEBBA"/>
-      <COLOR SLOT ="42" VALUE = "FFFFBA"/>
-      <COLOR SLOT ="43" VALUE = "FFDBCB"/>
-      <COLOR SLOT ="44" VALUE = "CB2010"/>
-      <COLOR SLOT ="45" VALUE = "DB3020"/>
-      <COLOR SLOT ="46" VALUE = "EBCBAA"/>
-      <COLOR SLOT ="47" VALUE = "960000"/>
-      <COLOR SLOT ="48" VALUE = "412065"/>
-      <COLOR SLOT ="49" VALUE = "416565"/>
-      <COLOR SLOT ="50" VALUE = "759641"/>
-      <COLOR SLOT ="51" VALUE = "AACB75"/>
-      <COLOR SLOT ="52" VALUE = "415520"/>
-      <COLOR SLOT ="53" VALUE = "657520"/>
-      <COLOR SLOT ="54" VALUE = "0041BA"/>
-      <COLOR SLOT ="55" VALUE = "2075CB"/>
-      <COLOR SLOT ="56" VALUE = "55AAEB"/>
-      <COLOR SLOT ="57" VALUE = "86DBFF"/>
-      <COLOR SLOT ="58" VALUE = "DBAA30"/>
-      <COLOR SLOT ="59" VALUE = "EBEB65"/>    
-      <COLOR SLOT ="60" VALUE = "102020"/>
-      <COLOR SLOT ="61" VALUE = "554141"/>
-      <COLOR SLOT ="62" VALUE = "CB0000"/>
-      <COLOR SLOT ="63" VALUE = "AA20AA"/>
-      <COLOR SLOT ="64" VALUE = "DB86DB"/>
-      <COLOR SLOT ="65" VALUE = "8696AA"/>
-      <COLOR SLOT ="66" VALUE = "CBDBEB"/>
-      <COLOR SLOT ="67" VALUE = "BA5500"/>
-      <COLOR SLOT ="68" VALUE = "EB7500"/>
-      <COLOR SLOT ="69" VALUE = "411000"/>        
-      <COLOR SLOT ="70" VALUE = "753010"/>
-      <COLOR SLOT ="71" VALUE = "966541"/>
-      <COLOR SLOT ="72" VALUE = "CB9665"/>
-      <COLOR SLOT ="73" VALUE = "DB8665"/>
-      <COLOR SLOT ="74" VALUE = "FFCB86"/>
+      ("0" , "000000"/>
+      ("1" , "868686"/>
+      ("2" , "555555"/>
+      ("3" , "755555"/>
+      ("4" , "EBAA86"/>
+      ("5" , "204110"/>
+      ("6" , "306510"/>
+      ("7" , "659655"/>
+      ("8" , "5586FF"/>
+      ("9" , "86BAFF"/>
+      ("10" , "CB0041"/>
+      ("11" , "FFFFFF"/>
+      ("12" , "00FFFF"/>
+      ("13" , "DB75CB"/>
+      ("14" , "65BA00"/>
+      ("15" , "EBEBBA"/>
+      ("16" , "FFFFDB"/>
+      ("17" , "101010"/>
+      ("18" , "100000"/>
+      ("19" , "BA0000"/>
+      ("20" , "864120"/>
+      ("21" , "AA6541"/>
+      ("22" , "553020"/>
+      ("23" , "414141"/>
+      ("24" , "554141"/>
+      ("25" , "755541"/>
+      ("26" , "756555"/>
+      ("27" , "757565"/>
+      ("28" , "757575"/>
+      ("29" , "967565"/>
+      ("30" , "968665"/>
+      ("31" , "AA7586"/>
+      ("32" , "969686"/>
+      ("33" , "BA9675"/>
+      ("34" , "BAAA86"/>
+      ("35" , "BAAA96"/>
+      ("36" , "DBBA86"/>
+      ("37" , "CBBAAA"/>
+      ("38" , "EBCB96"/>
+      ("39" , "EBDBAA"/>
+      ("40" , "EBDBBA"/>
+      ("41" , "FFEBBA"/>
+      ("42" , "FFFFBA"/>
+      ("43" , "FFDBCB"/>
+      ("44" , "CB2010"/>
+      ("45" , "DB3020"/>
+      ("46" , "EBCBAA"/>
+      ("47" , "960000"/>
+      ("48" , "412065"/>
+      ("49" , "416565"/>
+      ("50" , "759641"/>
+      ("51" , "AACB75"/>
+      ("52" , "415520"/>
+      ("53" , "657520"/>
+      ("54" , "0041BA"/>
+      ("55" , "2075CB"/>
+      ("56" , "55AAEB"/>
+      ("57" , "86DBFF"/>
+      ("58" , "DBAA30"/>
+      ("59" , "EBEB65"/>    
+      ("60" , "102020"/>
+      ("61" , "554141"/>
+      ("62" , "CB0000"/>
+      ("63" , "AA20AA"/>
+      ("64" , "DB86DB"/>
+      ("65" , "8696AA"/>
+      ("66" , "CBDBEB"/>
+      ("67" , "BA5500"/>
+      ("68" , "EB7500"/>
+      ("69" , "411000"/>        
+      ("70" , "753010"/>
+      ("71" , "966541"/>
+      ("72" , "CB9665"/>
+      ("73" , "DB8665"/>
+      ("74" , "FFCB86"/>
      
      </COLORINDEX>
     <FRMLOFFSETS>
@@ -169,860 +169,860 @@
     </FRMLOFFSETS>
     <IMAGES>
         <PALETTE ID ="AMAPS">
-          <COLOR SLOT ="0" INDEX ="0"/>
-          <COLOR SLOT ="1" INDEX ="1"/>
-          <COLOR SLOT ="2" INDEX ="2"/>
-          <COLOR SLOT ="3" INDEX ="3"/>
-          <COLOR SLOT ="4" INDEX ="4"/>
-          <COLOR SLOT ="5" INDEX ="5"/>
-          <COLOR SLOT ="6" INDEX ="6"/>
-          <COLOR SLOT ="7" INDEX ="7"/>
-          <COLOR SLOT ="8" INDEX ="8"/>
-          <COLOR SLOT ="9" INDEX ="9"/>
-          <COLOR SLOT ="10" INDEX ="10"/>
-          <COLOR SLOT ="11" INDEX ="11"/>          
-          <COLOR SLOT ="12" INDEX ="12"/>
-          <COLOR SLOT ="13" INDEX ="13"/>
-          <COLOR SLOT ="14" INDEX ="14"/>
-          <COLOR SLOT ="15" INDEX ="15"/>      
+          ("0" INDEX ="0"/>
+          ("1" INDEX ="1"/>
+          ("2" INDEX ="2"/>
+          ("3" INDEX ="3"/>
+          ("4" INDEX ="4"/>
+          ("5" INDEX ="5"/>
+          ("6" INDEX ="6"/>
+          ("7" INDEX ="7"/>
+          ("8" INDEX ="8"/>
+          ("9" INDEX ="9"/>
+          ("10" INDEX ="10"/>
+          ("11" INDEX ="11"/>          
+          ("12" INDEX ="12"/>
+          ("13" INDEX ="13"/>
+          ("14" INDEX ="14"/>
+          ("15" INDEX ="15"/>      
         </PALETTE>
         <PALETTE ID ="ATITLE">
-          <COLOR SLOT ="0" INDEX ="0"/>
-          <COLOR SLOT ="1" INDEX ="16"/>
-          <COLOR SLOT ="2" INDEX ="17"/>
-          <COLOR SLOT ="3" INDEX ="18"/>
-          <COLOR SLOT ="4" INDEX ="19"/>
-          <COLOR SLOT ="5" INDEX ="20"/>
-          <COLOR SLOT ="6" INDEX ="21"/>
-          <COLOR SLOT ="7" INDEX ="22"/>
-          <COLOR SLOT ="8" INDEX ="23"/>
-          <COLOR SLOT ="9" INDEX ="24"/>
-          <COLOR SLOT ="10" INDEX ="2"/>
-          <COLOR SLOT ="11" INDEX ="25"/>          
-          <COLOR SLOT ="12" INDEX ="26"/>
-          <COLOR SLOT ="13" INDEX ="27"/>
-          <COLOR SLOT ="14" INDEX ="28"/>
-          <COLOR SLOT ="15" INDEX ="29"/>  
-          <COLOR SLOT ="16" INDEX ="30"/>
-          <COLOR SLOT ="17" INDEX ="31"/>
-          <COLOR SLOT ="18" INDEX ="32"/>
-          <COLOR SLOT ="19" INDEX ="33"/> 
-          <COLOR SLOT ="20" INDEX ="34"/> 
-          <COLOR SLOT ="21" INDEX ="35"/> 
-          <COLOR SLOT ="22" INDEX ="36"/> 
-          <COLOR SLOT ="23" INDEX ="37"/> 
-          <COLOR SLOT ="24" INDEX ="38"/> 
-          <COLOR SLOT ="25" INDEX ="39"/> 
-          <COLOR SLOT ="26" INDEX ="40"/> 
-          <COLOR SLOT ="27" INDEX ="41"/> 
-          <COLOR SLOT ="28" INDEX ="42"/> 
-          <COLOR SLOT ="29" INDEX ="43"/> 
-          <COLOR SLOT ="30" INDEX ="44"/> 
-          <COLOR SLOT ="31" INDEX ="45"/> 
+          ("0" INDEX ="0"/>
+          ("1" INDEX ="16"/>
+          ("2" INDEX ="17"/>
+          ("3" INDEX ="18"/>
+          ("4" INDEX ="19"/>
+          ("5" INDEX ="20"/>
+          ("6" INDEX ="21"/>
+          ("7" INDEX ="22"/>
+          ("8" INDEX ="23"/>
+          ("9" INDEX ="24"/>
+          ("10" INDEX ="2"/>
+          ("11" INDEX ="25"/>          
+          ("12" INDEX ="26"/>
+          ("13" INDEX ="27"/>
+          ("14" INDEX ="28"/>
+          ("15" INDEX ="29"/>  
+          ("16" INDEX ="30"/>
+          ("17" INDEX ="31"/>
+          ("18" INDEX ="32"/>
+          ("19" INDEX ="33"/> 
+          ("20" INDEX ="34"/> 
+          ("21" INDEX ="35"/> 
+          ("22" INDEX ="36"/> 
+          ("23" INDEX ="37"/> 
+          ("24" INDEX ="38"/> 
+          ("25" INDEX ="39"/> 
+          ("26" INDEX ="40"/> 
+          ("27" INDEX ="41"/> 
+          ("28" INDEX ="42"/> 
+          ("29" INDEX ="43"/> 
+          ("30" INDEX ="44"/> 
+          ("31" INDEX ="45"/> 
         </PALETTE>
         <PALETTE ID ="ASCENE">
-          <COLOR SLOT ="0" INDEX ="0"/>
-          <COLOR SLOT ="1" INDEX ="46"/>
-          <COLOR SLOT ="2" INDEX ="55"/>
-          <COLOR SLOT ="3" INDEX ="56"/>
-          <COLOR SLOT ="4" INDEX ="48"/>
-          <COLOR SLOT ="5" INDEX ="49"/>
-          <COLOR SLOT ="6" INDEX ="50"/>
-          <COLOR SLOT ="7" INDEX ="51"/>
-          <COLOR SLOT ="8" INDEX ="52"/>
-          <COLOR SLOT ="9" INDEX ="53"/>
-          <COLOR SLOT ="10" INDEX ="69"/>
-          <COLOR SLOT ="11" INDEX ="70"/>          
-          <COLOR SLOT ="12" INDEX ="71"/>
-          <COLOR SLOT ="13" INDEX ="57"/>
-          <COLOR SLOT ="14" INDEX ="58"/>
-          <COLOR SLOT ="15" INDEX ="59"/>  
-          <COLOR SLOT ="16" INDEX ="60"/>
-          <COLOR SLOT ="17" INDEX ="61"/>
-          <COLOR SLOT ="18" INDEX ="47"/>
-          <COLOR SLOT ="19" INDEX ="62"/> 
-          <COLOR SLOT ="20" INDEX ="63"/> 
-          <COLOR SLOT ="21" INDEX ="64"/> 
-          <COLOR SLOT ="22" INDEX ="65"/> 
-          <COLOR SLOT ="23" INDEX ="66"/> 
-          <COLOR SLOT ="24" INDEX ="67"/> 
-          <COLOR SLOT ="25" INDEX ="68"/> 
-          <COLOR SLOT ="26" INDEX ="69"/> 
-          <COLOR SLOT ="27" INDEX ="70"/> 
-          <COLOR SLOT ="28" INDEX ="71"/> 
-          <COLOR SLOT ="29" INDEX ="72"/> 
-          <COLOR SLOT ="30" INDEX ="73"/> 
-          <COLOR SLOT ="31" INDEX ="74"/> 
+          ("0" INDEX ="0"/>
+          ("1" INDEX ="46"/>
+          ("2" INDEX ="55"/>
+          ("3" INDEX ="56"/>
+          ("4" INDEX ="48"/>
+          ("5" INDEX ="49"/>
+          ("6" INDEX ="50"/>
+          ("7" INDEX ="51"/>
+          ("8" INDEX ="52"/>
+          ("9" INDEX ="53"/>
+          ("10" INDEX ="69"/>
+          ("11" INDEX ="70"/>          
+          ("12" INDEX ="71"/>
+          ("13" INDEX ="57"/>
+          ("14" INDEX ="58"/>
+          ("15" INDEX ="59"/>  
+          ("16" INDEX ="60"/>
+          ("17" INDEX ="61"/>
+          ("18" INDEX ="47"/>
+          ("19" INDEX ="62"/> 
+          ("20" INDEX ="63"/> 
+          ("21" INDEX ="64"/> 
+          ("22" INDEX ="65"/> 
+          ("23" INDEX ="66"/> 
+          ("24" INDEX ="67"/> 
+          ("25" INDEX ="68"/> 
+          ("26" INDEX ="69"/> 
+          ("27" INDEX ="70"/> 
+          ("28" INDEX ="71"/> 
+          ("29" INDEX ="72"/> 
+          ("30" INDEX ="73"/> 
+          ("31" INDEX ="74"/> 
         </PALETTE>
         <PALETTE ID ="BSCENE">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="55"/>
-        <COLOR SLOT ="3" INDEX ="56"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="61"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="55"/>
+        ("3" INDEX ="56"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="61"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
      
       </PALETTE>
         <PALETTE ID ="BOBJECTS">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="55"/>
-        <COLOR SLOT ="3" INDEX ="56"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="61"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="55"/>
+        ("3" INDEX ="56"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="61"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
         <PALETTE ID ="TILES">
-          <COLOR SLOT ="0" INDEX ="0"/>
-          <COLOR SLOT ="1" INDEX ="8"/>
-          <COLOR SLOT ="2" INDEX ="6"/>
-          <COLOR SLOT ="3" INDEX ="7"/>
-          <COLOR SLOT ="4" INDEX ="10"/>
-          <COLOR SLOT ="5" INDEX ="13"/>
-          <COLOR SLOT ="6" INDEX ="3"/>
-          <COLOR SLOT ="7" INDEX ="1"/>
-          <COLOR SLOT ="8" INDEX ="2"/>
-          <COLOR SLOT ="9" INDEX ="9"/>
-          <COLOR SLOT ="10" INDEX ="14"/>
-          <COLOR SLOT ="11" INDEX ="12"/>          
-          <COLOR SLOT ="12" INDEX ="10"/>
-          <COLOR SLOT ="13" INDEX ="0"/>
-          <COLOR SLOT ="14" INDEX ="4"/>
-          <COLOR SLOT ="15" INDEX ="15"/>      
+          ("0" INDEX ="0"/>
+          ("1" INDEX ="8"/>
+          ("2" INDEX ="6"/>
+          ("3" INDEX ="7"/>
+          ("4" INDEX ="10"/>
+          ("5" INDEX ="13"/>
+          ("6" INDEX ="3"/>
+          ("7" INDEX ="1"/>
+          ("8" INDEX ="2"/>
+          ("9" INDEX ="9"/>
+          ("10" INDEX ="14"/>
+          ("11" INDEX ="12"/>          
+          ("12" INDEX ="10"/>
+          ("13" INDEX ="0"/>
+          ("14" INDEX ="4"/>
+          ("15" INDEX ="15"/>      
         </PALETTE>
     </IMAGES>
     <SPRITES>
       <!--Palette for VGA Sprites -->
       <PALETTE ID="0">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="1">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="65"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="65"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="2">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="56"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="49"/>
-        <COLOR SLOT ="13" INDEX ="65"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="17"/>
-        <COLOR SLOT ="17" INDEX ="57"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="56"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="49"/>
+        ("13" INDEX ="65"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="17"/>
+        ("17" INDEX ="57"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="3">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="71"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="49"/>
-        <COLOR SLOT ="13" INDEX ="65"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="72"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="71"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="49"/>
+        ("13" INDEX ="65"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="72"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>      
       <PALETTE ID="4">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="59"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="49"/>
-        <COLOR SLOT ="13" INDEX ="65"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="58"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="59"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="49"/>
+        ("13" INDEX ="65"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="58"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="5">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="63"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="64"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="63"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="64"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="6">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="47"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="62"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="47"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="62"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="7">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="65"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="66"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="65"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="66"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="8">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="71"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="72"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="71"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="72"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="9">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="71"/>
-        <COLOR SLOT ="27" INDEX ="72"/>
-        <COLOR SLOT ="28" INDEX ="54"/>
-        <COLOR SLOT ="29" INDEX ="55"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="71"/>
+        ("27" INDEX ="72"/>
+        ("28" INDEX ="54"/>
+        ("29" INDEX ="55"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="10">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="66"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="49"/>
-        <COLOR SLOT ="29" INDEX ="61"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="66"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="49"/>
+        ("29" INDEX ="61"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="11">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="66"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="71"/>
-        <COLOR SLOT ="27" INDEX ="72"/>
-        <COLOR SLOT ="28" INDEX ="69"/>
-        <COLOR SLOT ="29" INDEX ="70"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="66"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="71"/>
+        ("27" INDEX ="72"/>
+        ("28" INDEX ="69"/>
+        ("29" INDEX ="70"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="12">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="49"/>
-        <COLOR SLOT ="29" INDEX ="61"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="49"/>
+        ("29" INDEX ="61"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="13">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="71"/>
-        <COLOR SLOT ="27" INDEX ="72"/>
-        <COLOR SLOT ="28" INDEX ="69"/>
-        <COLOR SLOT ="29" INDEX ="70"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="71"/>
+        ("27" INDEX ="72"/>
+        ("28" INDEX ="69"/>
+        ("29" INDEX ="70"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="14">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="54"/>
-        <COLOR SLOT ="11" INDEX ="55"/>
-        <COLOR SLOT ="12" INDEX ="56"/>
-        <COLOR SLOT ="13" INDEX ="57"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="47"/>
-        <COLOR SLOT ="19" INDEX ="62"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="69"/>
-        <COLOR SLOT ="23" INDEX ="70"/>
-        <COLOR SLOT ="24" INDEX ="67"/>
-        <COLOR SLOT ="25" INDEX ="68"/>
-        <COLOR SLOT ="26" INDEX ="71"/>
-        <COLOR SLOT ="27" INDEX ="72"/>
-        <COLOR SLOT ="28" INDEX ="65"/>
-        <COLOR SLOT ="29" INDEX ="66"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="54"/>
+        ("11" INDEX ="55"/>
+        ("12" INDEX ="56"/>
+        ("13" INDEX ="57"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="47"/>
+        ("19" INDEX ="62"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="69"/>
+        ("23" INDEX ="70"/>
+        ("24" INDEX ="67"/>
+        ("25" INDEX ="68"/>
+        ("26" INDEX ="71"/>
+        ("27" INDEX ="72"/>
+        ("28" INDEX ="65"/>
+        ("29" INDEX ="66"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="15">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="56"/>
-        <COLOR SLOT ="11" INDEX ="57"/>
-        <COLOR SLOT ="12" INDEX ="54"/>
-        <COLOR SLOT ="13" INDEX ="55"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="67"/>
-        <COLOR SLOT ="19" INDEX ="68"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="47"/>
-        <COLOR SLOT ="25" INDEX ="62"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="56"/>
+        ("11" INDEX ="57"/>
+        ("12" INDEX ="54"/>
+        ("13" INDEX ="55"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="67"/>
+        ("19" INDEX ="68"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="47"/>
+        ("25" INDEX ="62"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="16">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="47"/>
-        <COLOR SLOT ="11" INDEX ="62"/>
-        <COLOR SLOT ="12" INDEX ="67"/>
-        <COLOR SLOT ="13" INDEX ="68"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="54"/>
-        <COLOR SLOT ="19" INDEX ="55"/>
-        <COLOR SLOT ="20" INDEX ="63"/>
-        <COLOR SLOT ="21" INDEX ="64"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="56"/>
-        <COLOR SLOT ="25" INDEX ="57"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="47"/>
+        ("11" INDEX ="62"/>
+        ("12" INDEX ="67"/>
+        ("13" INDEX ="68"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="54"/>
+        ("19" INDEX ="55"/>
+        ("20" INDEX ="63"/>
+        ("21" INDEX ="64"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="56"/>
+        ("25" INDEX ="57"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="17">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="56"/>
-        <COLOR SLOT ="11" INDEX ="57"/>
-        <COLOR SLOT ="12" INDEX ="67"/>
-        <COLOR SLOT ="13" INDEX ="68"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="63"/>
-        <COLOR SLOT ="19" INDEX ="64"/>
-        <COLOR SLOT ="20" INDEX ="54"/>
-        <COLOR SLOT ="21" INDEX ="55"/>
-        <COLOR SLOT ="22" INDEX ="65"/>
-        <COLOR SLOT ="23" INDEX ="66"/>
-        <COLOR SLOT ="24" INDEX ="47"/>
-        <COLOR SLOT ="25" INDEX ="62"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="56"/>
+        ("11" INDEX ="57"/>
+        ("12" INDEX ="67"/>
+        ("13" INDEX ="68"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="63"/>
+        ("19" INDEX ="64"/>
+        ("20" INDEX ="54"/>
+        ("21" INDEX ="55"/>
+        ("22" INDEX ="65"/>
+        ("23" INDEX ="66"/>
+        ("24" INDEX ="47"/>
+        ("25" INDEX ="62"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="18">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="56"/>
-        <COLOR SLOT ="11" INDEX ="57"/>
-        <COLOR SLOT ="12" INDEX ="67"/>
-        <COLOR SLOT ="13" INDEX ="68"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="65"/>
-        <COLOR SLOT ="19" INDEX ="66"/>
-        <COLOR SLOT ="20" INDEX ="54"/>
-        <COLOR SLOT ="21" INDEX ="55"/>
-        <COLOR SLOT ="22" INDEX ="63"/>
-        <COLOR SLOT ="23" INDEX ="64"/>
-        <COLOR SLOT ="24" INDEX ="47"/>
-        <COLOR SLOT ="25" INDEX ="62"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="56"/>
+        ("11" INDEX ="57"/>
+        ("12" INDEX ="67"/>
+        ("13" INDEX ="68"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="65"/>
+        ("19" INDEX ="66"/>
+        ("20" INDEX ="54"/>
+        ("21" INDEX ="55"/>
+        ("22" INDEX ="63"/>
+        ("23" INDEX ="64"/>
+        ("24" INDEX ="47"/>
+        ("25" INDEX ="62"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
       <PALETTE ID="19">
-        <COLOR SLOT ="0" INDEX ="0"/>
-        <COLOR SLOT ="1" INDEX ="46"/>
-        <COLOR SLOT ="2" INDEX ="14"/>
-        <COLOR SLOT ="3" INDEX ="12"/>
-        <COLOR SLOT ="4" INDEX ="48"/>
-        <COLOR SLOT ="5" INDEX ="49"/>
-        <COLOR SLOT ="6" INDEX ="50"/>
-        <COLOR SLOT ="7" INDEX ="51"/>
-        <COLOR SLOT ="8" INDEX ="52"/>
-        <COLOR SLOT ="9" INDEX ="53"/>
-        <COLOR SLOT ="10" INDEX ="56"/>
-        <COLOR SLOT ="11" INDEX ="57"/>
-        <COLOR SLOT ="12" INDEX ="67"/>
-        <COLOR SLOT ="13" INDEX ="68"/>
-        <COLOR SLOT ="14" INDEX ="58"/>
-        <COLOR SLOT ="15" INDEX ="59"/>
-        <COLOR SLOT ="16" INDEX ="60"/>
-        <COLOR SLOT ="17" INDEX ="61"/>
-        <COLOR SLOT ="18" INDEX ="58"/>
-        <COLOR SLOT ="19" INDEX ="59"/>
-        <COLOR SLOT ="20" INDEX ="54"/>
-        <COLOR SLOT ="21" INDEX ="55"/>
-        <COLOR SLOT ="22" INDEX ="63"/>
-        <COLOR SLOT ="23" INDEX ="64"/>
-        <COLOR SLOT ="24" INDEX ="47"/>
-        <COLOR SLOT ="25" INDEX ="62"/>
-        <COLOR SLOT ="26" INDEX ="69"/>
-        <COLOR SLOT ="27" INDEX ="70"/>
-        <COLOR SLOT ="28" INDEX ="71"/>
-        <COLOR SLOT ="29" INDEX ="72"/>
-        <COLOR SLOT ="30" INDEX ="73"/>
-        <COLOR SLOT ="31" INDEX ="74"/>
+        ("0" INDEX ="0"/>
+        ("1" INDEX ="46"/>
+        ("2" INDEX ="14"/>
+        ("3" INDEX ="12"/>
+        ("4" INDEX ="48"/>
+        ("5" INDEX ="49"/>
+        ("6" INDEX ="50"/>
+        ("7" INDEX ="51"/>
+        ("8" INDEX ="52"/>
+        ("9" INDEX ="53"/>
+        ("10" INDEX ="56"/>
+        ("11" INDEX ="57"/>
+        ("12" INDEX ="67"/>
+        ("13" INDEX ="68"/>
+        ("14" INDEX ="58"/>
+        ("15" INDEX ="59"/>
+        ("16" INDEX ="60"/>
+        ("17" INDEX ="61"/>
+        ("18" INDEX ="58"/>
+        ("19" INDEX ="59"/>
+        ("20" INDEX ="54"/>
+        ("21" INDEX ="55"/>
+        ("22" INDEX ="63"/>
+        ("23" INDEX ="64"/>
+        ("24" INDEX ="47"/>
+        ("25" INDEX ="62"/>
+        ("26" INDEX ="69"/>
+        ("27" INDEX ="70"/>
+        ("28" INDEX ="71"/>
+        ("29" INDEX ="72"/>
+        ("30" INDEX ="73"/>
+        ("31" INDEX ="74"/>
       </PALETTE>
     <!--<PALETTE ID ="0">
         <PALETTEDEPTH>32</PALETTEDEPTH>

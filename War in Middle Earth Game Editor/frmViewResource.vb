@@ -4,6 +4,7 @@ Imports System.IO
 Imports WIMEEditor.BinaryFile
 Imports WIMEEditor.ByteRunUnpacker
 Public Class frmViewResource
+    '// frmViewResource - Form Class Related to viewing resource files.
     Public CHARTile As New Game.resource.tileChunk
     Public CurrentTile As Integer
     Public ResourcePalette As resource.RGBColorList
@@ -61,6 +62,7 @@ Public Class frmViewResource
     Public Sub ViewIMAGResource()
         Dim p_endoffset As Integer = 0
         Dim p_resource = IMAGES
+        Dim p_resFile As String = ""
         filenameData = loadedSettings.wimeDIRECTORY & "\" & p_ResourceContainer.resourceFile & ".RES"
         IMAGView = New Game.resource.imageChunk
         IMAGView = GetIMAGChunk(filenameData, loadedGame.format, p_ResourceContainer.fileOffset, loadedGame.endianType)
@@ -69,7 +71,10 @@ Public Class frmViewResource
         If SelectedResourceItem.resourceFile = "AMAPS" And IMAGView.bitplane = 5 Then
             SelectedResourceItem.resourceFile = "BSCENE"
         End If
-        ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
+        'ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
+        p_resFile = SelectedResourceItem.resourceFile
+        ResourcePalette = ParseIndex(p_resFile)
+
         loadImage(filenameData, p_ResourceContainer.fileOffset)
         p_endoffset = p_ResourceContainer.fileOffset + (p_ResourceContainer.dataSize + 4)
         gameStatus = p_ResourceContainer.Name & ", " & IMAGView.uncompressed_size & " bytes, (" & IMAGView.chunkSize & " bytes, compressed)" & " @ " & p_ResourceContainer.resourceFile & ".RES" & " (" & p_ResourceContainer.fileOffset & " - " & p_endoffset & ")"
@@ -81,9 +86,10 @@ Public Class frmViewResource
     End Sub
     Public Sub ViewCSTRResource()
         pnlMainDisplay.Hide()
-        txtCSTRElement = New TextBox
-        txtCSTRElement.Size = New Size(320, 200)
-        txtCSTRElement.Multiline = True
+        txtCSTRElement = New TextBox With {
+            .Size = New Size(320, 200),
+            .Multiline = True
+        }
         Me.Controls.Add(txtCSTRElement)
         txtCSTRElement.Location = New Point(30, 30)
         ViewCSTR()
@@ -96,6 +102,8 @@ Public Class frmViewResource
         Dim tempval As Integer
         resourceFilename = loadedSettings.wimeDIRECTORY & "\" & p_ResourceContainer.resourceFile & ".RES"
         tEnd = endianChecker(resourceFilename)
+
+
         Using readsave As New BinaryFile(resourceFilename)
             cviewPointer = (SelectedResourceItem.fileOffset + 4)
             readsave.Position = cviewPointer
@@ -113,6 +121,7 @@ Public Class frmViewResource
     End Sub
     Public Sub LoadTile(filename As String, scale As Short, tilenum As Integer)
         Dim dChunkData(TILE_PIXELS) As Byte
+        Dim p_resFile As String = ""
         Dim gfxTilePixel As Graphics
         Dim mybrush As SolidBrush
         Dim bmpTileOriginal As Bitmap
@@ -126,15 +135,8 @@ Public Class frmViewResource
         Me.Controls.Add(pbTileView)
         pbTileView.Location = New Point(30, 30)
         ResourcePalette = New resource.RGBColorList
-        'MsgBox("Loading Palette " & p_resource & " Format: " & Format & " Resource Type: " & SelectedResourceItem.resourceFile)
-        ResourcePalette = LoadPalette(p_resource, Format, SelectedResourceItem.resourceFile)
-        'p_ParseObject = CreateParseObject(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
-        'p_colorlist = ParseColorIndex(p_ParseObject, ColorIndex)
-        'Dim t As String = ""
-        'For x As Integer = 0 To ResourcePalette.Count - 1
-        '    t = t & x & "  " & ResourcePalette.Item(x).RedValue & vbTab & ResourcePalette.Item(x).GreenValue & vbTab & ResourcePalette.Item(x).BlueValue & vbCrLf
-        'Next
-        'MsgBox(t)
+        p_resFile = SelectedResourceItem.resourceFile
+        ResourcePalette = ParseIndex(p_resFile)
         iTileOrigin = OFFSET_TileStart(loadedGame.formatVal)
         If loadedGame.format = AMIGA_FORMAT Then
             Game.resource.UNPACKAMIGATILES(filename, loadedSettings.dataDirectory, CHARTile.offset + 8, AMIGA_CHUNK)
@@ -161,7 +163,6 @@ Public Class frmViewResource
             For yBit As Integer = 0 To (16 * scale) - 1 Step scale
                 For xBit As Integer = 0 To (16 * scale) - 1 Step scale
                     tempCol = dChunkData(intCByte)
-                    'MsgBox("Color " & tempCol)
                     mybrush = New SolidBrush(resource.imageColorNew(tempCol, ResourcePalette))
                     gfxTilePixel.FillRectangle(mybrush, xBit, yBit, (xBit + scale), (yBit + scale))
                     pbTileView.Image = bmpTileOriginal
@@ -172,9 +173,10 @@ Public Class frmViewResource
     End Sub
     Public Sub SetupFRMLView()
         pnlMainDisplay.Hide()
-        pnlFRMLDisplay = New Panel
-        pnlFRMLDisplay.Size = New Size(ImageWidth * scaleFactor, ImageHeight * scaleFactor)
-        pnlFRMLDisplay.BackColor = Color.Black
+        pnlFRMLDisplay = New Panel With {
+            .Size = New Size(ImageWidth * scaleFactor, ImageHeight * scaleFactor),
+            .BackColor = Color.Black
+        }
         Me.Controls.Add(pnlFRMLDisplay)
         pnlFRMLDisplay.Location = New Point(30, 30)
     End Sub
@@ -184,6 +186,7 @@ Public Class frmViewResource
         Dim p_datafile = DATA_FILES
         Dim p_endoffset As Integer
         Dim p_DefaultPaletteValue As String = "0"
+        Dim p_resFile As String = ""
         lblSpriteColor.Visible = True
         ddSpriteColor.Visible = True
 
@@ -194,7 +197,11 @@ Public Class frmViewResource
         loadedResource.Filename = filenameData
         loadedFRML.offset = p_ResourceContainer.fileOffset
         loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
-        ResourcePalette = LoadPalette(p_resource, loadedGame.format, p_DefaultPaletteValue)
+        'ResourcePalette = LoadPalette(p_resource, loadedGame.format, p_DefaultPaletteValue)
+
+        p_resFile = SelectedResourceItem.resourceFile
+        ResourcePalette = ParseIndex(p_resFile)
+        'ResourcePalette = ParseIndex(p_resource)
         p_spriteForm = New frmSpriteDraw(0, ResourcePalette, scaleFactor)
         p_spriteForm.Show()
         p_spriteForm.Hide()
@@ -214,6 +221,10 @@ Public Class frmViewResource
             Dim p_offsetmodifier As Integer
             Dim p_format As String : p_format = loadedSettings.fileFormat
             Dim p_bitplanes As Integer = IMAGView.bitplane
+            'MsgBox(Format & " needs bitplane change!" & p_bitplanes)
+            If Format = IIGS_FORMAT Then p_bitplanes = 4
+            If Format = PC_EGA_FORMAT Then p_bitplanes = 4
+
             Dim Outputfile As New BinaryFile(oFilePath)
             p_offsetmodifier = getIMAGDataOffsetValue(p_format, IMAGView.imagePlane)
             addressOffset = 4

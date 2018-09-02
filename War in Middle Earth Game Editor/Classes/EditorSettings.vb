@@ -3,10 +3,9 @@ Imports System.IO
 Imports WIMEEditor.Game
 Public Class EditorSettings
     Public Const progName As String = "WAR IN MIDDLE-EARTH GAME EDITOR"
-    Public Const progVersion As String = ".09A BUILD 6"
-    Public Const progDate As String = "08/08/2018"
+    Public Const progVersion As String = ".09A BUILD 7"
+    Public Const progDate As String = "09/02/2018"
     Public Const settingsFilename = "WIMEEDITOR.CFG"
-    Public Shared PaletteFolder = "PALETTE"
     Public Shared settingsFullFilename As String = (Application_Path & "\" & settingsFilename)
     Public Const WIMEWallPaperDirectoryName = "\WIMEWallpaper"
     'Public Shared settingsFullFilename As String = (Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\" & Application.ProductName & "\" & settingsFilename)

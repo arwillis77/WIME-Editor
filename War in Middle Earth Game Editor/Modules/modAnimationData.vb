@@ -4,13 +4,9 @@ Imports WIMEEditor.EditorSettings
 Imports System.IO
 Imports System.Xml
 Module modAnimationData
-
-
     Public SpriteTypes() As String = {"Hobbit", "Elf", "Man", "Dwarf", "Wizard", "Gollum", "Orc", "Ent", "Nazgul", "Troll", "Warg", "Spider",
-                                    "Balrog", "Rohirrim", "Armored Man", "Dunlending", "Elven Lord", "Elven Lady", "Tom Bombadill"}
+                                   "Balrog", "Rohirrim", "Armored Man", "Dunlending", "Elven Lord", "Elven Lady", "Tom Bombadill"}
     Public SpriteValues() As Integer = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 80, 81, 82}
-
-
     Public CycleSet As New ArrayList
     Public LoadedSprite As Data
     Public HobbitSprite As New Data
@@ -32,9 +28,6 @@ Module modAnimationData
     Public ElderElfSprite As New Data
     Public GaladrielSprite As New Data
     Public BombadilSprite As New Data
-
-
-
 
 
     Public Function GetSpriteData(format As String, spritevalue As Integer) As Data

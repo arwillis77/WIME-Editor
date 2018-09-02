@@ -18,6 +18,8 @@ Public Class frmWIMEEditorMain
     Public stripFilename As String
     Public WithEvents tclExplorerMain As TabControlEx
     Public WithEvents tclResourceTabs As TabControl
+
+    ' Form Methods
     Private Sub frmWIMEEditorMain_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Dim backgroundfile As String
         Dim path As String
@@ -67,7 +69,9 @@ Public Class frmWIMEEditorMain
         ' ********************************************************************************************************
         End
     End Sub
+    ' Editor Action methods
     Public Sub OpenWIMEGame()
+        ' // OpenWimeGame - Activates when user begins process of opening file.
         Dim p_filename As String
         Dim p_filedir As String
         Dim p_fileDialog As OpenFileDialog
@@ -87,52 +91,67 @@ Public Class frmWIMEEditorMain
         loadedGame = New Game(p_filename)
         ' Analyze filename and determine format
         setFileId(loadedGame.format)                                           ' Save format to CFG file.
-        Init_ColorIndex(loadedGame.format)
         gameLoaded = True
         GameLoadedStatusChange()
         pnlEditor.Show()
         tclExplorerMain.Show()
         tclResourceTabs.Show()
         loadedSettings = loadConfig(settingsFullFilename)
-        'MsgBox(Application_Path.ToString)
+        PaletteIndexSet(loadedGame.format)                              ' New Palette Initialization Routine. Hardcoded date.  No XML.
         LoadGame()
     End Sub
     Public Sub LoadGame()
         Dim EXP As New TabPage
         GetFileList()
-        tclExplorerMain = New TabControlEx
-        tclExplorerMain.Dock = DockStyle.Fill
+        tclExplorerMain = New TabControlEx With {
+            .Dock = DockStyle.Fill
+        }
         tclResourceTabs = New TabControl
-        ResourceImages = New ImageList
-        ResourceImages.ImageSize = New Size(16, 16)
-        ResourceImages.Images.Add(My.Resources.menutileicon)
-        ResourceImages.Images.Add(My.Resources.texticon32)
-        ResourceImages.Images.Add(My.Resources.fonts)
-        ResourceImages.Images.Add(My.Resources.menuanimicon)
-        ResourceImages.Images.Add(My.Resources.menusceneiconbig)
-        ResourceImages.Images.Add(My.Resources.menumapicon)
-        ResourceImages.Images.Add(My.Resources.menuarchiveicon)
+        ResourceImages = New ImageList With {
+            .ImageSize = New Size(16, 16)
+        }
+
+        With ResourceImages.Images
+            .Add(My.Resources.menutileicon) : .Add(My.Resources.menutileicon)
+            .Add(My.Resources.texticon32) : .Add(My.Resources.fonts)
+            .Add(My.Resources.menuanimicon) : .Add(My.Resources.menusceneiconbig)
+            .Add(My.Resources.menumapicon) : .Add(My.Resources.menuarchiveicon)
+        End With
         tclResourceTabs.ImageList = ResourceImages
-        tabCHAR = New TabPage : tabCHAR.Text = Game.resource.RES_ID(0) & "      " : tabCHAR.ImageIndex = 0
-        Dim CHARform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(0))
+        tabCHAR = New TabPage With {
+            .Text = Game.resource.RES_ID(0) & "      ",
+            .ImageIndex = 0
+        } : Dim CHARform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(0))
         tabCHAR.Controls.Add(CHARform) : CHARform.Show()
-        tabCSTR = New TabPage : tabCSTR.Text = Game.resource.RES_ID(1) & "      " : tabCSTR.ImageIndex = 1
-        Dim CSTRform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(1))
+        tabCSTR = New TabPage With {
+            .Text = Game.resource.RES_ID(1) & "      ",
+            .ImageIndex = 1
+        } : Dim CSTRform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(1))
         tabCSTR.Controls.Add(CSTRform) : CSTRform.Show()
-        tabFONT = New TabPage : tabFONT.Text = Game.resource.RES_ID(2) & "      " : tabFONT.ImageIndex = 2
-        Dim FONTform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(2))
+        tabFONT = New TabPage With {
+            .Text = Game.resource.RES_ID(2) & "      ",
+            .ImageIndex = 2
+        } : Dim FONTform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(2))
         tabFONT.Controls.Add(FONTform) : FONTform.Show()
-        tabFRML = New TabPage : tabFRML.Text = Game.resource.RES_ID(3) & "      " : tabFRML.ImageIndex = 3
-        Dim FRMLform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(3))
+        tabFRML = New TabPage With {
+            .Text = Game.resource.RES_ID(3) & "      ",
+        .ImageIndex = 3
+        } : Dim FRMLform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(3))
         tabFRML.Controls.Add(FRMLform) : FRMLform.Show()
-        tabIMAG = New TabPage : tabIMAG.Text = Game.resource.RES_ID(4) & "      " : tabIMAG.ImageIndex = 4
-        Dim IMAGform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(4))
+        tabIMAG = New TabPage With {
+            .Text = Game.resource.RES_ID(4) & "      ",
+        .ImageIndex = 4
+        } : Dim IMAGform = New frmResourceList(Game.resource.RES_ID_ELEMENTS(4))
         tabIMAG.Controls.Add(IMAGform) : IMAGform.Show()
-        tabMMAP = New TabPage : tabMMAP.Text = Game.resource.RES_ID(5) & "      " : tabMMAP.ImageIndex = 5
-        Dim MMAPForm = New frmResourceList(Game.resource.RES_ID_ELEMENTS(5))
+        tabMMAP = New TabPage With {
+            .Text = Game.resource.RES_ID(5) & "      ",
+        .ImageIndex = 5
+        } : Dim MMAPForm = New frmResourceList(Game.resource.RES_ID_ELEMENTS(5))
         tabMMAP.Controls.Add(MMAPForm) : MMAPForm.Show()
-        tabArchive = New TabPage : tabArchive.Text = Game.Archive.ARC_ID & "      " : tabArchive.ImageIndex = 6
-        Dim ArchiveForm = New frmResourceList(Game.Archive.ARC_ID)
+        tabArchive = New TabPage With {
+            .Text = Game.Archive.ARC_ID & "      ",
+        .ImageIndex = 6
+        } : Dim ArchiveForm = New frmResourceList(Game.Archive.ARC_ID)
         tabArchive.Controls.Add(ArchiveForm) : ArchiveForm.Show()
         EXP.Text = "Resource Explorer - " & gameExecutables(loadedGame.formatVal) & "      "
         pnlEditor.Controls.Add(tclExplorerMain)
@@ -161,7 +180,7 @@ Public Class frmWIMEEditorMain
             ' Scan Resource Files
             For a As Integer = 0 To initialResFileArray.Length - 1
                 resFilename = initialResFileArray(a)
-                If validateHeader(resFilename, tEndian) = True Then
+                If ValidateHeader(resFilename, tEndian) = True Then
                     nfilecount = nfilecount + 1
                 Else
                     MsgBox(resFilename & " is not a valid resourcefile")
@@ -172,7 +191,7 @@ Public Class frmWIMEEditorMain
             Dim newcount As Integer = 0                                                                 ' Counter
             For b As Integer = 0 To initialResFileArray.Length - 1
                 resFilename = initialResFileArray(b)
-                If validateHeader(resFilename, tEndian) = True Then
+                If ValidateHeader(resFilename, tEndian) = True Then
                     arrfiles(newcount) = resFilename
                     fileChunkTotal = fileChunkTotal + _getResourceFileChunkTotal(resFilename, tEndian)
                     newcount = newcount + 1
@@ -231,9 +250,10 @@ Public Class frmWIMEEditorMain
                         p_ResourceRecord.resourceType = _getResourceType(TResId(xx).resourceID)
                         p_ResourceRecord.fileOffset = (p_resourcemap(yy).Offset + p_header.Size) + (INT_MAX * p_resourcemap(yy).intMultiplier) + (1 * p_resourcemap(yy).intMultiplier)
                         If TResId(xx).resourceID = Game.resource.CHAR_ID Then
-                            loadedTile = New Game.resource.tileChunk
-                            loadedTile.filename = resourcefilename
-                            loadedTile.offset = p_ResourceRecord.fileOffset
+                            loadedTile = New Game.resource.tileChunk With {
+                                .filename = resourcefilename,
+                                .offset = p_ResourceRecord.fileOffset
+                            }
                             loadedTile.DataStartOffset = loadedTile.offset + 4         ' Offset plus size of chunk size entry.
                             setTileData(loadedTile.filename, loadedTile.DataStartOffset)
                             For x As Integer = 0 To 255
@@ -263,14 +283,15 @@ Public Class frmWIMEEditorMain
                         End If
                         Select Case p_ResourceRecord.resourceType
                             Case Game.resource.RES_ID_ELEMENTS(5) ' MAPS
-                                loadedMMAP = New Game.resource.MapChunk
-                                loadedMMAP.filename = resourcefilename
-                                loadedMMAP.offset = p_ResourceRecord.fileOffset
-                                loadedMMAP.chunkSize = p_ResourceRecord.dataSize - 18
-                                loadedMMAP.DataStartOffset = p_ResourceRecord.fileOffset + 8          ' Offset plus size of chunk size and uncomp. size entries (2 x 4 bytes)
-                                loadedMMAP.width = Game.resource.WIME_WORLDMAP_SIZE(0)
-                                loadedMMAP.height = Game.resource.WIME_WORLDMAP_SIZE(1)
-                                loadedMMAP.planes = 1
+                                loadedMMAP = New Game.resource.MapChunk With {
+                                    .filename = resourcefilename,
+                                    .offset = p_ResourceRecord.fileOffset,
+                                    .chunkSize = p_ResourceRecord.dataSize - 18,
+                                    .DataStartOffset = p_ResourceRecord.fileOffset + 8,          ' Offset plus size of chunk size and uncomp. size entries (2 x 4 bytes)
+                                    .width = Game.resource.WIME_WORLDMAP_SIZE(0),
+                                    .height = Game.resource.WIME_WORLDMAP_SIZE(1),
+                                    .planes = 1
+                                }
                                 setMapData(loadedMMAP.filename, loadedMMAP.DataStartOffset, loadedMMAP.chunkSize)
                                 'GameResourceList.Add(p_ResourceRecord.Name, p_ResourceRecord.resourceType, p_ResourceRecord.Number, p_ResourceRecord.dataSize, p_ResourceRecord.resourceFile,
                                 'p_ResourceRecord.fileOffset)
@@ -304,61 +325,6 @@ Public Class frmWIMEEditorMain
             System.IO.Directory.CreateDirectory(foldername)
         End If
     End Sub
-    ' =================================================== STATUS BAR SUBROUTINES ============================================================
-    Private Sub tclExplorerMain_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles tclExplorerMain.Selecting
-        mnuSaveFile.Text = "Save " & e.TabPage.Text
-        stpSaveFile.ToolTipText = "Save " & e.TabPage.Text
-    End Sub
-    Public Sub Init_ColorIndex(format As String)
-        ' // Reads <COLORINDEX> in WIMEDATA.XML file and stated values into colorindex object to be parsed later.
-        Dim p_file As String = DATA_FILES
-        Dim p_string As String = ""
-        Dim xmlIndexRead As XmlTextReader
-        Dim fileend_flag As Boolean
-        Dim p_settings As New XmlReaderSettings
-        With p_settings
-            .IgnoreWhitespace = True
-            .IgnoreComments = True
-        End With
-        Dim p_slot As Int16 = 0
-        Dim p_val As String = ""
-        ColorIndex = New PaletteData.ColorList
-        xmlIndexRead = New XmlTextReader(p_file)
-        xmlIndexRead.MoveToContent()
-        Do While xmlIndexRead.Read
-            xmlIndexRead.Read()
-            If xmlIndexRead.Name = "FORMAT" Then
-                p_string = xmlIndexRead.GetAttribute("ID")
-                If p_string = format Then
-                    'MsgBox("Color Index Init Format " & format)
-                    Do Until xmlIndexRead.Name = "COLORINDEX"
-                        xmlIndexRead.Read()
-                        'MsgBox(xmlIndexRead.Name)
-                        If xmlIndexRead.EOF Then
-                            MsgBox("COLORINDEX EOF!")
-                            fileend_flag = True
-                            Exit Do
-                        End If
-                    Loop
-                    If fileend_flag = True Then
-                        MsgBox("End Of File Reached! ColorIndex Not found!")
-                    End If
-                    xmlIndexRead.ReadToDescendant("COLOR")
-                    ' MsgBox(xmlIndexRead.Name)
-                    Do
-                        p_slot = xmlIndexRead.GetAttribute("SLOT")
-                        p_val = xmlIndexRead.GetAttribute("VALUE")
-                        ColorIndex.Add(p_slot, p_val)
-                        'MsgBox(format & " " & p_slot & " " & p_val)
-                    Loop While xmlIndexRead.ReadToNextSibling("COLOR")
-                End If
-            End If
-            If xmlIndexRead.EOF Then
-                MsgBox("End of File!")
-                Exit Do
-            End If
-        Loop
-    End Sub
     Public Function CreateTile(loopnum As Integer) As Game.resource.ResourceDetails
         '// * POPULATE RESOURCE LIST WITH TILEDATA
         Dim p_TilePointer As Integer = loadedSettings.tileOffset + 1
@@ -372,6 +338,12 @@ Public Class frmWIMEEditorMain
         p_TileResource.fileOffset = (p_TilePointer + (256 * loopnum))
         Return p_TileResource
     End Function
+    ' =================================================== STATUS BAR SUBROUTINES ============================================================
+    Private Sub tclExplorerMain_Selecting(sender As Object, e As TabControlCancelEventArgs) Handles tclExplorerMain.Selecting
+        mnuSaveFile.Text = "Save " & e.TabPage.Text
+        stpSaveFile.ToolTipText = "Save " & e.TabPage.Text
+    End Sub
+
     ' *** RESOURCE TAB EVENT HANDLERS ***
     Public Sub GameLoadedStatusChange()
         If gameLoaded = True Then
@@ -416,7 +388,7 @@ Public Class frmWIMEEditorMain
         af = AboutBox1
         af.Show()
     End Sub
-    Sub closeGame()
+    Sub CloseGame()
         gameLoaded = False
         tabctrl.TabPages.Clear()
         tabctrl.Hide()
@@ -426,10 +398,6 @@ Public Class frmWIMEEditorMain
         Dim p_form As New Form
         p_form = frmCoordinates
         p_form.Show()
-    End Sub
-
-    Private Sub pnlEditor_Paint(sender As Object, e As PaintEventArgs) Handles pnlEditor.Paint
-
     End Sub
 End Class
 

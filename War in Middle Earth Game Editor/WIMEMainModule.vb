@@ -6,7 +6,7 @@ Imports WIMEEditor.BinaryFile
 Imports WIMEEditor.ByteRunUnpacker
 Public Module WIMEMain
     ' War in Middle Earth Save Game Editor
-    ' Copyright (C) 2013 Aaron R. Willis
+    ' Copyright (C) 2018 Aaron R. Willis
     Public tabctrl As TabControl
     Public tabPageVals As New ArrayList
     Public intCNum(0 To CHARACTER_MAX) As String
@@ -38,7 +38,6 @@ Public Module WIMEMain
     Public tabMMAP As TabPage
     Public tabArchive As TabPage
     Public ResourceImages As ImageList
-    'Public SelectedResourceItem As Game.resource.resContainer
     Public GameResourceList As Game.resource.ResourceList
     Public GameArchiveList As Game.resource.ResourceList
     Public MapIcons As ImageList
@@ -54,19 +53,10 @@ Public Module WIMEMain
     Public Sprite_List As ImageList
     Public SpriteList As List(Of Bitmap)
     Public ResourcePalette As resource.RGBColorList
-    Public ParseObject As ParseList
+
     ' =========== MAP RESOURCE VARIABLES ============================================================
     Public intTileFilePointerStart As Integer
     Public intTileMagnifier As Integer
-
-    Public Function LoadPalette(resourcetype As String, format As String, resourcefile As String) As resource.RGBColorList
-        Dim p_colors As resource.RGBColorList
-        ParseObject = New ParseList
-        p_colors = New resource.RGBColorList
-        ParseObject = CreateParseObject(resourcetype, format, resourcefile)
-        p_colors = ParseColorIndex(ParseObject, ColorIndex)
-        Return p_colors
-    End Function
     Public Sub ProcessFRMLData(filename As String, offset_address As Integer, endian As Integer, data_endian As Integer)
         Dim skipFlag As Boolean = False
         Dim p_bytecheck(2) As Integer
@@ -208,34 +198,34 @@ Public Module WIMEMain
                         Case Else
                             MsgBox("Endianness Value is unknown: " & endian)
                     End Select
-                    '("Name ID " & ReadArchive.nameIdentifier)
-                    p_ReadArchive.CharacterName = GetArmyName(p_ReadArchive.nameIdentifier, endian) 'MsgBox("Name " & ReadArchive.CharacterName)
-                    p_ReadArchive.armyTotal = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.armyQuantity = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.locationX = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.locationY = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.destinationX = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.destinationY = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.gameObjects = readsave.ReadWordUnsigned(endian)
-                    p_ReadArchive.mapIcon = readsave.ReadByte
-                    p_ReadArchive.spriteColor = readsave.ReadByte
-                    p_ReadArchive.spriteType = readsave.ReadByte
-                    p_ReadArchive.byte22 = readsave.ReadByte
-                    p_ReadArchive.Visibility = readsave.ReadByte
-                    p_ReadArchive.byte24 = readsave.ReadByte
-                    p_ReadArchive.powerLevel = readsave.ReadByte
-                    p_ReadArchive.moraleTotal = readsave.ReadByte
-                    p_ReadArchive.moraleQuantity = readsave.ReadByte
-                    p_ReadArchive.byte28 = readsave.ReadByteUnsigned
-                    p_ReadArchive.valueMobilize = readsave.ReadByte
-                    p_ReadArchive.Stealth = readsave.ReadByte
-                    p_ReadArchive.byte31 = readsave.ReadByte
-                    p_ReadArchive.byte32 = readsave.ReadByte
-                    p_ReadArchive.byte33 = readsave.ReadByte
-                    p_ReadArchive.hpTotal = readsave.ReadByte
-                    p_ReadArchive.hpCurrent = readsave.ReadByte
-                    p_ReadArchive.valueLeaderFollow = readsave.ReadByte
-                    p_ReadArchive.byte37 = readsave.ReadByte
+
+                    p_ReadArchive.CharacterName = GetArmyName(p_ReadArchive.nameIdentifier, endian)
+                        p_ReadArchive.armyTotal = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.armyQuantity = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.locationX = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.locationY = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.destinationX = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.destinationY = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.gameObjects = readsave.ReadWordUnsigned(endian)
+                        p_ReadArchive.mapIcon = readsave.ReadByte
+                        p_ReadArchive.spriteColor = readsave.ReadByte
+                        p_ReadArchive.spriteType = readsave.ReadByte
+                        p_ReadArchive.byte22 = readsave.ReadByte
+                        p_ReadArchive.Visibility = readsave.ReadByte
+                        p_ReadArchive.byte24 = readsave.ReadByte
+                        p_ReadArchive.powerLevel = readsave.ReadByte
+                        p_ReadArchive.moraleTotal = readsave.ReadByte
+                        p_ReadArchive.moraleQuantity = readsave.ReadByte
+                        p_ReadArchive.byte28 = readsave.ReadByteUnsigned
+                        p_ReadArchive.valueMobilize = readsave.ReadByte
+                        p_ReadArchive.Stealth = readsave.ReadByte
+                        p_ReadArchive.byte31 = readsave.ReadByte
+                        p_ReadArchive.byte32 = readsave.ReadByte
+                        p_ReadArchive.byte33 = readsave.ReadByte
+                        p_ReadArchive.hpTotal = readsave.ReadByte
+                        p_ReadArchive.hpCurrent = readsave.ReadByte
+                        p_ReadArchive.valueLeaderFollow = readsave.ReadByte
+                        p_ReadArchive.byte37 = readsave.ReadByte
                     archiveCharacterArray.Add(p_ReadArchive)
                 Next currentRecord
             End Using

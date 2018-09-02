@@ -1,7 +1,9 @@
 ﻿Imports System.IO
 Imports System.Xml
 ' // =============================================================== WAR IN MIDDLE EARTH GAME CLASS ============================================================================
-' // VERSION 1.5  - MOST RECENT VERSION 11/04/2015
+' // 
+' // VERSION 1.6 -- 8/16/2018
+' // VERSION 1.5 - MOST RECENT VERSION 11/04/2015
 ' // Version 1.01 - CURRENT UPDATE 9/8/14
 ' // VERSION 1.00 - CREATED JULY 6, 2014
 ' // COMBINES RESOURCE AND ARCHIVE CLASSES INTO ONE CLASS, MINIMIZING AND OPTIMIZING CODE.
@@ -170,11 +172,10 @@ Public Class Game
     End Function
     Public Shared Function Get_FRML_Offset(ByVal filename As String, format As String, resource_name As String) As Game.resource.FRML_OFFSET
         ' /* FUNCTION DECLARATIONS
-        Dim settings As New XmlReaderSettings
-        settings.IgnoreWhitespace = True
-        settings.IgnoreComments = True
-        settings.IgnoreWhitespace = True
-        settings.IgnoreComments = True
+        Dim settings As New XmlReaderSettings With {
+        .IgnoreWhitespace = True,
+        .IgnoreComments = True
+        }
         Dim p_file As String = DATA_FILES
         Dim p_string As String = ""
         Dim p_offset As New Game.resource.FRML_OFFSET
@@ -208,133 +209,6 @@ Public Class Game
         Loop
         Return p_offset
     End Function
-    Public Shared Function CreateParseObject(graphictype As String, format As String, resource As String) As ParseList
-        Dim p_parse As New ParseList
-        Dim settings As New XmlReaderSettings
-        Dim p_slot As UShort = 0 : Dim p_index As UShort = 0
-        Dim p_file As String = DATA_FILES
-        Dim counter As Integer = 0
-        With settings
-            .IgnoreWhitespace = True
-            .IgnoreComments = True
-        End With
-        Dim PAL_NAME As String = ""
-        Using input As XmlReader = XmlReader.Create(p_file, settings)
-            Dim t As String = ""
-            Do While input.Read
-                input.ReadToDescendant(format)
-
-                input.ReadToDescendant(graphictype)
-                'MsgBox(format & "found!" & graphictype)
-                Do Until t = resource
-                    input.ReadToFollowing("PALETTE")
-                    t = input.GetAttribute("ID")
-                    If t = resource Then
-                        'MsgBox("RESOURCE " & graphictype & " " & t & " found.")
-                        ' Then go to first COLOR element.
-                        input.ReadToFollowing("COLOR")
-                        Do
-                            input.MoveToFirstAttribute()
-                            p_slot = input.GetAttribute("SLOT")         ' Read and store slot attribute into temporary slot variable.
-
-                            input.MoveToNextAttribute()
-                            p_index = input.GetAttribute("INDEX")         ' Read and store slot attribute into temporary value variable.
-                            p_index = Val(p_index)
-                            p_parse.Add(p_slot, p_index)
-                            'MsgBox("ADDED " & p_slot & " " & p_index)
-                            counter = counter + 1
-                        Loop While input.ReadToNextSibling("COLOR") 'Not input.ReadToFollowing("COLOR")     ' Loop to next element until no more elements.
-                        Exit Do
-                    Else
-
-                    End If
-                Loop  'Until input.ReadToNextSibling(graphictype)
-            Loop
-        End Using
-
-        'For x As Integer = 0 To p_parse.Count - 1
-        '    MsgBox("Slot " & p_parse.Item(x).ColorSlot & vbCrLf & "Index Value " & p_parse.Item(x).ColorIndex)
-        'Next
-
-        Return p_parse
-    End Function
-    Public Shared Function ParseColorIndex(parsedata As ParseList, index As PaletteData.ColorList) As resource.RGBColorList
-        Dim p_Colors As New resource.RGBColorList
-        Dim p_tempColor As New resource.RGBValues
-        ' MsgBox("Parsing Color Index ...." & parsedata.Count)
-        For x As Integer = 0 To parsedata.Count - 1
-            For y As Integer = 0 To index.Count - 1
-                If parsedata(x).ColorIndex = index(y).Slot Then
-                    p_tempColor = resource.ConvertToRGB(index(y).ColorValue)
-                    'MsgBox("Color Slot " & parsedata(x).ColorSlot & " = COLOR VALUE:  " & p_tempColor.RedValue & p_tempColor.GreenValue & p_tempColor.BlueValue)
-                    p_Colors.add(p_tempColor)
-                    Exit For
-                Else
-                    'no match continue on.
-                End If
-            Next y
-        Next x
-        'MsgBox("ParseComplete")
-        Return p_Colors
-    End Function
-    Public Class ParseEntry
-        'Class used to hold data in parsing the ColorIndex object
-        Private m_Index As UShort
-        Private m_Slot As UShort
-        Public Property ColorIndex As UShort
-            Get
-                Return m_Index
-            End Get
-            Set(value As UShort)
-                m_Index = value
-            End Set
-        End Property
-        Public Property ColorSlot As String
-            Get
-                Return m_Slot
-            End Get
-            Set(value As String)
-                m_Slot = value
-            End Set
-        End Property
-
-        Public Sub New(slot As UShort, index As UShort)
-            Me.ColorIndex = index
-            Me.ColorSlot = slot
-        End Sub
-    End Class
-    Public Class ParseList
-        ' Class used to store list of Parse object when parsing color index
-        Private ParseColorKey As List(Of ParseEntry)
-        Public Sub New()
-            ParseColorKey = New List(Of ParseEntry)
-        End Sub
-        Public ReadOnly Property Count As Integer
-            Get
-                Return ParseColorKey.Count
-            End Get
-        End Property
-        Default Public Property Item(index As Integer) As ParseEntry
-            Get
-                If index < 0 OrElse index >= ParseColorKey.Count Then
-                    Throw New ArgumentOutOfRangeException("index", "The index must be between 0 And " & ParseColorKey.Count - 1 & ".")
-                Else
-                    Return ParseColorKey(index)
-                End If
-            End Get
-            Set(value As ParseEntry)
-                ParseColorKey(index) = value
-            End Set
-        End Property
-        Public Sub Add(color As ParseEntry)
-            ParseColorKey.Add(color)
-        End Sub
-        Public Sub Add(slot As UShort, index As UShort)
-            Dim p As New ParseEntry(slot, index)
-            ParseColorKey.Add(p)
-        End Sub
-    End Class
-
     Public Shared Function FileOpenDialog() As OpenFileDialog
         Dim dlgOpenGame As New OpenFileDialog
         Dim dr As DialogResult
@@ -679,7 +553,7 @@ Public Class Game
 
             Default Public Property Item(index As Integer) As RGBValues
                 Get
-                    If index < 0 OrElse index >= p_colors.Count Then
+                    If index < 0 OrElse index > p_colors.Count - 1 Then
 
                         Throw New ArgumentOutOfRangeException("index", "Index Value " & index & "The index must be between 0 and " & p_colors.Count - 1 & ".")
                     Else
@@ -712,10 +586,7 @@ Public Class Game
             Return Color.FromArgb(palette(nibble).RedValue, palette(nibble).GreenValue, palette(nibble).BlueValue)
         End Function
     End Class
-
-
-
-    Public Shared Function validateHeader(ByVal resfilename As String, ByVal endianness As UShort) As Boolean
+    Public Shared Function ValidateHeader(ByVal resfilename As String, ByVal endianness As UShort) As Boolean
         ' VALIDATES THE HEADER ON RESOURCE FILE
         Dim p_headsize As UInteger
         Dim p_endsize As UInteger
@@ -979,9 +850,6 @@ Public Class Game
             Else
                 tchunk.bitplane = 0
             End If
-
-
-
             If bgFlag = True Then
                 resreader.Position = fp + 23
                 bgFlag = False
