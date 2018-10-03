@@ -12,3 +12,6 @@ That’s a way to experiment with the game situation, especially military unit c
 So you can create an army of 1000 Gandalfs and send them against an enemy fortress 
 or to a friendly city you want to stay undefeated.
 
+## Installation
+
+To install War in Middle Earth Game Editor, go to the Releases section of this repository and select a release. There you’ll find the WIMEInstall.exe file. Download it, run it, and follow the instructions on the screen.
