@@ -209,9 +209,18 @@ Public Class frmSpriteDraw
         End If
     End Sub
     Private Sub SaveFRMLChunktoFile()
-        Dim Outputfile As New BinaryFile(oFiletext)
-        Outputfile.Write(loadedFRML.chunkData, 0, loadedFRML.chunkData.Length)
-        Outputfile.Close()
+        Try
+            Dim Outputfile As New BinaryFile(oFiletext)
+            Outputfile.Write(loadedFRML.chunkData, 0, loadedFRML.chunkData.Length)
+            Outputfile.Close()
+        Catch ex As Exception
+            If TypeOf ex Is IOException Then
+                MsgBox(oFiletext & " is open.  Need to fix this bug.  " & vbCrLf & ex.ToString)
+            End If
+
+
+        End Try
+
     End Sub
     Private Function GetDrawingRectangle(ByVal X As Integer, ByVal Y As Integer) As Rectangle
         Dim Result As New Rectangle(0, 0, 0, 0)

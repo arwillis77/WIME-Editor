@@ -101,6 +101,8 @@ Module modPalette
             .ColorValue = New List(Of Integer)(spriteSet)
         }
         LoadedPalette.Add(tempSet)
+
+
         'SpritePalette = New List(Of Integer)(spriteSet)
     End Sub
     Public Sub InitializeThreeResource(afileSet() As Integer, bfileSet() As Integer, cfileSet() As Integer, spriteSet() As Integer)

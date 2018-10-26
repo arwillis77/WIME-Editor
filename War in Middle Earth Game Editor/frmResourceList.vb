@@ -7,7 +7,7 @@ Public Class frmResourceList
     Dim SplitResourceList As SplitContainer
     Dim WithEvents listResourceItems As ListView
     Dim page As TabPage
-    Dim currenttile As Integer
+    Dim currenttile As Integer = 0
     Dim ArchiveFilename As String = ""
     Dim EXEFile As String = gameExecutables(loadedGame.formatVal)
     Dim EXEFull As String = loadedSettings.wimeDIRECTORY & "\" & EXEFile

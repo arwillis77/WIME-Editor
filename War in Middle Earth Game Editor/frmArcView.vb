@@ -382,8 +382,10 @@ Public Class frmArcView
         Dim p_size As Integer = 2
         Dim p_palettedata As resource.RGBColorList
         p_palettedata = New resource.RGBColorList
+        Dim ResType As String = "AANIMS"
         For x As Integer = 0 To GameResourceList.Count - 1
             Dim p_spriteForm As Form
+
             loadedFRML = New Game.resource.animChunk
             loadedResource = New Game.resource
             Dim FRMLName As String = ""
@@ -393,7 +395,8 @@ Public Class frmArcView
                 loadedResource.Filename = (loadedSettings.wimeDIRECTORY & "\" & GameResourceList(x).File & ".RES")
                 loadedFRML.offset = Val(GameResourceList(x).Offset)
                 loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
-                p_palettedata = ParseIndex(SelectedResourceItem.resourceFile)
+
+                p_palettedata = ParseIndex(GameResourceList(x).File)
                 'p_palettedata = LoadPalette(SPRITES, loadedGame.format, selectedCharacter.spriteColor)
                 p_spriteForm = New frmSpriteDraw(selectedCharacter.spriteColor, p_palettedata, p_size)
                 p_spriteForm.Show()
