@@ -15,21 +15,8 @@ Public Class Game
     Public Const INT_MAX As Integer = 65535
     Public Const USHORT_MAX = INT_MAX
     Public Const UBYTE_MAX As Byte = 255
-    Public Const PC_VGA_EXE = "START.EXE"
-    Public Const PC_EGA_EXE = "LORD.EXE"
-    Public Const IIGS_EXE = "EARTH.SYS16"
-    Public Const AMIGA_EXE = "WARINMIDDLEEARTH"
-    Public Const ST_EXE = "COMMAND.PRG"
-    Public Const PC_VGA_FORMAT = "VGA"
-    Public Const PC_EGA_FORMAT = "EGA"
-    Public Const IIGS_FORMAT = "IIGS"
-    Public Const AMIGA_FORMAT = "AMIGA"
-    Public Const ST_FORMAT = "ST"
-    Public Const PC_VGA_DESC = "IBM PC 16-Bit Format"
-    Public Const PC_EGA_DESC = "IBM PC 8-Bit Format"
-    Public Const IIGS_DESC = "APPLE IIGS 16-Bit Format"
-    Public Const AMIGA_DESC = "AMIGA 16-Bit Format"
-    Public Const ST_DESC = "ATARI ST 16-Bit Format"
+
+
     Public Shared PC_VGA_ICON As System.Drawing.Image = My.Resources.msdosicon
     Public Shared PC_EGA_ICON As System.Drawing.Image = My.Resources.msdosicon
     Public Shared IIGS_ICON As System.Drawing.Image = My.Resources.apple2icon
@@ -39,49 +26,31 @@ Public Class Game
     Public Const TILES As String = "TILES"
     Public Const SPRITES As String = "SPRITES"
     Public Const SPRITEDATA As String = "SPRITEDATA"
-    Public Const PC_VGA_BITPLANES = 5
-    Public Const PC_EGA_BITPLANES = 4
-    Public Const IIGS_BITPLANES = 4
-    Public Const AMIGA_BITPLANES = 5
+
     Public Const ST_BITPLANES = 4
     Public Const TILE_PIXELS = 256
-    Public Shared FORMAT_ICONS() As Image = {My.Resources.msdosicon, My.Resources.msdosicon, My.Resources.apple2icon, My.Resources.amigamenulogo, My.Resources.atarilogo}
-    Public Shared OFFSET_BANNERICONS = {4, 5, 5, 4, 4}
-    Public Shared OFFSET_CharacterName = {113323, 131875, 106464, 37914, 37096}          ' Offset for the Character Name Location in Executable.  Name located in name list.
-    Public Shared OFFSET_CharacterData = {104654, 123041, 108124, 122708, 116640}        ' Offset for the Character Data Location in Executable.  Includes pointer to name.
-    Public Shared OFFSET_CityName = {114179, 132731, 104746, 39539, 38721}               ' Offset for the City Name Location in Executable.  Name located in name list.
-    Public Shared OFFSET_CityData = {112565, 131117, 105706, 131010, 124828}             ' Offset for the City Data Name Location in Executable.  Includes pointer to name, and coordinates.
-    Public Shared OFFSET_InvObj() As Integer = {115144, 133696, 120518, 80286, 29228}                 ' Offset for the Object Name Location in Executable.  Name located in object list.
-    Public Shared OFFSET_ArchiveCharVal = {0, 0, 25538, 0, 24064}                   ' Offset for the Character Name value in the EXE File.  Offset based on comparison of value vs. location in the file.
-    Public Shared OFFSET_EXECharVal = {0, 0, 33562, -18984, 5862}                    ' Offset for Character Name in EXE vs. value in archive file.
-    Public Shared OFFSET_EXEOffset = {93300, 112832, 95598, 40, 4}                       ' Difference in values vs. pointer locations in the EXE file.
-    Public Shared OFFSET_SaveOffset = {0, 0, 25538, 0, 24064}
-    Public Shared OFFSET_TileStart = {43907, 301405, 20, 8038, 8038}
+    'Public Shared OFFSET_BANNERICONS = {4, 5, 5, 4, 4}
+    ' Public Shared OFFSET_TileStart = {43907, 301405, 20, 8038, 8038}
     Public Shared AMIGA_CHUNK = 40992
+    Public Shared ST_CHUNK = 40992
     ' Public Shared FORMAT_BITPLANES() As Integer = {PC_VGA_BITPLANES, PC_EGA_BITPLANES, IIGS_BITPLANES, AMIGA_BITPLANES, ST_BITPLANES}
     Public Shared gameExecutables() As String = {PC_VGA_EXE, PC_EGA_EXE, IIGS_EXE, AMIGA_EXE, ST_EXE}
     Public Shared FORMAT_ID() As String = {PC_VGA_FORMAT, PC_EGA_FORMAT, IIGS_FORMAT, AMIGA_FORMAT, ST_FORMAT}
-    Public Shared FORMAT_DESC() As String = {PC_VGA_DESC, PC_EGA_DESC, IIGS_DESC, AMIGA_DESC, ST_DESC}
-    Public Shared FILE_ICONS() As Image = {PC_VGA_ICON, PC_EGA_ICON, IIGS_ICON, AMIGA_ICON, ST_ICON}
     Public Shared BANNERICON_VALUES = {0, 1, 2, 3, 4, 5, 16, 17, 18, 19, 20, 21, 32, 33, 34, 35, 36, 37, 48, 49, 50, 51, 52, 53, 64, 65, 66, 67, 68, 69}
     Public Shared CHAR_OFFSET As UShort = 4
     Public Const CHARACTER_MAX As Integer = 193
-    Public Const CITY_MAX As Integer = 83   '68
     Public Const Default_City = "HINTERLAND"
     Public Const UNKNOWN As String = "UNKNOWN"
-    Public Shared myBA As New BitArray(16)
-    Public Shared TILE_FILE As String
-    Public Shared MAP_FILE As String
     Public Shared ARCHIVE_FILE As String
     Public Const ICON_TOTAL = 30
     Public Const OBJECT_TOTAL = 16
     Public Const TILE_TOTAL = 255
     Public Const ImageWidth = 320
     Public Const ImageHeight = 200
-    Public Shared DATA_ENDIAN() As Integer = {1, 0, 0, 1, 1}
+
     Public Shared FRML_ResourceKey_Elements = 4
     Public Shared DATA_FILES = Application_Path & "\" & "WIMEDATA.XML"
-    Enum archiveBlockSize
+    Enum ArchiveBlockSize
         LittleEndian = 37
         BigEndian = 38
     End Enum
@@ -97,38 +66,17 @@ Public Class Game
     Public DataEndianType As Integer
 
     Public Sub New(filename As String)
-        Me.formatVal = getFormatVal(filename)
+
         Me.format = FORMAT_ID(Me.formatVal)
-        Me.endianType = endianChecker(Me.format)
-        Me.DataEndianType = DATA_ENDIAN(Me.formatVal)
+        Me.endianType = EndianChecker(Me.format)
+
     End Sub
     ' ============================= SUB-CLASSES ===============================================
 
     ' ============================= METHODS ===================================================
-    Private Function getFormatVal(gamefilename As String) As Integer
-        ' Checks EXE file and returns values for proper file format.
-        Dim tempInt As Integer
-        Dim tempString As String
-        For x = 0 To gameExecutables.Count - 1
-            tempString = gameExecutables(x)
-            If UCase(gamefilename) = tempString Then
-                tempInt = x
-                Exit For
-            End If
-        Next
-        Return tempInt
-    End Function
-    Public Shared Function Format2Val(format As String) As Integer
-        Dim tempVal As Integer
-        For x = 0 To gameExecutables.Count - 1
-            If format = FORMAT_ID(x) Then
-                tempVal = x
-                Exit For
-            End If
-        Next x
-        Return tempVal
-    End Function
-    Public Shared Function endianChecker(format As String) As UShort
+
+
+    Public Shared Function EndianChecker(format As String) As UShort
         Dim tempVal As UShort
         If format = FORMAT_ID(0) Or format = FORMAT_ID(1) Or format = FORMAT_ID(2) Then
             tempVal = Endianness.endLittle
@@ -137,91 +85,49 @@ Public Class Game
         End If
         Return tempVal
     End Function
-    Public Shared Function GET_FRML_Bitplane(filename As String, format As String) As Integer
-        Dim p_value As Integer
-        Dim p_string As String = ""
-        Dim p_file As String = DATA_FILES
-        Dim settings As New XmlReaderSettings
-        Dim xmlIndexRead As XmlTextReader
-        settings.IgnoreWhitespace = True
-        settings.IgnoreComments = True
-        settings.IgnoreWhitespace = True
-        settings.IgnoreComments = True
-        xmlIndexRead = New XmlTextReader(p_file)
-        xmlIndexRead.MoveToContent()
-        Do While xmlIndexRead.Read
-            xmlIndexRead.Read()
-            If xmlIndexRead.Name = "FORMAT" Then
-                p_string = xmlIndexRead.GetAttribute("ID")
-                If p_string = format Then
-                    Do Until xmlIndexRead.Name = "FRMLBITPLANES"
-                        xmlIndexRead.Read()
-                        If xmlIndexRead.EOF Then
-                            MsgBox("EOF!")
 
-                            Exit Do
-                        End If
-                    Loop
-                    p_value = xmlIndexRead.ReadInnerXml
 
-                End If
-            End If
 
-        Loop
-        Return p_value
-    End Function
-    Public Shared Function Get_FRML_Offset(ByVal filename As String, format As String, resource_name As String) As Game.resource.FRML_OFFSET
-        ' /* FUNCTION DECLARATIONS
-        Dim settings As New XmlReaderSettings With {
-        .IgnoreWhitespace = True,
-        .IgnoreComments = True
-        }
-        Dim p_file As String = DATA_FILES
-        Dim p_string As String = ""
-        Dim p_offset As New Game.resource.FRML_OFFSET
-        Dim xmlOffsetRead As XmlTextReader
-        xmlOffsetRead = New XmlTextReader(p_file)
-        xmlOffsetRead.MoveToContent()
-        Do While xmlOffsetRead.Read
-            xmlOffsetRead.Read()
-            If xmlOffsetRead.Name = "FORMAT" Then
-                p_string = xmlOffsetRead.GetAttribute("ID")
-                'MsgBox("PSTRING " & p_string)
-                If p_string = format Then
-                    'MsgBox("Format " & format)
-                    xmlOffsetRead.ReadToDescendant("FRMLOFFSETS")
-                    xmlOffsetRead.ReadToDescendant("RESOURCE")
-                    Do
-                        p_string = xmlOffsetRead.GetAttribute("ID")
-                        If p_string = resource_name Then
-                            xmlOffsetRead.ReadToDescendant("DataOffset")
-                            p_offset.Data_Offset = xmlOffsetRead.ReadInnerXml
-                            xmlOffsetRead.Read()
-                            p_offset.Address_Offset = xmlOffsetRead.ReadInnerXml
-                        End If
-                    Loop While xmlOffsetRead.ReadToNextSibling("RESOURCE")
-                End If
-            End If
-            If xmlOffsetRead.EOF Then
-                MsgBox("End of File!")
-                Exit Do
-            End If
-        Loop
-        Return p_offset
-    End Function
-    Public Shared Function FileOpenDialog() As OpenFileDialog
-        Dim dlgOpenGame As New OpenFileDialog
-        Dim dr As DialogResult
-        Dim p_counter As Integer = 0
-        dlgOpenGame.FilterIndex = 0                                       ' Sets default file.
-        dlgOpenGame.Title = "Select the Executable For the WIME Game you wish To edit."
-        dlgOpenGame.Filter = "WIME Executables (start.exe, lord.exe, earth.sys16 * .*, warinmiddleearth * .*, Command.PRG)|start.exe; lord.exe; earth.sys16*.*; warinmiddleearth*.*; COMMAND.PRG|All Files (*.*)|*.*)" 'WIME PC Executable|start.exe;lord.exe|Apple IIGS Prodos16|earth.sys16*.*|Amiga Executable|warinmiddleearth*.*|ATARI ST Program|COMMAND.PRG|All Files|*.*"
-        dlgOpenGame.InitialDirectory = loadedSettings.wimeDIRECTORY
-        dlgOpenGame.RestoreDirectory = False
-        dlgOpenGame.FileName = ""
-        dr = dlgOpenGame.ShowDialog
-        Return dlgOpenGame
-    End Function
+
+    'Public Shared Function Get_FRML_Offset(ByVal filename As String, format As String, resource_name As String) As Game.resource.FRML_OFFSET
+    '    ' /* FUNCTION DECLARATIONS
+    '    Dim settings As New XmlReaderSettings With {
+    '    .IgnoreWhitespace = True,
+    '    .IgnoreComments = True
+    '    }
+    '    Dim p_file As String = DATA_FILES
+    '    Dim p_string As String = ""
+    '    Dim p_offset As New Game.resource.FRML_OFFSET
+    '    Dim xmlOffsetRead As XmlTextReader
+    '    xmlOffsetRead = New XmlTextReader(p_file)
+    '    xmlOffsetRead.MoveToContent()
+    '    Do While xmlOffsetRead.Read
+    '        xmlOffsetRead.Read()
+    '        If xmlOffsetRead.Name = "FORMAT" Then
+    '            p_string = xmlOffsetRead.GetAttribute("ID")
+    '            'MsgBox("PSTRING " & p_string)
+    '            If p_string = format Then
+    '                'MsgBox("Format " & format)
+    '                xmlOffsetRead.ReadToDescendant("FRMLOFFSETS")
+    '                xmlOffsetRead.ReadToDescendant("RESOURCE")
+    '                Do
+    '                    p_string = xmlOffsetRead.GetAttribute("ID")
+    '                    If p_string = resource_name Then
+    '                        xmlOffsetRead.ReadToDescendant("DataOffset")
+    '                        p_offset.Data_Offset = xmlOffsetRead.ReadInnerXml
+    '                        xmlOffsetRead.Read()
+    '                        p_offset.Address_Offset = xmlOffsetRead.ReadInnerXml
+    '                    End If
+    '                Loop While xmlOffsetRead.ReadToNextSibling("RESOURCE")
+    '            End If
+    '        End If
+    '        If xmlOffsetRead.EOF Then
+    '            MsgBox("End of File!")
+    '            Exit Do
+    '        End If
+    '    Loop
+    '    Return p_offset
+    'End Function
     Public Class resource
         Public Const CHAR_ID = "CHAR"
         Public Const CSTR_ID = "CSTR"
@@ -246,16 +152,16 @@ Public Class Game
         Public totalChunks As UShort
 
         ' ==================================================== SUB CLASSES ===============================================================================
-        Public Shared Sub UNPACKAMIGATILES(ByVal tilefile As String, datadir As String, toffset As Integer, tchunk As Integer)
+        Public Shared Sub UnpackAmigaTiles(ByVal tilefile As String, datadir As String, toffset As Integer, tchunk As Integer)
             Dim inputfile As New BinaryFile(tilefile)
             Dim outputfile As New BinaryFile(datadir & "\Tiles.raw")
             Dim unpacker As New ByteRunUnpacker(inputfile)
-            Dim result As Byte() = unpacker.unpackTiles(toffset, tchunk)
+            Dim result As Byte() = unpacker.UnpackTiles(toffset, tchunk)
             outputfile.Write(result, 0, result.Length)
-            MsgBox(datadir & "\Tiles.raw" & " Closed!" & toffset & " " & tchunk)
+            MsgBox(datadir & "\Tiles.raw" & " Closed! " & toffset & " " & tchunk)
             inputfile.Close() : outputfile.Close()
         End Sub
-        Public Shared Function getTileChunk(filename As String, endian As Short, offset As Integer) As Integer
+        Public Shared Function GetTileChunk(filename As String, endian As Short, offset As Integer) As Integer
             Dim p_chunksize As Integer
             Using reader As New BinaryFile(filename)
                 reader.Position = offset
@@ -322,12 +228,12 @@ Public Class Game
                 Return p_tempInteger
             End Function
         End Class
-        Public Structure resourceMap
+        Public Structure ResourceMap
             Public Number As Integer
             Public Offset As Integer
             Public intMultiplier As Integer
         End Structure
-        Public Class imageChunk
+        Public Class ImageChunk
             Inherits Chunk
             Public imagePlane As UShort
             Public bitplane As UShort
@@ -374,7 +280,6 @@ Public Class Game
             Inherits Chunk
             Public filename As String
         End Class
-
         Structure newResourceIdentifier
             Public resourceID As String
             Public resourceQTY As Integer
@@ -564,7 +469,7 @@ Public Class Game
                     p_colors(index) = value
                 End Set
             End Property
-            Public Sub add(values As RGBValues)
+            Public Sub Add(values As RGBValues)
                 p_colors.Add(values)
             End Sub
         End Class
@@ -787,48 +692,8 @@ Public Class Game
         End If
         Return p_offset
     End Function
-    Public Shared Function getDataEndian(format) As Integer
-        Dim p_Endian As Integer
-        For p As Integer = 0 To FORMAT_ID.Length - 1
-            If format = FORMAT_ID(p) Then
-                p_Endian = DATA_ENDIAN(p)
-                Exit For
-            End If
-        Next
-        Return p_Endian
-    End Function
-    Public Shared Function GetFRMLChunk(resourcefilename As String, tempformat As String, fp As Integer, tempend As Integer, dataendian As Integer) As Game.resource.FRMLHeader
-        Dim p_FRMLHeader As New Game.resource.FRMLHeader
-        Dim p_strFormat As String = tempformat
-        Dim p_bgFlag As Boolean = True
-        Dim p_celstart As Integer
-        Dim p_dataEndian As Integer : p_dataEndian = getDataEndian(tempformat)
-        p_FRMLHeader.Offset = fp
-        Try
-            Using resreader As New BinaryFile(resourcefilename)
-                resreader.Position = fp
-                p_FRMLHeader.Chunk_Size = resreader.ReadLongwordUnsigned(tempend)
-                p_FRMLHeader.UChunk_Size = resreader.ReadLongwordUnsigned(tempend)
-                If p_FRMLHeader.UChunk_Size > (p_FRMLHeader.Chunk_Size * 3) Then
-                    p_FRMLHeader.UChunk_Size = p_FRMLHeader.Chunk_Size
-                    resreader.Position = resreader.Position - 5
-                End If
-                p_FRMLHeader.byte8 = resreader.ReadByteUnsigned
-                p_FRMLHeader.Cels = resreader.ReadWordUnsigned(p_dataEndian)
-                If p_FRMLHeader.Cels >= 270 Then
-                    resreader.Position = resreader.Position - 1
-                    p_FRMLHeader.Cels = resreader.ReadByteUnsigned()
-                End If
-                p_celstart = resreader.ReadWordUnsigned(dataendian)
-            End Using
-            p_FRMLHeader.Cel_Data_Start = (p_FRMLHeader.Offset + 8) + (p_celstart)
-        Catch ex As Exception
-            MsgBox("Class Error!  Error in Game class, getFRMLChunk Function!  " & ex.ToString)
-        End Try
-        Return p_FRMLHeader
-    End Function
-    Public Shared Function GetIMAGChunk(resourcefilename As String, tempformat As String, fp As Integer, tempend As Integer) As Game.resource.imageChunk
-        Dim tchunk As New Game.resource.imageChunk
+    Public Shared Function GetIMAGChunk(resourcefilename As String, tempformat As String, fp As Integer, tempend As Integer) As Game.resource.ImageChunk
+        Dim tchunk As New Game.resource.ImageChunk
         Dim format As String = tempformat
         Dim is16Bit As Boolean = (format = PC_VGA_FORMAT Or format = AMIGA_FORMAT Or format = ST_FORMAT)
         Dim bgFlag As Boolean
@@ -874,66 +739,6 @@ Public Class Game
         bgFlag = False
         Return tchunk
     End Function
-    Public Class Archive
-        ' ===================================================================== ARCHIVE SUB-CLASS ===================================================================================================
-        '   SUB-CLASS IN THE GAME CLASS.  GAME CONTAINS RESOURCES AND A SAVE GAME (ARCHIVE).  CONTAINS VARIABLES AND METHODS SPECIFIC TO ARCHIVE FILES.
-        ' ===========================================================================================================================================================================================
-        Public Const FILENAME = "ARCHIVE.DAT"
-        Public Const ARC_ID = "ARCHIVE"
-        Public Const ARC_ID_ELEMENTS As String = "SAVE"
-        Public Const DESCRIPTION = "SAVE"
-        Structure EXEData
-            Public CharacterName As String
-            Public Value As Integer
-            Public Length As Integer
-        End Structure
-        Public Class Character
-            Public CharacterName As String
-            Public nameIdentifier As UInt16
-            Public unknownBlock As UInt16
-            Public armyTotal As UInt16
-            Public armyQuantity As UInt16
-            Public locationX As UInt16
-            Public locationY As UInt16
-            Public destinationX As UInt16
-            Public destinationY As UInt16
-            Public gameObjects As UInt16
-            Public mapIcon As Byte
-            Public spriteColor As Byte
-            Public spriteType As Byte
-            Public byte22 As Byte
-            Public Visibility As Byte
-            Public byte24 As Byte
-            Public powerLevel As Byte
-            Public moraleTotal As Byte
-            Public moraleQuantity As Byte
-            Public byte28 As Byte
-            Public valueMobilize As Byte
-            Public Stealth As Byte
-            Public byte31 As Byte
-            Public byte32 As Byte
-            Public byte33 As Byte
-            Public hpTotal As Byte
-            Public hpCurrent As Byte
-            Public valueLeaderFollow As Byte
-            Public byte37 As Byte
-            Public intFileStart As Integer
-        End Class
-        Public Class fileData
-            Public characterFollowName(0 To 44) As String
-            Public characterFollowvalue(0 To 44) As Integer
-            Public cityIcon(CITY_MAX - 15) As Integer
-            Public cityName(CITY_MAX - 15) As Integer
-            Public cityCopyProtectionCoordinate(CITY_MAX - 15) As String
-            Public mapSpriteName(0 To 30) As String
-            Public mapSpriteValue(0 To 30) As Integer
-            Public spriteName(0 To 51) As String
-            Public spriteValue(0 To 51) As Integer
-            Public spriteColor(0 To 51) As Integer
-            Public mobilizedText(0 To 5) As String
-            Public mobilizedValue(0 To 5) As Integer
-        End Class
-    End Class
     Public Shared Function GetArmyName(value As Integer, endian As Integer) As String
         ' Function evaluates character value and returns character name.
         Dim tempString As String = ""
@@ -944,270 +749,21 @@ Public Class Game
         Next x
         Return tempString
     End Function
-    Public Shared Function getCityBlockSize(tempend As Integer) As Integer
-        Select Case tempend
-            Case 0
-                Return cityBlockSize.LittleEndian
-            Case Else
-                Return cityBlockSize.BigEndian
-        End Select
-    End Function
-    Public Shared Function _getBlockLength(tempend As Integer) As Integer
-        ' Determines the length of the savegame's data block based on the endianness.
+    Public Shared Function GetArchiveFileBlockLength(tempend As Integer) As Integer
+        ' Determines the length of the savegame's data block based on the endianness.  Resource class function.
         If tempend = 0 Then
-            Return archiveBlockSize.LittleEndian
+            Return ArchiveBlockSize.LittleEndian
         Else
-            Return archiveBlockSize.BigEndian
+            Return ArchiveBlockSize.BigEndian
         End If
     End Function
-    Public Shared Function _getArcOffset(tempend As Integer, index As Integer) As Integer
-        Dim tempBlock As Integer = ((0) + (_getBlockLength(tempend) * index))
+    Public Shared Function GetArchiveOffset(tempend As Integer, index As Integer) As Integer
+        ' Used to get offset for Archive File Resource.  Resource class function.
+        Dim tempBlock As Integer = ((0) + (GetArchiveFileBlockLength(tempend) * index))
         Return tempBlock
     End Function
-    Public Shared Function getObjectValue(characternum As Integer)
+    Public Shared Function GetObjectValue(characternum As Integer)
         Return archiveCharacterArray(characternum).gameObjects
     End Function
-    Public Class Executable
-        Public Class EXEData
-            Public Name As String
-            Public Value As UShort
-            Public Offset As UInteger
-        End Class
-        Public Class EXECity
-            Inherits EXEData
-            Public X As UShort
-            Public Y As UShort
-        End Class
-        Public Class GameLocations
-            Public Shared WimeCityData As New Game.Archive.fileData
-            Public Shared WimeCityDBData As New Game.Archive.fileData
-        End Class
-        Public Class Inventory
-            Public name(0 To OBJECT_TOTAL) As String
-            Public value(0 To OBJECT_TOTAL) As UShort
-        End Class
-        Public Class CopyProtectionData
-            Public Name As String
-            Public Value As String
-        End Class
-    End Class
-    Public Shared Function getCityName(xcoord As Integer, ycoord As Integer) As String
-        Dim tempCity As String
-        Dim tempCoord As Integer
-        Dim tempCityData As New Executable.EXECity
-        tempCoord = xcoord & ycoord
-        For x = 0 To CITY_MAX
-            tempCityData.X = CityEXE(x).X : tempCityData.Y = CityEXE(x).Y : tempCityData.Name = CityEXE(x).Name
-            If tempCoord = tempCityData.X & tempCityData.Y Then
-                tempCity = tempCityData.Name
-                Return tempCity
-            End If
-        Next x
-        Return UNKNOWN
-    End Function
-    Public Shared Function getEXECharValue(format As String) As Integer
-        Dim returnValue As Integer = 0
-        For i As Integer = 0 To FORMAT_ID.Length - 1
-            If format = FORMAT_ID(i) Then
-                returnValue = OFFSET_EXECharVal(i)
-            End If
-        Next i
-        Return returnValue
-    End Function
-    Public Shared Function getObjectOffset(format As String) As Integer
-        Dim p_formatTotal As Integer
-        p_formatTotal = FORMAT_ID.Length
-        Dim returnValue As Integer = 0
-        For i As Integer = 0 To p_formatTotal - 1
-            If format = FORMAT_ID(i) Then
-                returnValue = OFFSET_InvObj(i)
-            End If
-        Next i
-        Return returnValue
-    End Function
-    Public Shared Sub readCharEXE(filename As String, formatType As String, ByRef formatIndex As Integer, ByRef endian As Integer)
-        Dim tempLoc As UShort
-        Dim filepointer As Integer
-        Dim tempCharacterEXE As Executable.EXEData
-        Dim differenceValue As Integer
-        Dim tempval As Integer = 0 : Dim newval As Integer = 0
-        Dim tempEndian As Integer
-        tempEndian = endian
-        Dim tempExec As String = gameExecutables(formatIndex)
-        filepointer = OFFSET_CharacterData(formatIndex)
-        differenceValue = OFFSET_EXEOffset(formatIndex)
-        CharacterEXE = New List(Of Executable.EXEData)
-        Try
-            Select Case formatType
-                Case FORMAT_ID(0)                         ' Special Handling for PC VGA Version
-                    Using resread As New BinaryFile(filename)
-                        Dim ptr As Integer = filepointer
-                        Dim i As Integer = 0
-                        Do While ptr < 111738
-                            tempCharacterEXE = New Executable.EXEData
-                            resread.Position = ptr
-                            tempLoc = resread.ReadWordUnsigned
-                            If tempLoc = 6002 Then
-                                Dim tempname As String = ""
-                                resread.Position = resread.Position - 4
-                                tempCharacterEXE.Offset = resread.ReadWordUnsigned(tempEndian)
-                                newval = tempCharacterEXE.Offset + differenceValue
-                                resread.Position = newval
-                                Do
-                                    tempval = resread.ReadByte
-                                    If tempval = 0 Then Exit Do
-                                    tempname = tempname & Chr(tempval)
-                                Loop
-                                tempCharacterEXE.Name = tempname
-                                tempCharacterEXE.Value = tempCharacterEXE.Offset + getEXECharValue(formatIndex)
-                                CharacterEXE.Add(tempCharacterEXE)
-                                i = i + 1
-                                If i >= (CHARACTER_MAX + 1) Then Exit Do
-                            End If
-                            ptr = ptr + 1
-                        Loop
-                    End Using
-                Case Else                                               ' Special Handling for other versions
-                    Using resread As New BinaryFile(filename)
-                        Dim ptr As Integer = filepointer
-
-                        For p As Integer = 0 To CHARACTER_MAX
-                            tempCharacterEXE = New Executable.EXEData
-                            Dim tempname As String = ""
-                            resread.Position = ptr + (_getBlockLength(tempEndian) * (1 * p))
-                            tempCharacterEXE.Offset = resread.ReadWordUnsigned(tempEndian)
-                            newval = tempCharacterEXE.Offset + differenceValue
-                            resread.Position = newval
-                            Do
-                                tempval = resread.ReadByte
-                                If tempval = 0 Then Exit Do
-                                tempname = tempname & Chr(tempval)
-                            Loop
-                            tempCharacterEXE.Name = tempname
-                            tempCharacterEXE.Value = tempCharacterEXE.Offset + getEXECharValue(formatIndex)
-                            CharacterEXE.Add(tempCharacterEXE)
-                        Next p
-                    End Using
-            End Select
-        Catch ex As Exception
-            MsgBox(ex.ToString & "  readChar subroutine in frmArcView.")
-        End Try
-    End Sub
-    Public Shared Sub readCityEXE(filename As String, formatType As String, ByRef formatIndex As Integer, ByRef endian As Integer)
-        Dim tempCityData As Executable.EXECity
-        Dim UWORD As UInteger : Dim UBYTE As Byte
-        Dim filepointer As Integer
-        Dim namepointer As Integer
-        Dim differenceValue As Integer
-        Dim tempVal As Integer = 0
-        Dim newval As Integer = 0
-        Dim tempEndian As Integer
-        tempEndian = endian
-        filepointer = OFFSET_CityData(formatIndex)
-        namepointer = OFFSET_CityName(formatIndex)
-        differenceValue = OFFSET_EXEOffset(formatIndex)
-        CityEXE = New List(Of Executable.EXECity)
-        Select Case tempEndian
-            Case 0
-                Using resread As New BinaryFile(filename)
-                    For i As Integer = 0 To CITY_MAX
-                        tempCityData = New Executable.EXECity
-                        Dim ptr As Integer = (filepointer) + (getCityBlockSize(tempEndian) * i)
-                        Dim tempname As String = ""
-                        resread.Position = ptr
-                        tempCityData.Offset = resread.ReadWordUnsigned(tempEndian)
-                        UWORD = resread.ReadWordUnsigned(tempEndian)
-                        tempCityData.X = resread.ReadWordUnsigned(tempEndian)
-                        tempCityData.Y = resread.ReadWordUnsigned(tempEndian)
-                        UBYTE = resread.ReadByteUnsigned
-                        newval = tempCityData.Offset + differenceValue
-                        resread.Position = newval
-                        Do
-                            tempVal = resread.ReadByte
-                            If tempVal = 0 Then Exit Do
-                            tempname = tempname & Chr(tempVal)
-                        Loop
-                        tempCityData.Name = tempname
-                        CityEXE.Add(tempCityData)
-
-                    Next i
-                End Using
-            Case Else
-                Using resread As New BinaryFile(filename)
-                    For i As Integer = 0 To CITY_MAX
-                        tempCityData = New Executable.EXECity
-                        Dim ptr As Integer = (filepointer) + (getCityBlockSize(tempEndian) * i)
-                        Dim tempname As String = ""
-                        resread.Position = ptr
-                        tempCityData.Offset = resread.ReadWordUnsigned(tempEndian)
-                        UWORD = resread.ReadWordUnsigned(tempEndian)
-                        tempCityData.X = resread.ReadWordUnsigned(tempEndian)
-                        tempCityData.Y = resread.ReadWordUnsigned(tempEndian)
-                        UBYTE = resread.ReadByteUnsigned
-                        newval = tempCityData.Offset + differenceValue
-                        resread.Position = newval
-                        Do
-                            tempVal = resread.ReadByte
-                            If tempVal = 0 Then Exit Do
-                            tempname = tempname & Chr(tempVal)
-                        Loop
-                        tempCityData.Name = tempname
-                        CityEXE.Add(tempCityData)
-                    Next i
-                End Using
-        End Select
-    End Sub
-    Public Shared Function GetFormatValueByType(format As String) As Integer
-        Dim p_value As Integer
-        For x As Integer = 0 To FORMAT_ID.Length - 1
-            If format = FORMAT_ID(x) Then
-                p_value = x
-                Exit For
-            End If
-            p_value = -1
-        Next
-        Return p_value
-    End Function
-    Public Class PaletteData
-        Public Sub New()
-        End Sub
-        Public Sub New(slot As UShort, value As String)
-            Me.Slot = slot
-            Me.ColorValue = value
-        End Sub
-        Public Property Slot As UShort
-        Public Property ColorValue As String
-        Public Class ColorList
-            ' ============================= COLORLIST CLASS ======================================================================
-            Private colors As List(Of PaletteData)
-            Public Sub New()
-                colors = New List(Of PaletteData)
-            End Sub
-            Public ReadOnly Property Count As Integer
-                Get
-                    Return colors.Count
-                End Get
-            End Property
-            Default Public Property item(index As Integer) As PaletteData
-                Get
-                    If index < 0 OrElse index >= colors.Count Then
-                        Throw New ArgumentOutOfRangeException("index", "The index must be between 0 and " & colors.Count - 1 & ".")
-                    Else
-                        Return colors(index)
-                    End If
-                End Get
-                Set(value As PaletteData)
-                    colors(index) = value
-                End Set
-            End Property
-            Public Sub add(color As PaletteData)
-                colors.Add(color)
-            End Sub
-            Public Sub Add(slot As UShort, value As String)
-                Dim p As New PaletteData(slot, value)
-                colors.Add(p)
-            End Sub
-        End Class
-    End Class
 End Class
 

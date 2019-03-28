@@ -40,7 +40,7 @@ Partial Class frmArcView
         Me.lblLoopFWDSlash = New System.Windows.Forms.Label()
         Me.lblCelFWDSlash = New System.Windows.Forms.Label()
         Me.btnAnimate = New System.Windows.Forms.Button()
-        Me.txtFrameTotal = New System.Windows.Forms.TextBox()
+        Me.txtCelTotal = New System.Windows.Forms.TextBox()
         Me.lblCel = New System.Windows.Forms.Label()
         Me.lblLoop = New System.Windows.Forms.Label()
         Me.txtLoopTotal = New System.Windows.Forms.TextBox()
@@ -179,7 +179,7 @@ Partial Class frmArcView
         Me.grpAniCtrl.Controls.Add(Me.lblLoopFWDSlash)
         Me.grpAniCtrl.Controls.Add(Me.lblCelFWDSlash)
         Me.grpAniCtrl.Controls.Add(Me.btnAnimate)
-        Me.grpAniCtrl.Controls.Add(Me.txtFrameTotal)
+        Me.grpAniCtrl.Controls.Add(Me.txtCelTotal)
         Me.grpAniCtrl.Controls.Add(Me.lblCel)
         Me.grpAniCtrl.Controls.Add(Me.lblLoop)
         Me.grpAniCtrl.Controls.Add(Me.txtLoopTotal)
@@ -192,6 +192,7 @@ Partial Class frmArcView
         '
         'cboSpriteColor
         '
+        Me.cboSpriteColor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cboSpriteColor.FormattingEnabled = True
         Me.cboSpriteColor.Location = New System.Drawing.Point(178, 68)
         Me.cboSpriteColor.Name = "cboSpriteColor"
@@ -267,14 +268,14 @@ Partial Class frmArcView
         Me.btnAnimate.Text = "Animate"
         Me.btnAnimate.UseVisualStyleBackColor = True
         '
-        'txtFrameTotal
+        'txtCelTotal
         '
-        Me.txtFrameTotal.Location = New System.Drawing.Point(249, 106)
-        Me.txtFrameTotal.Name = "txtFrameTotal"
-        Me.txtFrameTotal.ReadOnly = True
-        Me.txtFrameTotal.Size = New System.Drawing.Size(23, 20)
-        Me.txtFrameTotal.TabIndex = 8
-        Me.txtFrameTotal.TabStop = False
+        Me.txtCelTotal.Location = New System.Drawing.Point(249, 106)
+        Me.txtCelTotal.Name = "txtCelTotal"
+        Me.txtCelTotal.ReadOnly = True
+        Me.txtCelTotal.Size = New System.Drawing.Size(23, 20)
+        Me.txtCelTotal.TabIndex = 8
+        Me.txtCelTotal.TabStop = False
         '
         'lblCel
         '
@@ -1026,7 +1027,7 @@ Partial Class frmArcView
         Me.grpCharacterPlacement.PerformLayout()
         Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents colNumber As System.Windows.Forms.ColumnHeader
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents colQty As System.Windows.Forms.ColumnHeader
@@ -1042,7 +1043,7 @@ End Sub
     Friend WithEvents lblLoopFWDSlash As System.Windows.Forms.Label
     Friend WithEvents lblCelFWDSlash As System.Windows.Forms.Label
     Friend WithEvents btnAnimate As System.Windows.Forms.Button
-    Friend WithEvents txtFrameTotal As System.Windows.Forms.TextBox
+    Friend WithEvents txtCelTotal As System.Windows.Forms.TextBox
     Friend WithEvents lblCel As System.Windows.Forms.Label
     Friend WithEvents lblLoop As System.Windows.Forms.Label
     Friend WithEvents txtLoopTotal As System.Windows.Forms.TextBox

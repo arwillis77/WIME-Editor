@@ -15,7 +15,6 @@ Public Class frmSpriteDraw
     ' Declare Paint Event Complete flag.  
     Public planeCount As Integer = 0
     Public stripFilename As String
-    Const DEFAULT_FORMAT_VAL = 0
     Public LForm As Boolean = False
     Public First_Flag As Boolean = True
     Public sprite_draw As Boolean
@@ -24,10 +23,9 @@ Public Class frmSpriteDraw
     Public oFiletext As String = Application_Path & "\tempFRML" & ".RAW"
     Public Sprite_Sheet_FRML As New Game.resource.animChunk
     Public SIZE_MULTIPLIER As Integer
+    Public OutputFile As BinaryFile
+
     Private Sub frmSpriteDraw_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        Dim p_tempPaletteName As String = ""
-        Dim p_pal As String = paletteColor
-        Dim p_path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) & "\" & Application.ProductName
         Escape = False
         ResourcePalette = New RGBColorList
         ResourcePalette = PaletteList
@@ -118,13 +116,13 @@ Public Class frmSpriteDraw
         Dim p_xval As UShort = 0 : Dim p_yval As UShort = 0         ' Variables for source x and y
         Dim p_width As UShort = 0 : Dim p_height As UShort = 0  ' Variables for width and height of cel groups.
         Dim p_value As Integer
-        Dim p_dataEndian As Integer : p_dataEndian = DATA_ENDIAN(loadedGame.formatVal)
+        Dim p_dataEndian As Integer = LoadedFile.DataEndian
         Dim p_rectangle_capture As Rectangle
         Dim p_destination_bmp As Bitmap
         ResetSpriteDrawingArea()
         SpriteList = New List(Of Bitmap)                               ' Create new instance of Sprite Cels Imagelist
         MAX_HEIGHT = 0
-        ProcessFRMLData(loadedResource.Filename, loadedFRML.offset, loadedGame.endianType, p_dataEndian)
+        ProcessFRMLData(loadedResource.Filename, loadedFRML.offset, LoadedFile.Endian, p_dataEndian)
         Memory = loadedFRML.chunkData
         SaveFRMLChunktoFile()
         For g As Integer = 0 To loadedFRML.celQuantity - 1
@@ -135,10 +133,12 @@ Public Class frmSpriteDraw
                 p_value = loadedFRML.ResourceKey(g, 0) - loadedFRML.ResourceKey(0, 0)
                 p_temp_filepointer = p_value
             End If
-            Dim tempCanvaswidth As Integer
-            tempCanvaswidth = CalculateCanvasWidth(loadedFRML.ResourceKey(g, 3))
+            Dim tempCanvaswidth As Integer = CalculateCanvasWidth(loadedFRML.ResourceKey(g, 3))
             ' if not, then break byte array and display.
             p_width = tempCanvaswidth
+
+
+
             If MAX_HEIGHT < p_height Then
                 MAX_HEIGHT = p_height
             End If
@@ -146,24 +146,25 @@ Public Class frmSpriteDraw
             If MAX_HEIGHT < p_height Then
                 MAX_HEIGHT = p_height
             End If
+
+
             Escape = False
             LForm = True
-            Memory = convertImageFiletoBytes(oFiletext, p_temp_filepointer, loadedFRML.ResourceKey(g + 1, 0))
+            Memory = ConvertImageFiletoBytes(oFiletext, p_temp_filepointer, loadedFRML.ResourceKey(g + 1, 0))
             FRML_PaintScreen(p_width, p_height)
-            Dim sourcebmp As New Bitmap(pnlSpriteView.BackgroundImage)
             If loadedFRML.Name = "FRML 3" Then
                 If g = 1 Then
                     p_width = p_width - 8
                 End If
-
-
             End If
-
             If loadedFRML.Name = "FRML 4" Then
                 If p_width = 48 Then
                     p_width = p_width - 8
                 End If
             End If
+
+            Dim sourcebmp As New Bitmap(pnlSpriteView.BackgroundImage)
+
             p_rectangle_capture = New Rectangle(p_xval, p_yval, p_width * SIZE_MULTIPLIER, p_height * SIZE_MULTIPLIER)
             p_destination_bmp = New Bitmap(p_width * SIZE_MULTIPLIER, p_height * SIZE_MULTIPLIER)
             p_destination_bmp = CopyBitmap(sourcebmp, p_rectangle_capture)
@@ -174,19 +175,19 @@ Public Class frmSpriteDraw
         Sprite_Sheet_FRML = loadedFRML
         pnlSpriteView.Refresh()
     End Sub
-    Public Function convertImageFiletoBytes(ByVal imagefilepath As String, ByVal start As Long, ByVal _numbytes As Long) As Byte()
+    Public Function ConvertImageFiletoBytes(ByVal imagefilepath As String, ByVal start As Long, ByVal _numbytes As Long) As Byte()
         Dim _tempByte() As Byte = Nothing
         If String.IsNullOrEmpty(imagefilepath) = True Then
             Throw New ArgumentNullException("Image File Name Cannot be Null or Empty", "ImageFilePath")
             Return Nothing
         End If
         Try
-            Dim _fileInfo As New IO.FileInfo(imagefilepath)
+            'Dim _fileInfo As New IO.FileInfo(imagefilepath)
             Dim _FStream As New IO.FileStream(imagefilepath, IO.FileMode.Open, IO.FileAccess.Read)
             Dim _BinaryReader As New IO.BinaryReader(_FStream)
             _FStream.Position = start
             _tempByte = _BinaryReader.ReadBytes(Convert.ToInt32(_numbytes))
-            _fileInfo = Nothing
+            '_fileInfo = Nothing
             _numbytes = 0
             _FStream.Close()
             _FStream.Dispose()
@@ -210,18 +211,39 @@ Public Class frmSpriteDraw
     End Sub
     Private Sub SaveFRMLChunktoFile()
         Try
-            Dim Outputfile As New BinaryFile(oFiletext)
-            Outputfile.Write(loadedFRML.chunkData, 0, loadedFRML.chunkData.Length)
-            Outputfile.Close()
+            Dim ErrorTimer As Timer = New Timer With {.Interval = 1000, .Enabled = True}
+            'FileSystem.FileClose(oFiletext)
+            If IsFileInUse(oFiletext) Then
+                ErrorTimer.Start()
+                'MsgBox("File in use!  Deleting.....")
+                'IO.File.Delete(oFiletext)
+                'FileSystem.FileClose(oFiletext)
+            End If
+            ''If System.IO.File.Exists(oFiletext) Then
+            'IO.File.Delete(oFiletext)
+            ''End If
+            OutputFile = New BinaryFile(oFiletext)
+
+            'Dim Outputfile As New BinaryFile(oFiletext)
+            OutputFile.Write(loadedFRML.chunkData, 0, loadedFRML.chunkData.Length)
+            OutputFile.Close()
+            OutputFile.Dispose()
+
         Catch ex As Exception
             If TypeOf ex Is IOException Then
-                MsgBox(oFiletext & " is open.  Need to fix this bug.  " & vbCrLf & ex.ToString)
+                MsgBox("ERROR.  " & oFiletext & " is open.  Need to fix this bug.  " & vbCrLf & ex.ToString & "SaveFRMLChunkToFile Function Subroutine Error!")
             End If
-
-
         End Try
-
     End Sub
+    Public Function IsFileInUse(sFile As String) As Boolean
+        Try
+            Using f As New IO.FileStream(sFile, FileMode.Open, FileAccess.ReadWrite, FileShare.None)
+            End Using
+        Catch Ex As Exception
+            Return True
+        End Try
+        Return False
+    End Function
     Private Function GetDrawingRectangle(ByVal X As Integer, ByVal Y As Integer) As Rectangle
         Dim Result As New Rectangle(0, 0, 0, 0)
         Dim p_tempModifier As Integer

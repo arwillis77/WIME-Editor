@@ -1,41 +1,41 @@
 ﻿Imports WIMEEditor.Game
 Public Class frmResourceList
     Private ResourceType As String
-    Dim selectedResource As String
-    Dim totalWidth As Integer = 0
+    Dim SelectedResource As String
+    Dim TotalWidth As Integer = 0
     Public frmResourceItem As Form
     Dim SplitResourceList As SplitContainer
-    Dim WithEvents listResourceItems As ListView
-    Dim page As TabPage
-    Dim currenttile As Integer = 0
+    Dim WithEvents ListResourceItems As ListView
+    Dim Page As TabPage
+    Dim CurrentTile As Integer = 0
     Dim ArchiveFilename As String = ""
-    Dim EXEFile As String = gameExecutables(loadedGame.formatVal)
-    Dim EXEFull As String = loadedSettings.wimeDIRECTORY & "\" & EXEFile
+    Dim EXEFile As String = LoadedFile.ExecutableFile
+    Dim EXEFull As String = LoadedSettings.wimeDIRECTORY & "\" & EXEFile
     Private Sub frmResourceList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetupResourceTable()
         Select Case ResourceType
-            Case Game.Archive.ARC_ID
-                ArchiveFilename = loadedSettings.wimeDIRECTORY & "\" & Game.Archive.FILENAME
-                readCharEXE(EXEFull, loadedGame.format, loadedGame.formatVal, loadedGame.endianType)
-                readCityEXE(EXEFull, loadedGame.format, loadedGame.formatVal, loadedGame.endianType)
-                SetArchiveCBOArrayData()
-                ReadArchiveFile(ArchiveFilename, loadedGame.endianType)
+            Case Archive.ARC_ID
+                ArchiveFilename = LoadedSettings.wimeDIRECTORY & "\" & Archive.FILENAME
+                ReadCharEXE(EXEFull, LoadedFile.Name, LoadedFile.Endian)
+                ReadCityEXE(EXEFull, LoadedFile.Name, LoadedFile.Endian)
+
+                ReadArchiveFile(ArchiveFilename, LoadedFile.Endian)
                 For jj = 0 To CHARACTER_MAX
-                    fillArchiveList(jj)
+                    FillArchiveList(jj)
                 Next jj
             Case Else
                 FillList(ResourceType)
         End Select
-        autoResizeColumnWidths(listResourceItems)
+        AutoResizeColumnWidths(ListResourceItems)
         'ResizeListColumns()
-        listResourceItems.Height = Me.Height - 20
+        ListResourceItems.Height = Me.Height - 20
         'listResourceItems.Dock = DockStyle.Fill
         SplitResourceList.IsSplitterFixed = True
         SplitResourceList.Refresh()
     End Sub
     Private Sub frmResourceList_Shown(sender As Object, e As EventArgs) Handles Me.Shown
-        SplitResourceList.SplitterDistance = listResourceItems.Width + 10
-        listResourceItems.Dock = DockStyle.Fill
+        SplitResourceList.SplitterDistance = ListResourceItems.Width + 10
+        ListResourceItems.Dock = DockStyle.Fill
     End Sub
 
     Public Sub New(resource As String)
@@ -55,23 +55,24 @@ Public Class frmResourceList
         SplitResourceList.SplitterIncrement = 1
     End Sub
     Public Sub SetupResourceTable()
-        listResourceItems = New ListView
-        listResourceItems.Size = New Size(395, 795)
-        listResourceItems.View = View.Details
-        listResourceItems.GridLines = True
-        SplitResourceList.Panel1.Controls.Add(listResourceItems)
-        listResourceItems.Clear()
-        listResourceItems.BackColor = Color.FromArgb(64, 64, 64)
-        listResourceItems.ForeColor = Color.White
-        listResourceItems.Columns.Add("Name")
-        listResourceItems.Columns.Add("#", HorizontalAlignment.Right)
-        listResourceItems.Columns.Add("Size (bytes)", HorizontalAlignment.Right)
-        listResourceItems.Columns.Add("Type", HorizontalAlignment.Right)
-        listResourceItems.Columns.Add("Resource", HorizontalAlignment.Right)
-        listResourceItems.Columns.Add("Offset", HorizontalAlignment.Left)
-
+        ListResourceItems = New ListView With {
+        .Size = New Size(395, 795),
+        .View = View.Details,
+        .GridLines = True,
+        .BackColor = Color.FromArgb(64, 64, 64),
+        .ForeColor = Color.White
+        }
+        SplitResourceList.Panel1.Controls.Add(ListResourceItems)
+        With ListResourceItems
+            .Columns.Add("Name")
+            .Columns.Add("#", HorizontalAlignment.Right)
+            .Columns.Add("Size (bytes)", HorizontalAlignment.Right)
+            .Columns.Add("Type", HorizontalAlignment.Right)
+            .Columns.Add("Resource", HorizontalAlignment.Right)
+            .Columns.Add("Offset", HorizontalAlignment.Left)
+        End With
     End Sub
-    Friend Sub autoResizeColumnWidths(ByVal lvControlName As ListView)
+    Friend Sub AutoResizeColumnWidths(ByVal lvControlName As ListView)
         Dim minWidthArray As Integer
         For i = 0 To lvControlName.Columns.Count - 1
             'Resize to fit the header
@@ -88,14 +89,14 @@ Public Class frmResourceList
     End Sub
     Public Sub ResizeListColumns()
 
-        For i As Integer = 0 To listResourceItems.Columns.Count - 1
-            listResourceItems.Columns.Item(i).Width = -2
-            totalWidth = totalWidth + listResourceItems.Columns.Item(i).Width
+        For i As Integer = 0 To ListResourceItems.Columns.Count - 1
+            ListResourceItems.Columns.Item(i).Width = -2
+            TotalWidth = TotalWidth + ListResourceItems.Columns.Item(i).Width
         Next
-        listResourceItems.Width = totalWidth
+        ListResourceItems.Width = TotalWidth
     End Sub
-    Public Sub fillResourceList(loopNum As Integer)
-        Dim resLV As ListViewItem = listResourceItems.Items.Add(GameResourceList.Item(loopNum).Name)
+    Public Sub FillResourceList(loopNum As Integer)
+        Dim resLV As ListViewItem = ListResourceItems.Items.Add(GameResourceList.Item(loopNum).Name)
         resLV.SubItems.Add(GameResourceList.Item(loopNum).Number)
         resLV.SubItems.Add(GameResourceList.Item(loopNum).Size)
         resLV.SubItems.Add(GameResourceList.Item(loopNum).Type)
@@ -105,27 +106,27 @@ Public Class frmResourceList
     Public Sub FillList(resource As String)
         For jj = 0 To (GameResourceList.Count - 1)
             If GameResourceList.Item(jj).Type = resource Then
-                fillResourceList(jj)
+                FillResourceList(jj)
             End If
         Next
     End Sub
-    Public Sub fillArchiveList(loopnum As Integer)
+    Public Sub FillArchiveList(loopnum As Integer)
         Dim p_Offset As Integer = 0
         If CharacterEXE(loopnum).Name = "" Then
             CharacterEXE(loopnum).Name = "ERROR"
         End If
-        Dim resLV As ListViewItem = listResourceItems.Items.Add(CharacterEXE(loopnum).Name)
-        p_Offset = _getArcOffset(loadedGame.endianType, loopnum)
+        Dim resLV As ListViewItem = ListResourceItems.Items.Add(CharacterEXE(loopnum).Name)
+        p_Offset = GetArchiveOffset(LoadedFile.Endian, loopnum)
         resLV.SubItems.Add(loopnum)
-        resLV.SubItems.Add(_getBlockLength(loadedGame.endianType))
-        resLV.SubItems.Add(Game.Archive.ARC_ID_ELEMENTS)
-        resLV.SubItems.Add(Game.Archive.ARC_ID)
+        resLV.SubItems.Add(GetSavegameBlockLength(LoadedFile.Endian))
+        resLV.SubItems.Add(Archive.ARC_ID_ELEMENTS)
+        resLV.SubItems.Add(Archive.ARC_ID)
         resLV.SubItems.Add(p_Offset)
     End Sub
     Public Function GetSelectedResource(type As String) As String
         Dim p_value As String = ""
-        If type = Game.Archive.ARC_ID_ELEMENTS Then
-            p_value = Game.Archive.ARC_ID
+        If type = Archive.ARC_ID_ELEMENTS Then
+            p_value = Archive.ARC_ID
             Return p_value
         End If
         For x As Integer = 0 To Game.resource.RES_ID.Length - 1
@@ -138,35 +139,35 @@ Public Class frmResourceList
     End Function
     Public Sub SetFRMLInfo()
         Dim p_datafile = DATA_FILES
-        loadedFRML.Name = listResourceItems.SelectedItems(0).SubItems(0).Text
-        loadedResource.Filename = loadedSettings.wimeDIRECTORY & "\" & listResourceItems.SelectedItems(0).SubItems(4).Text & ".RES"
-        loadedFRML.offset = Val(listResourceItems.SelectedItems(0).SubItems(5).Text)
-        loadedFRML.bitplanes = loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
+        loadedFRML.Name = ListResourceItems.SelectedItems(0).SubItems(0).Text
+        loadedResource.Filename = LoadedSettings.wimeDIRECTORY & "\" & ListResourceItems.SelectedItems(0).SubItems(4).Text & ".RES"
+        loadedFRML.offset = Val(ListResourceItems.SelectedItems(0).SubItems(5).Text)
+        loadedFRML.bitplanes = LoadedFile.FRMLBitplanes
     End Sub
-    Private Sub listResourceItems_ItemActivate(sender As Object, e As EventArgs) Handles listResourceItems.ItemActivate
+    Private Sub ListResourceItems_ItemActivate(sender As Object, e As EventArgs) Handles ListResourceItems.ItemActivate
         DisplayResource(True)
     End Sub
-    Private Sub listResourceItems_SelectedIndexChanged1(sender As Object, e As EventArgs) Handles listResourceItems.SelectedIndexChanged
+    Private Sub ListResourceItems_SelectedIndexChanged1(sender As Object, e As EventArgs) Handles ListResourceItems.SelectedIndexChanged
         DisplayResource(False)
     End Sub
     Public Sub DisplayResource(TabDisplay As Boolean)
         Try
-            If listResourceItems.SelectedItems.Count > 0 Then
-                SelectedResourceItem.Name = listResourceItems.SelectedItems(0).SubItems(0).Text
-                SelectedResourceItem.Number = Val(listResourceItems.SelectedItems(0).SubItems(1).Text)
-                SelectedResourceItem.dataSize = Val(listResourceItems.SelectedItems(0).SubItems(2).Text)
-                SelectedResourceItem.resourceType = listResourceItems.SelectedItems(0).SubItems(3).Text
-                SelectedResourceItem.resourceFile = listResourceItems.SelectedItems(0).SubItems(4).Text
-                SelectedResourceItem.fileOffset = Val(listResourceItems.SelectedItems(0).SubItems(5).Text)
-                selectedResource = GetSelectedResource(listResourceItems.SelectedItems(0).SubItems(3).Text)
-                Select Case selectedResource
-                    Case Game.Archive.ARC_ID
+            If ListResourceItems.SelectedItems.Count > 0 Then
+                SelectedResourceItem.Name = ListResourceItems.SelectedItems(0).SubItems(0).Text
+                SelectedResourceItem.Number = Val(ListResourceItems.SelectedItems(0).SubItems(1).Text)
+                SelectedResourceItem.dataSize = Val(ListResourceItems.SelectedItems(0).SubItems(2).Text)
+                SelectedResourceItem.resourceType = ListResourceItems.SelectedItems(0).SubItems(3).Text
+                SelectedResourceItem.resourceFile = ListResourceItems.SelectedItems(0).SubItems(4).Text
+                SelectedResourceItem.fileOffset = Val(ListResourceItems.SelectedItems(0).SubItems(5).Text)
+                SelectedResource = GetSelectedResource(ListResourceItems.SelectedItems(0).SubItems(3).Text)
+                Select Case SelectedResource
+                    Case Archive.ARC_ID
                         frmResourceItem = New frmArcView
                     Case Game.resource.FRML_ID, Game.resource.IMAG_ID, Game.resource.CSTR_ID
                         frmResourceItem = New frmViewResource(SelectedResourceItem)
                     Case Game.resource.CHAR_ID
-                        currenttile = Val(listResourceItems.SelectedItems(0).SubItems(1).Text)
-                        frmResourceItem = New frmViewResource(SelectedResourceItem, loadedTile, currenttile)
+                        CurrentTile = Val(ListResourceItems.SelectedItems(0).SubItems(1).Text)
+                        frmResourceItem = New frmViewResource(SelectedResourceItem, loadedTile, CurrentTile)
                     Case Game.resource.MAP_ID
                         frmResourceItem = New MapView(loadedMMAP)
                     Case Else
@@ -178,13 +179,13 @@ Public Class frmResourceList
                 frmResourceItem.AutoScroll = True
                 frmResourceItem.Dock = DockStyle.Fill
                 If TabDisplay = True Then
-                    page = New TabPage
-                    Dim tabTitle As String = listResourceItems.SelectedItems(0).SubItems(0).Text & "      "
-                    page.Text = tabTitle
-                    frmWIMEEditorMain.tclExplorerMain.TabPages.Add(page)
-                    page.Controls.Add(frmResourceItem)
-                    tabPageVals.Add(page)
-                    frmWIMEEditorMain.tclExplorerMain.SelectedTab = page
+                    Page = New TabPage
+                    Dim tabTitle As String = ListResourceItems.SelectedItems(0).SubItems(0).Text & "      "
+                    Page.Text = tabTitle
+                    frmWIMEEditorMain.tclExplorerMain.TabPages.Add(Page)
+                    Page.Controls.Add(frmResourceItem)
+                    tabPageVals.Add(Page)
+                    frmWIMEEditorMain.tclExplorerMain.SelectedTab = Page
                 Else
                     SplitResourceList.Panel2.Controls.Clear()
                     SplitResourceList.Panel2.Controls.Add(frmResourceItem)

@@ -15,12 +15,11 @@ Public Class frmMapIcon
     Public addressOffset As UShort
     Public planeCount As Integer
     Public LForm As Boolean
-    Public ImagViewGame As Game
-    Public Imagview As New Game.resource.imageChunk
+    Public Imagview As New Game.resource.ImageChunk
     Public ResourcePalette As New resource.RGBColorList
     Dim p_resource As String = IMAGES
     Private Sub frmMapIcon_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        loadedSettings = loadConfig(settingsFullFilename)
+        LoadedSettings = LoadConfig(settingsFullFilename)
         Dim p_resfilename As String
         Dim p_resfilecut As String
 
@@ -31,10 +30,9 @@ Public Class frmMapIcon
             addressOffset = 4
             p_contain = SelectedResourceItem
             p_resfilecut = p_contain.resourceFile & ".res"
-            p_resfilename = loadedSettings.wimeDIRECTORY & "\" & p_resfilecut
+            p_resfilename = LoadedSettings.wimeDIRECTORY & "\" & p_resfilecut
             p_endoffset = p_contain.fileOffset + (p_contain.dataSize + 4)
-            ImagViewGame = loadedGame
-            Imagview = GetIMAGChunk(p_resfilename, ImagViewGame.format, p_contain.fileOffset, ImagViewGame.endianType)
+            Imagview = GetIMAGChunk(p_resfilename, LoadedFile.Name, p_contain.fileOffset, LoadedFile.Endian)
             ResourcePalette = ParseIndex(p_resfilecut)
             LoadMapIcons(p_resfilename, Imagview.offset)
             CutMapIcons()
@@ -56,11 +54,10 @@ Public Class frmMapIcon
             Using reader As New BinaryFile(filename)
                 Dim Unpacker As New ByteRunUnpacker(reader)
                 Dim p_offsetmodifier As Integer
-                Dim p_format As String : p_format = loadedSettings.fileFormat
-                Dim P_formatvalue As UShort
+                Dim p_format As String : p_format = LoadedFile.Name
+
                 p_offsetmodifier = getIMAGDataOffsetValue(p_format, Imagview.imagePlane)
-                P_formatvalue = GetFormatValueByType(p_format)
-                addressOffset = OFFSET_BANNERICONS(P_formatvalue)
+                addressOffset = LoadedFileOffsets.BannerIcons
                 If Imagview.canvassWidth > 255 Then addressOffset = 5
                 Dim value As Integer = p_offsetmodifier
                 Imagview.chunkData = Unpacker.Unpack(Imagview.offset + value, Imagview.uncompressed_size, Imagview.canvassWidth, Imagview.height, 4)
@@ -102,7 +99,7 @@ Public Class frmMapIcon
         End If
         If Imagview.bitplane = 0 Then  ' We treat the data as pixels, 
             '                              each in one nibble (half-byte).
-            Dim tempFile As String = loadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
+            Dim tempFile As String = LoadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
             Using objWriter As New StreamWriter(tempFile, True)
 
                 For Y = 0 To Imagview.height - 1
@@ -131,7 +128,7 @@ Public Class frmMapIcon
             pnlImagView.Refresh()
             System.Windows.Forms.Application.DoEvents()
         Else ' Checked -> We treat the data as bitplanes.
-            Dim tempFile As String = loadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
+            Dim tempFile As String = LoadedSettings.dataDirectory & "\IMAG_TMP2.TMP"
             Using objWriter As New StreamWriter(tempFile, True)
                 For Y = 0 To Imagview.height - 1
                     If escape Then Exit Sub
