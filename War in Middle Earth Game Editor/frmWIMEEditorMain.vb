@@ -71,13 +71,15 @@ Public Class frmWIMEEditorMain
                 ClearGame()
             End If
         End If
-        Dim dlgOpenGame As New OpenFileDialog
-        dlgOpenGame.FilterIndex = 0                                       ' Sets default file.
-        dlgOpenGame.Title = "Select the Executable For the WIME Game you wish To edit."
-        dlgOpenGame.Filter = "WIME Executables (start.exe, lord.exe, earth.sys16 * .*, warinmiddleearth * .*, Command.PRG)|start.exe; lord.exe; earth.sys16*.*; warinmiddleearth*.*; COMMAND.PRG|All Files (*.*)|*.*)" 'WIME PC Executable|start.exe;lord.exe|Apple IIGS Prodos16|earth.sys16*.*|Amiga Executable|warinmiddleearth*.*|ATARI ST Program|COMMAND.PRG|All Files|*.*"
-        dlgOpenGame.InitialDirectory = LoadedSettings.wimeDIRECTORY
-        dlgOpenGame.RestoreDirectory = False
-        dlgOpenGame.FileName = ""
+
+        Dim dlgOpenGame As New OpenFileDialog With {
+            .FilterIndex = 0,                                       ' Sets default file.
+            .Title = "Select the Executable For the WIME Game you wish To edit.",
+            .Filter = "WIME Executables (start.exe, lord.exe, earth.sys16 * .*, warinmiddleearth * .*, Command.PRG)|start.exe; lord.exe; earth.sys16*.*; warinmiddleearth*.*; COMMAND.PRG|All Files (*.*)|*.*)", 'WIME PC Executable|start.exe;lord.exe|Apple IIGS Prodos16|earth.sys16*.*|Amiga Executable|warinmiddleearth*.*|ATARI ST Program|COMMAND.PRG|All Files|*.*"
+            .InitialDirectory = LoadedSettings.wimeDIRECTORY,
+            .RestoreDirectory = False,
+            .FileName = ""
+        }
         Dim dr As DialogResult = dlgOpenGame.ShowDialog
         If dr = DialogResult.OK Then
             p_filename = dlgOpenGame.SafeFileName
@@ -117,7 +119,7 @@ Public Class frmWIMEEditorMain
         Next x
         If SuccessFlag = False Then
             MsgBox("Error!  Program unable to determine correct file format!")
-            Exit Function
+            Return Nothing
         Else
         End If
         TempFileFormat = New FileFormat(GameFormat(TempIndex).Name, GameFormat(TempIndex).Endian, GameFormat(TempIndex).DataEndian, GameFormat(TempIndex).ExecutableFile, GameFormat(TempIndex).Icon, GameFormat(TempIndex).BitPlanes, GameFormat(TempIndex).FRMLBitplanes)
@@ -136,7 +138,7 @@ Public Class frmWIMEEditorMain
         Next x
         If SuccessFlag = False Then
             MsgBox("Error!  Program unable to determine correct file format!")
-            Exit Function
+            Return Nothing
         Else
         End If
         TempOffsets = New OffsetValues(GameOffsets(TempIndex).FileFormat, GameOffsets(TempIndex).BannerIcons, GameOffsets(TempIndex).Tiles, GameOffsets(TempIndex).EXECharacterName, GameOffsets(TempIndex).EXECharacterData, GameOffsets(TempIndex).EXECityName, GameOffsets(TempIndex).EXECityData,

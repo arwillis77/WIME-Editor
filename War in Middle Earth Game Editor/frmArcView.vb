@@ -600,7 +600,7 @@ Public Class frmArcView
     End Sub
     Private Sub cboMobilized_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboMobilized.SelectedIndexChanged
         If EventsOn = True Then
-            For x As Integer = 0 To Mobilized.Count
+            For x As Integer = 0 To Mobilized.Count - 1
                 If cboMobilized.SelectedItem = Mobilized(x).Name Then
                     curCharData.valueMobilize = Mobilized(x).Value
                 End If
