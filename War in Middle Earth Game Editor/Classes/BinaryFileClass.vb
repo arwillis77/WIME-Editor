@@ -58,9 +58,13 @@ Public Class BinaryFile
             Return MemFilename
         End Get
     End Property
-    Protected Overrides Sub Finalize()
-        Close()
-        MyBase.Finalize()
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        If disposing = False Then
+            Close()
+            MyBase.Dispose(disposing:=False)
+        Else
+            MyBase.Dispose(disposing:=True)
+        End If
     End Sub
 
     Public Function ReadByteUnsigned() As Byte

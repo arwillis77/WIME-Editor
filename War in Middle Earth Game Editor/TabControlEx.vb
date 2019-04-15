@@ -6,9 +6,13 @@ Public Class TabControlEx
     Inherits TabControl
     Public cButtonBack As Color = SystemColors.Control
     Public cButtonFore As Color = Color.Black
-    Private Declare Auto Function SetParent Lib "user32" (ByVal hWndChild As IntPtr, ByVal hWndNewParent As IntPtr) As IntPtr
     Protected CloseButtonCollection As New Dictionary(Of Button, TabPage)
     Private _ShowCloseButtonOnTabs As Boolean = True
+
+    ' A class required by VisualStudio to call the SetParent method because it's native code
+    Private Class NativeMethods
+        Friend Declare Auto Function SetParent Lib "user32" (ByVal hWndChild As IntPtr, ByVal hWndNewParent As IntPtr) As IntPtr
+    End Class
 
     <Browsable(True), DefaultValue(True), Category("Behavior"), Description("Indicates whether a close button should be shown on each TabPage")> _
     Public Property ShowCloseButtonOnTabs() As Boolean
@@ -40,8 +44,8 @@ Public Class TabControlEx
         Dim btn As Button = AddCloseButton(tp)
         btn.Size = New Size(rect.Height - 1, rect.Height - 1)
         btn.Location = New Point(rect.X + rect.Width - rect.Height - 1, rect.Y + 1)
-        
-        SetParent(btn.Handle, Me.Handle)
+
+        NativeMethods.SetParent(btn.Handle, Me.Handle)
         AddHandler btn.Click, AddressOf OnCloseButtonClick
         CloseButtonCollection.Add(btn, tp)
     End Sub
@@ -50,7 +54,7 @@ Public Class TabControlEx
         Dim btn As Button = CloseButtonOfTabPage(DirectCast(e.Control, TabPage))
         RemoveHandler btn.Click, AddressOf OnCloseButtonClick
         CloseButtonCollection.Remove(btn)
-        SetParent(btn.Handle, Nothing)
+        NativeMethods.SetParent(btn.Handle, Nothing)
         btn.Dispose()
         MyBase.OnControlRemoved(e)
     End Sub

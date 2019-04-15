@@ -68,7 +68,7 @@ Public Class EditorSettings
             ' End document.
             writer.WriteEndElement()
             writer.WriteEndDocument()
-            writer.Close()
+            'writer.Close() ' Gets closed automatically on the end of the Using block
         End Using
     End Sub
     Public Shared Function SelectWIMEDirectory() As String

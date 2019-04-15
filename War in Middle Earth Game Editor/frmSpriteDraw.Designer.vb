@@ -9,6 +9,10 @@ Partial Class frmSpriteDraw
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If
+            ' Close the OutputFile object before form disposal
+            If Not disposing Then
+                OutputFile.Close()
+            End If
         Finally
             MyBase.Dispose(disposing)
         End Try

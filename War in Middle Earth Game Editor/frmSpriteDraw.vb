@@ -189,8 +189,8 @@ Public Class frmSpriteDraw
             _tempByte = _BinaryReader.ReadBytes(Convert.ToInt32(_numbytes))
             '_fileInfo = Nothing
             _numbytes = 0
-            _FStream.Close()
-            _FStream.Dispose()
+            '_FStream.Close() ' gets disposed by _BinaryReader.Close()
+            '_FStream.Dispose() 
             _BinaryReader.Close()
             Return _tempByte
         Catch ex As Exception
