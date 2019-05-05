@@ -37,9 +37,9 @@ Public Class MapView
         'MMAPPalette = LoadPalette(TILES, loadedGame.format, SelectedResourceItem.resourceFile)
         ' // Transfer settings for MMAP and CHAR resources to local classes
         MMAPTiles = loadedTile
-        iTileOrigin = OFFSET_TileStart(loadedGame.formatVal)
+        iTileOrigin = LoadedFileOffsets.Tiles
         mapPanel.AutoScroll = True
-        MMAPSettings = loadConfig(settingsFullFilename)
+        MMAPSettings = LoadConfig(settingsFullFilename)
         ProcessMap()
     End Sub
     Public Sub New(MAP_data As Game.resource.MapChunk)
@@ -52,21 +52,21 @@ Public Class MapView
         Dim inputfile As New BinaryFile(Filename)
         Dim outputfile As New BinaryFile(Application_Path & "\" & rawMapFile)
         Dim unpacker As New ByteRunUnpacker(inputfile)
-        Dim result As Byte() = unpacker.Unpack(MMAPSettings.mapFileOffset, loadedMMAP.chunkSize, loadedMMAP.width, loadedMMAP.height, loadedMMAP.planes)
+        Dim result As Byte() = unpacker.Unpack(loadedMMAP.DataStartOffset, loadedMMAP.chunkSize, loadedMMAP.width, loadedMMAP.height, loadedMMAP.planes)
         outputfile.Write(result, 0, result.Length)
         inputfile.Close() : outputfile.Close()
-        ExportTile(Filename, loadedGame.format, 1)
+        ExportTile(Filename, LoadedFile.Name, 1)
         pctMapTile.Hide()
         AddHandler mapPanel.Paint, AddressOf mapPanel_Paint
         Application.DoEvents()
         mapPanel.Refresh()
-        saveMap()
+        SaveMap()
     End Sub
     Public Sub ExportTile(filename As String, format As String, size As Integer)
-        If format = FORMAT_ID(3) Then
+        If format = Format_ID(3) Then
             Dim p_chunk As Integer
-            p_chunk = Game.resource.getTileChunk(filename, loadedGame.endianType, OFFSET_TileStart(3) - 4)
-            Game.resource.UNPACKAMIGATILES(MMAPSettings.tileFile, MMAPSettings.dataDirectory, OFFSET_TileStart(3) + 4, p_chunk)
+            p_chunk = Game.resource.GetTileChunk(filename, LoadedFile.Endian, LoadedFileOffsets.Tiles - 4)
+            Game.resource.UnpackAmigaTiles(filename, MMAPSettings.dataDirectory, LoadedFileOffsets.Tiles + 4, p_chunk)
             filename = MMAPSettings.dataDirectory & "\Tiles.raw"
             iTileOrigin = 0
         Else
@@ -138,7 +138,7 @@ Public Class MapView
 
     End Sub
     Private Sub mapPanel_Paint(sender As Object, e As PaintEventArgs) Handles mapPanel.Paint
-        MMAPSettings = loadConfig(settingsFullFilename)
+        MMAPSettings = LoadConfig(settingsFullFilename)
         Dim mapX As Integer = 0 : Dim mapY As Integer = 0
         Dim timage As Image
         Dim tempByte As Integer
@@ -161,7 +161,7 @@ Public Class MapView
             Next i
         End Using
     End Sub
-    Public Sub saveMap()
+    Public Sub SaveMap()
         Dim panelBitmap As New Bitmap(mapPanel.Width, mapPanel.Height)
         mapPanel.DrawToBitmap(panelBitmap, mapPanel.ClientRectangle)
         RemoveHandler mapPanel.Paint, AddressOf mapPanel_Paint

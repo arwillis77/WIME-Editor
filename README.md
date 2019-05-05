@@ -15,3 +15,16 @@ or to a friendly city you want to stay undefeated.
 ## Installation
 
 To install War in Middle Earth Game Editor, go to the Releases section of this repository and select a release. There you’ll find the WIMEInstall.exe file. Download it, run it, and follow the instructions on the screen.
+
+Update Build 10 March 2019
+
+- Added hard-coded palette lists to the Palette module.  Also added sprite sets for animation cycles and sprite colors. 
+- Archive class separated from Game class.  Game class in process of being separated again.
+- Various code cleaning throughout the files.
+- Hard coded background to the final EXE file.
+- Class organization.  Some information moved to GameData Module.
+
+Bugs to fix:
+- frmSpriteDraw:  File open error when selecting FRML4 in resource viewer and moving to another Sprite.  Appears all code closes the open FRMMTemp file but still get error.
+- frmSpriteDraw.  Animate button does not activate animation of cycle 0.
+

@@ -6,6 +6,13 @@ Partial Class MapView
     <System.Diagnostics.DebuggerNonUserCode()> _
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
+            ' Close the field objects before form disposal
+            If Not disposing Then
+                bmp.Dispose()
+                b2.Dispose()
+                pic.Dispose()
+                myBrush.Dispose()
+            End If
             If disposing AndAlso components IsNot Nothing Then
                 components.Dispose()
             End If

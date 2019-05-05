@@ -2,9 +2,10 @@
 Imports WIMEEditor.EditorSettings
 Imports System.IO
 Imports WIMEEditor.Game
+Imports WIMEEditor.GameData
 Public Class frmArcView
     '// Declare Variables
-    Public spriteCurLoop As Integer = 0
+    Public SpriteCurrentLoop As Integer = 0
     Public spriteCurCel As Integer = 0
     Private EventsOn As Boolean
     Public surface As Bitmap
@@ -16,19 +17,17 @@ Public Class frmArcView
     Public Shared currentCharacter As Integer
     '// Declare Objects
     Public currentSprite As New Data
-    Public ARC_Sprite_DATA As Archive_SpriteList
-    Dim WIMEObjects As New Game.Executable.Inventory
-    Dim TransferObjects As New Game.Executable.Inventory
-    Dim selectedCharacter As Game.Archive.Character
+    Public WIMEObjects As List(Of GenericCharacterObject)
+    Public TransferObjects As List(Of GenericCharacterObject)
+    Dim selectedCharacter As Archive.Character
     Public SIZE_MULTIPLIER As Integer = 2
     Dim myBA As BitArray
     Private Sub frmArcView_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         Try
             myBA = Nothing
             myBA = New BitArray(15)
-            ARCHIVE_FILE = loadedSettings.wimeDIRECTORY & "\" & Game.Archive.FILENAME
+            ARCHIVE_FILE = LoadedSettings.wimeDIRECTORY & "\" & Archive.FILENAME
             SetupFormData()
-            SetArchiveCBOArrayData()
             currentCharacter = SelectedResourceItem.Number
             FillArcForm()                         ' Call subroutine to fill the remainder of the form.
             isDataSaved = True
@@ -40,19 +39,19 @@ Public Class frmArcView
         ' This call is required by the designer.
         EventsOn = False
         InitializeComponent()
-        RemoveHandler cboSpriteColor.SelectedIndexChanged, AddressOf cboSpriteColor_SelectedIndexChanged
+        'RemoveHandler cboSpriteColor.SelectedIndexChanged, AddressOf cboSpriteColor_SelectedIndexChanged
         ' Add any initialization after the InitializeComponent() call.
     End Sub
     Private Sub SetupFormData()
         cboCharacterFollow.Items.Clear()
         cboCharacterFollow.Items.Add("NONE")
-        For intTempFollowCounter As Integer = 0 To ArchiveCharacterCBOArrays.characterFollowName.Length - 1
-            cboCharacterFollow.Items.Add(ArchiveCharacterCBOArrays.characterFollowName(intTempFollowCounter))
+        For intTempFollowCounter As Integer = 0 To ArmyFollow.Count - 1
+            cboCharacterFollow.Items.Add(ArmyFollow(intTempFollowCounter).Name)
         Next intTempFollowCounter
         ' *** FILL MOBILIZATION COMBO BOX ***
         cboMobilized.Items.Clear()
-        For intTempMobCounter As Integer = 0 To ArchiveCharacterCBOArrays.mobilizedText.Length - 1
-            cboMobilized.Items.Add(ArchiveCharacterCBOArrays.mobilizedText(intTempMobCounter))
+        For intTempMobCounter As Integer = 0 To Mobilized.Count - 1
+            cboMobilized.Items.Add(Mobilized(intTempMobCounter).Name)
         Next intTempMobCounter
         ' *** Set Bounds for numeric boxes.
         nbrMorale.Maximum = 9
@@ -66,14 +65,14 @@ Public Class frmArcView
         ' *** Fill Info for Character Location
         cboLocation.Items.Clear()
         cboLocation.Items.Add(Default_City)
-        For intLocFill As Integer = 0 To CITY_MAX
-            cboLocation.Items.Add(CityEXE(intLocFill).Name)
+        For intLocFill As Integer = 0 To CityGroup.Count - 1
+            cboLocation.Items.Add(CityGroup(intLocFill).Name)
         Next intLocFill
         ' *** Fill Info for Character Destination ***
         cboDestination.Items.Clear()
         cboDestination.Items.Add(Default_City)
-        For intDestFill As Integer = 0 To CITY_MAX
-            cboDestination.Items.Add(CityEXE(intDestFill).Name)
+        For intDestFill As Integer = 0 To CityGroup.Count - 1
+            cboDestination.Items.Add(CityGroup(intDestFill).Name)
         Next intDestFill
         ' *** FILL FOLLOW DROP BOX ***
         lvwCharacterFollow.Columns.Clear() : lvwCharacterFollow.Items.Clear()
@@ -93,22 +92,22 @@ Public Class frmArcView
     Public Sub FillArcForm()
         ' ******************************** FILL CHARACTER OVERVIEW FORM *******************************************************
         Dim p_characterNumber As Integer
-        selectedCharacter = New Game.Archive.Character : selectedCharacter = archiveCharacterArray(currentCharacter)
+        selectedCharacter = New Archive.Character : selectedCharacter = archiveCharacterArray(currentCharacter)
         If currentCharacter > CHARACTER_MAX Then currentCharacter = CHARACTER_MAX
         If currentCharacter < 0 Then currentCharacter = 0
         ' ********* FILL FORM FIELDS WITH DATA *******************************************
         txtArmyName.Text = selectedCharacter.CharacterName
-        For a As Integer = 0 To ArchiveCharacterCBOArrays.characterFollowName.Length - 1
+        For a As Integer = 0 To ArmyFollow.Count - 1
             If selectedCharacter.valueLeaderFollow = 0 Then
                 cboCharacterFollow.SelectedItem = cboCharacterFollow.Items.Item(0)
                 Exit For
-            ElseIf selectedCharacter.valueLeaderFollow = ArchiveCharacterCBOArrays.characterFollowvalue(a) Then
-                cboCharacterFollow.SelectedItem = ArchiveCharacterCBOArrays.characterFollowName(a)
+            ElseIf selectedCharacter.valueLeaderFollow = ArmyFollow(a).Value Then
+                cboCharacterFollow.SelectedItem = ArmyFollow(a).Name
             End If
         Next
-        For i As Integer = 0 To ArchiveCharacterCBOArrays.mobilizedText.Length - 1
-            If selectedCharacter.valueMobilize = ArchiveCharacterCBOArrays.mobilizedValue(i) Then
-                cboMobilized.SelectedText = ArchiveCharacterCBOArrays.mobilizedText(i)
+        For i As Integer = 0 To Mobilized.Count - 1
+            If selectedCharacter.valueMobilize = Mobilized(i).Value Then
+                cboMobilized.SelectedText = Mobilized(i).Name
             End If
         Next i
         nbrArmyQTY.Text = selectedCharacter.armyQuantity
@@ -119,8 +118,8 @@ Public Class frmArcView
         nbrStealth.Value = selectedCharacter.Stealth
         txtLocationX.Text = selectedCharacter.locationX
         txtLocationY.Text = selectedCharacter.locationY
-        For x As Integer = 0 To CITY_MAX - 1
-            If selectedCharacter.locationX = CityEXE(x).X AndAlso selectedCharacter.locationY = CityEXE(x).Y Then
+        For x As Integer = 0 To CityGroup.Count - 1
+            If selectedCharacter.locationX = CityGroup(x).X AndAlso selectedCharacter.locationY = CityGroup(x).Y Then
                 cboLocation.SelectedItem = cboLocation.Items.Item(x + 1)
                 Exit For
             End If
@@ -130,8 +129,8 @@ Public Class frmArcView
         End If
         txtDestinationX.Text = selectedCharacter.destinationX
         txtDestinationY.Text = selectedCharacter.destinationY
-        For x As Integer = 0 To CITY_MAX - 1
-            If selectedCharacter.destinationX = CityEXE(x).X AndAlso selectedCharacter.destinationY = CityEXE(x).Y Then
+        For x As Integer = 0 To CityGroup.Count - 1
+            If selectedCharacter.destinationX = CityGroup(x).X AndAlso selectedCharacter.destinationY = CityGroup(x).Y Then
                 cboDestination.SelectedItem = cboDestination.Items.Item(x + 1)
             End If
         Next x
@@ -140,7 +139,7 @@ Public Class frmArcView
         End If
         nbrMorale.Text = selectedCharacter.moraleQuantity
         nbrMoraleTotal.Text = selectedCharacter.moraleTotal
-        loadObjects()
+        LoadObjects()
         If selectedCharacter.Visibility = 0 Then
             chkVisible.Checked = False
         Else
@@ -151,13 +150,13 @@ Public Class frmArcView
         Dim tempFollowValue As Integer
         Dim charnum As Integer = currentCharacter + 1
         Dim curCharVal As Integer = 0
-        For h As Integer = 0 To ArchiveCharacterCBOArrays.characterFollowvalue.Length - 1
-            If charnum = ArchiveCharacterCBOArrays.characterFollowvalue(h) Then
-                curCharVal = ArchiveCharacterCBOArrays.characterFollowvalue(h)
+        For h As Integer = 0 To ArmyFollow.Count - 1
+            If charnum = ArmyFollow(h).Value Then
+                curCharVal = ArmyFollow(h).Value
                 Exit For
             End If
         Next
-        Dim tempCharData As Game.Archive.Character
+        Dim tempCharData As Archive.Character
         For followRecordnum As Integer = 0 To CHARACTER_MAX
             tempCharData = archiveCharacterArray(followRecordnum)
             If curCharVal = 0 Then Exit For
@@ -190,7 +189,7 @@ Public Class frmArcView
             End If
         Next h
         curCharData = archiveCharacterArray(currentCharacter)
-        AddHandler cboSpriteColor.SelectedIndexChanged, AddressOf cboSpriteColor_SelectedIndexChanged
+        'AddHandler cboSpriteColor.SelectedIndexChanged, AddressOf cboSpriteColor_SelectedIndexChanged
         EventsOn = True
     End Sub
     Public Sub SaveCharacter()
@@ -200,15 +199,15 @@ Public Class frmArcView
             Dim arcDir As String
             Dim writestream As FileStream
             Dim p_endian As UShort
-            loadedSettings = loadConfig(settingsFullFilename)
-            p_endian = loadedGame.endianType
-            tempBlockLength = _getBlockLength(p_endian)
-            arcDir = loadedSettings.wimeDIRECTORY
+            LoadedSettings = LoadConfig(settingsFullFilename)
+            p_endian = LoadedFile.Endian
+            tempBlockLength = GetSavegameBlockLength(p_endian)
+            arcDir = LoadedSettings.wimeDIRECTORY
             filename = ARCHIVE_FILE
             writestream = New FileStream(filename, FileMode.Open)
             Dim writebinary As New BinaryWriter(writestream)
             writestream.Position = (tempBlockLength) + (tempBlockLength * currentCharacter)
-            Select Case loadedGame.endianType
+            Select Case LoadedFile.Endian
                 Case 0
                     writebinary.Write(curCharData.nameIdentifier)
                     writebinary.Write(curCharData.unknownBlock)
@@ -216,7 +215,7 @@ Public Class frmArcView
                     writebinary.Write(curCharData.unknownBlock)
                     writebinary.Write(curCharData.nameIdentifier)
                 Case Else
-                    MsgBox("Endianness Value is unknown: " & loadedGame.endianType)
+                    MsgBox("Endianness Value is unknown: " & LoadedFile.Endian)
             End Select
             writebinary.Write(curCharData.armyTotal)
             writebinary.Write(curCharData.armyQuantity)
@@ -255,7 +254,7 @@ Public Class frmArcView
     End Sub
     Public Sub CheckSaveResults()
         If isDataSaved = False Then
-            Dim strCloseMessage As String = "This form contains unsaved data." & vbCrLf & vbCrLf & _
+            Dim strCloseMessage As String = "This form contains unsaved data." & vbCrLf & vbCrLf &
             "Do you want to save your changes to " & txtArmyName.Text & "?"
             Dim Answer As DialogResult = MessageBox.Show(strCloseMessage, "Data Check", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
             Select Case Answer
@@ -294,88 +293,18 @@ Public Class frmArcView
         'Initialize_SpriteData()
         ProcessSprites()
         ChangeAnimationCycle(nbrLoop.Value)
-        nbrLoop.Maximum = currentSprite.totalLoops - 1
+        nbrLoop.Maximum = currentSprite.TotalLoops - 1
         LoadAnimationData(selectedCharacter.spriteType)
         InitializeSpriteDrawingArea()
         InitializeSpriteControls()
     End Sub
-    Public Sub Initialize_SpriteData()
-        Dim p_cbospritedata As New Archive_Sprite
-        cboSpriteName.Items.Clear()
-        For x = 0 To 82
-            p_cbospritedata = LoadSpriteCBOData(loadedGame.format, currentSprite.spriteValue)
-            cboSpriteName.Items.Add(p_cbospritedata.Name)
-
-            If x = 16 Then
-                x = x + 63
-            End If
-        Next x
-    End Sub
-
     Public Sub ProcessSprites()
         Dim sprite As Short
-        Dim tempCharData As New Game.Archive.Character
+        Dim tempCharData As New Archive.Character
         tempCharData = archiveCharacterArray(currentCharacter)
         sprite = (tempCharData.spriteType)
-        Select Case sprite
-            Case SpriteValues(0)
-                Call SetHobbitSprite()
-                currentSprite = HobbitSprite
-            Case SpriteValues(1)
-                Call SetElfSprite()
-                currentSprite = ElfSprite
-            Case SpriteValues(2)
-                Call SetManSprite()
-                currentSprite = ManSprite
-            Case SpriteValues(3)
-                Call SetDwarfSprite()
-                currentSprite = DwarfSprite
-            Case SpriteValues(4)
-                Call SetWizardSprite()
-                currentSprite = WizardSprite
-            Case SpriteValues(5)
-                Call SetGollumSprite()
-                currentSprite = GollumSprite
-            Case SpriteValues(6)
-                Call SetOrcSprite()
-                currentSprite = OrcSprite
-            Case SpriteValues(7)
-                Call SetEntSprite()
-                currentSprite = EntSprite
-            Case SpriteValues(8)
-                Call setNazgulSprite()
-                currentSprite = NazgulSprite
-            Case SpriteValues(9)
-                Call setTrollSprite()
-                currentSprite = TrollSprite
-            Case SpriteValues(10)
-                Call setWargSprite()
-                currentSprite = WargSprite
-            Case SpriteValues(11)
-                Call setSpiderSprite()
-                currentSprite = SpiderSprite
-            Case SpriteValues(12)
-                Call setBalrogSprite()
-                currentSprite = BalrogSprite
-            Case SpriteValues(13)
-                Call setRohirrimSprite()
-                currentSprite = RohirrimSprite
-            Case SpriteValues(14)
-                Call setArmManSprite()
-                currentSprite = ArmManSprite
-            Case SpriteValues(15)
-                Call setDunlendingSprite()
-                currentSprite = DunlendingSprite
-            Case Val(SpriteValues(16))
-                Call setElderElfSprite()
-                currentSprite = ElderElfSprite
-            Case SpriteValues(17)
-                Call setGaladrielSprite()
-                currentSprite = GaladrielSprite
-            Case SpriteValues(18)
-                Call setBombadilSprite()
-                currentSprite = BombadilSprite
-        End Select
+        LoadArmySpriteData(tempCharData.spriteType)
+        currentSprite = LoadedSprite
     End Sub
     Public Sub LoadAnimationData(spriteNumber As Integer)
         Dim p_datafile = DATA_FILES
@@ -385,19 +314,19 @@ Public Class frmArcView
         Dim ResType As String = "AANIMS"
         For x As Integer = 0 To GameResourceList.Count - 1
             Dim p_spriteForm As Form
-
             loadedFRML = New Game.resource.animChunk
             loadedResource = New Game.resource
             Dim FRMLName As String = ""
             FRMLName = GameResourceList(x).Name
             If FRMLName = "FRML " & spriteNumber Then
                 loadedFRML.Name = FRMLName
-                loadedResource.Filename = (loadedSettings.wimeDIRECTORY & "\" & GameResourceList(x).File & ".RES")
+                loadedResource.Filename = (LoadedSettings.wimeDIRECTORY & "\" & GameResourceList(x).File & ".RES")
                 loadedFRML.offset = Val(GameResourceList(x).Offset)
-                loadedFRML.bitplanes = GET_FRML_Bitplane(p_datafile, loadedGame.format)
-
+                loadedFRML.bitplanes = LoadedFile.FRMLBitplanes
                 p_palettedata = ParseIndex(GameResourceList(x).File)
-                'p_palettedata = LoadPalette(SPRITES, loadedGame.format, selectedCharacter.spriteColor)
+                If selectedCharacter.spriteColor > 0 Then
+                    p_palettedata = SpriteChangedColor(selectedCharacter.spriteColor, p_palettedata)
+                End If
                 p_spriteForm = New frmSpriteDraw(selectedCharacter.spriteColor, p_palettedata, p_size)
                 p_spriteForm.Show()
                 p_spriteForm.Hide()
@@ -426,28 +355,39 @@ Public Class frmArcView
         pbAnimate.Image = surface
     End Sub
     Public Sub InitializeSpriteControls()
-        txtLoopTotal.Text = currentSprite.totalLoops - 1
-        txtFrameTotal.Text = currentSprite.loopFrames(spriteCurLoop) - 1
-        nbrLoop.Value = spriteCurLoop : nbrLoop.Maximum = currentSprite.totalLoops - 1
-        nbrCel.Value = spriteCurCel : nbrCel.Maximum = currentSprite.loopFrames(spriteCurLoop) - 1
+        Dim CellMax As Integer = currentSprite.CycleList.Item(SpriteCurrentLoop).Count - 1
+        Dim LoopMax As Integer = currentSprite.CycleList.Count - 1
+        txtLoopTotal.Text = LoopMax 'currentSprite.TotalLoops - 1
+        txtCelTotal.Text = CellMax            ' Number of Cells
+        nbrLoop.Value = SpriteCurrentLoop : nbrLoop.Maximum = LoopMax
+        nbrCel.Value = spriteCurCel : nbrCel.Maximum = CellMax
         FillSpriteColors()
         'nbrSpriteColor.Value = selectedCharacter.spriteColor : nbrSpriteColor.Maximum = currentSprite.totalSpriteColors - 1
         cboSpriteName.Items.Clear()
-        For i As Integer = 0 To SpriteTypes.Length - 1
-            cboSpriteName.Items.Add(SpriteTypes(i))
-        Next
-        cboSpriteName.SelectedItem = currentSprite.spriteType
+        'For i As Integer = 0 To SpriteTypes.Length - 1
+        '    cboSpriteName.Items.Add(SpriteTypes(i))
+        'Next
+        For i As Integer = 0 To SpriteCluster.Count - 1
+            cboSpriteName.Items.Add(SpriteCluster(i).Name)
+        Next i
+
+        cboSpriteName.SelectedItem = currentSprite.SpriteType
     End Sub
-    Private Sub loadObjects()
-        Dim tempObject As UInt16
-        loadObjectNames()
+    Private Sub LoadObjects()
+        Dim P_ObjectValue As UInt16
+        Dim P_InventoryObjects As New GenericCharacterObject
+        TransferObjects = New List(Of GenericCharacterObject)
+        LoadObjectNames()
         lstObjectInventory.Width = colName.Width + colValue.Width + 5
-        tempObject = selectedCharacter.gameObjects 'getObjectValue(currentCharacter)
-        Call ConvertObjectValueToBinary(tempObject)
+        P_ObjectValue = selectedCharacter.gameObjects 'getObjectValue(currentCharacter)
+        Call ConvertObjectValueToBinary(P_ObjectValue)
         For d As Integer = 0 To myBA.Length - 1
             If myBA(d) = True Then
-                Dim lv As ListViewItem = lstObjectInventory.Items.Add(WIMEObjects.name(d))
-                lv.SubItems.Add(WIMEObjects.value(d))
+                P_InventoryObjects.Name = WIMEObjects(d).Name
+                P_InventoryObjects.Value = WIMEObjects(d).Value
+                Dim lv As ListViewItem = lstObjectInventory.Items.Add(P_InventoryObjects.Name)
+                lv.SubItems.Add(P_InventoryObjects.Value)
+                TransferObjects.Add(P_InventoryObjects)
             End If
         Next d
     End Sub
@@ -471,52 +411,53 @@ Public Class frmArcView
     End Sub
     Private Sub RefreshObjects()
         Dim tempObject As UInt16
-        loadObjectNames()
+        LoadObjectNames()
         lstObjectInventory.Width = colName.Width + colValue.Width + 4
         tempObject = Val(txtInventory.Text)
         Call ConvertObjectValueToBinary(tempObject)
         For d As Integer = 0 To myBA.Length - 1
             If myBA(d) = True Then
-                Dim lv As ListViewItem = lstObjectInventory.Items.Add(WIMEObjects.name(d))
-                lv.SubItems.Add(WIMEObjects.value(d))
+                Dim lv As ListViewItem = lstObjectInventory.Items.Add(WIMEObjects(d).Name)
+                lv.SubItems.Add(WIMEObjects(d).Value)
             End If
         Next d
     End Sub
-    Public Sub loadObjectNames()
+    Public Sub LoadObjectNames()
         'loadedSettings = loadConfig(settingsFullFilename)
+        Dim P_GenObj As GenericCharacterObject
+        WIMEObjects = New List(Of GenericCharacterObject)
         Dim tempval As Integer
         Dim p_format As String
         Dim tempobject As String = ""
         Dim filePointer As Long
         Dim tempExec As String
-        p_format = loadedSettings.fileFormat
-        'loadedGame.formatVal = GetFormatValueByType(p_format)
-        If loadedGame.formatVal = -1 Then
-            Throw New Exception("EXECUTABLE Invalid Format.  Please check the file and reload.")
-            Exit Sub
-        End If
-        tempExec = gameExecutables(loadedGame.formatVal)
-        Dim fullfile As String = loadedSettings.wimeDIRECTORY & "\" & tempExec
-        filePointer = getObjectOffset(loadedSettings.fileFormat)
+        p_format = LoadedFile.Name
+        tempExec = LoadedFile.ExecutableFile
+        Dim fullfile As String = LoadedSettings.wimeDIRECTORY & "\" & tempExec
+        filePointer = LoadedFileOffsets.EXEInventoryName 'GetObjectOffset(LoadedFile.Name)
         Using resread As New BinaryFile(fullfile)
             resread.Position = filePointer
             Dim index As Integer = 0
-            WIMEObjects.value = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768}
+            Dim p_val = 1
             For x As UShort = 1 To OBJECT_TOTAL
+                P_GenObj = New GenericCharacterObject
                 tempobject = ""
                 Do
                     tempval = resread.ReadByte
                     If tempval = 0 Then Exit Do
                     tempobject = tempobject & Chr(tempval)
                 Loop
-                WIMEObjects.name(index) = tempobject
+                P_GenObj.Name = tempobject
+                P_GenObj.Value = p_val
+                WIMEObjects.Add(P_GenObj)
+                p_val = (p_val * 2)
                 index = index + 1
             Next x
         End Using
     End Sub
     Public Sub SaveFormCheck()
         If isDataSaved = False Then
-            Dim strCloseMessage As String = "This form contains unsaved data." & vbCrLf & vbCrLf & _
+            Dim strCloseMessage As String = "This form contains unsaved data." & vbCrLf & vbCrLf &
             "Do you want to save your changes to " & txtArmyName.Text & "?"
             Dim Answer As DialogResult = MessageBox.Show(strCloseMessage, "Data Check", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning)
             Select Case Answer
@@ -537,27 +478,9 @@ Public Class frmArcView
     End Sub
     Public Sub ChangeAnimationCycle(cycleIndex As Integer)
         If currentSprite.AnimationCycle IsNot Nothing Then
-            'ClearSpriteList() : MsgBox("ClearSpriteList")
+            ClearSpriteList()
         End If
-        Select Case cycleIndex
-            Case 0
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.WalkCycle
-            Case 1
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle2
-            Case 2
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle3
-            Case 3
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle4
-            Case 4
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle5
-            Case 5
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle6
-            Case 6
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.Cycle7
-            Case Else
-                currentSprite.AnimationCycle = currentSprite.LoopFrameSet.WalkCycle
-        End Select
-
+        currentSprite.AnimationCycle = currentSprite.CycleList(cycleIndex)
     End Sub
     Public Sub ClearSpriteList()
         For x As Integer = 1 To currentSprite.AnimationCycle.Count - 1
@@ -567,11 +490,10 @@ Public Class frmArcView
     Public Sub FillSpriteColors()
         cboSpriteColor.Items.Clear()
 
-
-        For a As Integer = 0 To currentSprite.totalSpriteColors - 1
-            cboSpriteColor.Items.Add(currentSprite.spriteColor(a))
+        For a As Integer = 0 To currentSprite.TotalSpriteColors - 1
+            cboSpriteColor.Items.Add(currentSprite.SpriteColor(a))
         Next
-        For b As Integer = 0 To currentSprite.totalSpriteColors - 1
+        For b As Integer = 0 To currentSprite.TotalSpriteColors - 1
             If selectedCharacter.spriteColor = cboSpriteColor.Items(b) Then
                 cboSpriteColor.SelectedIndex = (b)
             End If
@@ -587,9 +509,7 @@ Public Class frmArcView
                 P_COUNTER = currentSprite.AnimationCycle(x)
                 p_image = New Bitmap(SpriteList(P_COUNTER))
                 yOffset = (MAX_HEIGHT * SIZE_MULTIPLIER) - (SpriteList(P_COUNTER).Height)
-                'centerFormObj(pnlAnimate, pbAnimate) : yPos = yPos + yOffset
                 DisplayCel()
-
             Next
             If Timer1.Enabled = True Then
                 Timer1.Enabled = False
@@ -602,9 +522,10 @@ Public Class frmArcView
     Private Sub Timer1_Tick(sender As System.Object, e As System.EventArgs) Handles Timer1.Tick
         Dim p_image As Bitmap
         Static ctr As Integer = -1
-        Timer1.Interval = currentSprite.animateSpeed
-        If ctr < currentSprite.loopFrames(spriteCurLoop) - 1 Then
+        Timer1.Interval = currentSprite.AnimateSpeed
+        If ctr < currentSprite.CycleList.Item(SpriteCurrentLoop).Count - 1 Then
             ctr += 1
+            If ctr > nbrCel.Maximum And ctr > 0 Then ctr -=
             nbrCel.Value = ctr
         Else
             ctr = 0
@@ -619,10 +540,10 @@ Public Class frmArcView
         If EventsOn = True Then
             Dim p_image As Bitmap
             nbrCel.Value = 0
-            spriteCurLoop = nbrLoop.Value
-            ChangeAnimationCycle(spriteCurLoop)
-            txtFrameTotal.Text = (currentSprite.loopFrames(spriteCurLoop) - 1)
-            nbrCel.Maximum = Val(txtFrameTotal.Text)
+            SpriteCurrentLoop = nbrLoop.Value
+            ChangeAnimationCycle(SpriteCurrentLoop)
+            txtCelTotal.Text = currentSprite.CycleList.Item(SpriteCurrentLoop).Count - 1
+            nbrCel.Maximum = Val(txtCelTotal.Text)
             spriteCurCel = nbrCel.Value
             yOffset = (MAX_HEIGHT * SIZE_MULTIPLIER) - (SpriteList(currentSprite.AnimationCycle(spriteCurCel)).Height)
             p_image = New Bitmap(SpriteList(currentSprite.AnimationCycle(spriteCurCel)))
@@ -642,75 +563,13 @@ Public Class frmArcView
     End Sub
     Private Sub cboSpriteName_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboSpriteName.SelectedIndexChanged
         If EventsOn = True Then
-            Dim tempCharData As New Game.Archive.Character
+            Dim tempCharData As New Archive.Character
             tempCharData = archiveCharacterArray(currentCharacter)
-
-
-
-
-
-            Select Case cboSpriteName.SelectedItem
-                Case SpriteTypes(0)
-                    Call SetHobbitSprite()
-                    currentSprite = HobbitSprite
-                Case SpriteTypes(1)
-                    Call SetElfSprite()
-                    currentSprite = ElfSprite
-                Case SpriteTypes(2)
-                    Call SetManSprite()
-                    currentSprite = ManSprite
-                Case SpriteTypes(3)
-                    Call SetDwarfSprite()
-                    currentSprite = DwarfSprite
-                Case SpriteTypes(4)
-                    Call SetWizardSprite()
-                    currentSprite = WizardSprite
-                Case SpriteTypes(5)
-                    Call SetGollumSprite()
-                    currentSprite = GollumSprite
-                Case SpriteTypes(6)
-                    Call SetOrcSprite()
-                    currentSprite = OrcSprite
-                Case SpriteTypes(7)
-                    Call SetEntSprite()
-                    currentSprite = EntSprite
-                Case SpriteTypes(8)
-                    Call setNazgulSprite()
-                    currentSprite = NazgulSprite
-                Case SpriteTypes(9)
-                    Call setTrollSprite()
-                    currentSprite = TrollSprite
-                Case SpriteTypes(10)
-                    Call setWargSprite()
-                    currentSprite = WargSprite
-                Case SpriteTypes(11)
-                    Call setSpiderSprite()
-                    currentSprite = SpiderSprite
-                Case SpriteTypes(12)
-                    Call setBalrogSprite()
-                    currentSprite = BalrogSprite
-                Case SpriteTypes(13)
-                    Call setRohirrimSprite()
-                    currentSprite = RohirrimSprite
-                Case SpriteTypes(14)
-                    Call setArmManSprite()
-                    currentSprite = ArmManSprite
-                Case SpriteTypes(15)
-                    Call setDunlendingSprite()
-                    currentSprite = DunlendingSprite
-                Case SpriteTypes(16)
-                    Call setElderElfSprite()
-                    currentSprite = ElderElfSprite
-                Case SpriteTypes(17)
-                    Call setGaladrielSprite()
-                    currentSprite = GaladrielSprite
-                Case SpriteTypes(18)
-                    Call setBombadilSprite()
-                    currentSprite = BombadilSprite
-            End Select
-            For a = 0 To currentSprite.spriteType.Length - 1
-                If cboSpriteName.SelectedItem = SpriteTypes(a) Then
-                    curCharData.spriteType = SpriteValues(a)
+            LoadArmySpriteData(tempCharData.spriteType)
+            currentSprite = LoadedSprite
+            For a = 0 To currentSprite.SpriteType.Length - 1
+                If cboSpriteName.SelectedItem = SpriteCluster(a).Name Then
+                    curCharData.spriteType = SpriteCluster(a).Value
                 End If
             Next
             isDataSaved = False
@@ -741,9 +600,9 @@ Public Class frmArcView
     End Sub
     Private Sub cboMobilized_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cboMobilized.SelectedIndexChanged
         If EventsOn = True Then
-            For x As Integer = 0 To ArchiveCharacterCBOArrays.mobilizedValue.Length - 1
-                If cboMobilized.SelectedItem = ArchiveCharacterCBOArrays.mobilizedText(x) Then
-                    curCharData.valueMobilize = ArchiveCharacterCBOArrays.mobilizedValue(x)
+            For x As Integer = 0 To Mobilized.Count - 1
+                If cboMobilized.SelectedItem = Mobilized(x).Name Then
+                    curCharData.valueMobilize = Mobilized(x).Value
                 End If
             Next
             isDataSaved = False
@@ -825,13 +684,13 @@ Public Class frmArcView
     Private Sub cboLocation_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboLocation.SelectedIndexChanged
         If EventsOn = True Then
             Dim finderLoc As String
-            For a = 0 To CITY_MAX
+            For a = 0 To CityGroup.Count - 1
                 finderLoc = cboLocation.SelectedItem
-                If finderLoc = CityEXE(a).Name Then
-                    txtLocationX.Text = CityEXE(a).X
-                    txtLocationY.Text = CityEXE(a).Y
-                    curCharData.locationX = CityEXE(a).X
-                    curCharData.locationY = CityEXE(a).Y
+                If finderLoc = CityGroup(a).Name Then
+                    txtLocationX.Text = CityGroup(a).X
+                    txtLocationY.Text = CityGroup(a).Y
+                    curCharData.locationX = CityGroup(a).X
+                    curCharData.locationY = CityGroup(a).Y
                     Exit For
                 Else
                 End If
@@ -843,13 +702,13 @@ Public Class frmArcView
     Private Sub cboDestination_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboDestination.SelectedIndexChanged
         If EventsOn = True Then
             Dim finderDest As String
-            For a = 0 To CITY_MAX
+            For a = 0 To CityGroup.Count - 1
                 finderDest = cboDestination.SelectedItem
-                If finderDest = CityEXE(a).Name Then
-                    txtDestinationX.Text = CityEXE(a).X
-                    txtDestinationY.Text = CityEXE(a).Y
-                    curCharData.destinationX = CityEXE(a).X
-                    curCharData.destinationY = CityEXE(a).Y
+                If finderDest = CityGroup(a).Name Then
+                    txtDestinationX.Text = CityGroup(a).X
+                    txtDestinationY.Text = CityGroup(a).Y
+                    curCharData.destinationX = CityGroup(a).X
+                    curCharData.destinationY = CityGroup(a).Y
                     Exit For
                 Else
                 End If
@@ -861,10 +720,10 @@ Public Class frmArcView
     Private Sub cboCharacterFollow_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCharacterFollow.SelectedIndexChanged
         If EventsOn = True Then
             Dim finderFollow As String
-            For a = 0 To ArchiveCharacterCBOArrays.characterFollowName.Length - 1
+            For a As Integer = 0 To ArmyFollow(a).Name.Count - 1
                 finderFollow = cboCharacterFollow.SelectedItem
-                If finderFollow = ArchiveCharacterCBOArrays.characterFollowName(a) Then
-                    curCharData.valueLeaderFollow = ArchiveCharacterCBOArrays.characterFollowvalue(a)
+                If finderFollow = ArmyFollow(a).Name Then
+                    curCharData.valueLeaderFollow = ArmyFollow(a).Value
                     Exit For
                 Else
                 End If
@@ -873,7 +732,7 @@ Public Class frmArcView
             Next
         End If
     End Sub
-    Private Sub btnAddArmy_Click(sender As Object, e As EventArgs) Handles btnAddArmy.Click
+    Private Sub BtnAddArmy_Click(sender As Object, e As EventArgs) Handles btnAddArmy.Click
         MsgBox("This feature is available but its operation is not complete!")
         Dim addArm As New frmAddArmy
         addArm.Show()
@@ -887,13 +746,7 @@ Public Class frmArcView
     End Sub
     Private Sub btnAddItems_Click(sender As Object, e As EventArgs) Handles btnAddItems.Click
         Dim nf As Form
-        Dim tempObjNum As Integer = lstObjectInventory.Items.Count
-        ReDim TransferObjects.name(tempObjNum)
-        ReDim TransferObjects.value(tempObjNum)
-        For g = 0 To tempObjNum - 1
-            TransferObjects.name(g) = lstObjectInventory.Items(g).SubItems(0).Text
-            TransferObjects.value(g) = (lstObjectInventory.Items(g).SubItems(1).Text)
-        Next
+        Dim p_temp As New GenericCharacterObject
         nf = New frmInventory(WIMEObjects, TransferObjects)
         Dim selectedButton As DialogResult
         selectedButton = nf.ShowDialog
@@ -917,8 +770,8 @@ Public Class frmArcView
             RefreshSaveStatus()
         End If
     End Sub
-    Private Sub cboSpriteColor_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboSpriteColor.SelectedIndexChanged
-        selectedCharacter.spriteColor = Val(cboSpriteColor.SelectedIndex.ToString)
+    Private Sub cboSpriteColor_SelectionChangeCommitted(sender As Object, e As EventArgs) Handles cboSpriteColor.SelectionChangeCommitted
+        selectedCharacter.spriteColor = cboSpriteColor.SelectedItem.ToString
         RefreshSprite()
     End Sub
 End Class

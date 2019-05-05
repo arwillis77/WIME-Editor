@@ -20,7 +20,7 @@ Public Class frmAddArmy
         Dim tempFollowValue As Integer
         Dim curCharVal As Integer = 0
         Dim tempCharacternumber As Integer
-        Dim tempCharData As Game.Archive.Character
+        Dim tempCharData As Archive.Character
         For x As Integer = 0 To CHARACTER_MAX
             tempCharData = archiveCharacterArray(x)
             tempFollowValue = tempCharData.valueLeaderFollow
@@ -44,7 +44,7 @@ Public Class frmAddArmy
         lvwCharacterFollowSelectList.Columns.Add("Character/Army", 125)
         lvwCharacterFollowSelectList.Columns.Add("QTY", 50)
         For intFollowFill As Integer = 0 To CHARACTER_MAX
-            intFollowTemp = ArchiveCharacterCBOArrays.characterFollowvalue(intFollowFill)
+            intFollowTemp = ArmyFollow(intFollowFill).Value
             'If intFollowTemp = intCurrentCharacter Then
             If intFollowTemp = 0 Then
                 intTempCharNum = intFollowFill + 1

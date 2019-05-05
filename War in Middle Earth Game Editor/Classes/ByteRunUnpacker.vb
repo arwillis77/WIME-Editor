@@ -10,7 +10,7 @@
         End If
         Return (rowSizeInWords * 2)
     End Function
-    Public Function unpackTiles(ByVal offset As UInteger, ByVal length As UInteger) As Byte()
+    Public Function UnpackTiles(ByVal offset As UInteger, ByVal length As UInteger) As Byte()
         File.Position = offset
         Dim count As UInteger = 0
         Dim readBytes As UInteger = 0
@@ -62,7 +62,7 @@
         End While
         Return p_tempbyte
     End Function
-    Public Function unpackAnim(ByVal Offset As UInteger, ByVal Length As UInteger, ByVal compressFlag As Boolean) As Byte()
+    Public Function UnpackAnim(ByVal Offset As UInteger, ByVal Length As UInteger, ByVal compressFlag As Boolean) As Byte()
         File.Position = Offset
         Dim count As UInteger = 0
         Dim readBytes As UInteger = 0

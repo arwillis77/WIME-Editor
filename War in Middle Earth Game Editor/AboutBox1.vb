@@ -16,7 +16,7 @@ Public NotInheritable Class AboutBox1
         '    properties dialog (under the "Project" menu).
         AppTitle.Text = progName
         Version.Text = "Version " & progVersion & " " & progDate & " - Special Version for Donors"
-        Copyright.Text = "Copyright (C) 2014 Aaron R. Willis"
+        Copyright.Text = "Copyright (C) 2019 Aaron R. Willis"
         Copyright2.Text = "War in Middle Earth -- Copyright (C) 1988 Melbourne House"
     End Sub
 

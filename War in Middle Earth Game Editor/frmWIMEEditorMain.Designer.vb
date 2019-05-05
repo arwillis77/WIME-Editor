@@ -53,6 +53,8 @@ Partial Class frmWIMEEditorMain
         Me.stpProgramSettings = New System.Windows.Forms.ToolStripButton()
         Me.toolbarStrip = New System.Windows.Forms.ToolStrip()
         Me.stpCopyProtection = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.ExitStripItem = New System.Windows.Forms.ToolStripButton()
         Me.pnlEditor = New System.Windows.Forms.Panel()
         Me.menWIMESaveGameEditor.SuspendLayout()
         Me.toolbarStrip.SuspendLayout()
@@ -74,7 +76,7 @@ Partial Class frmWIMEEditorMain
         Me.menuToolbarView.CheckOnClick = True
         Me.menuToolbarView.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuToolbarView.Name = "menuToolbarView"
-        Me.menuToolbarView.Size = New System.Drawing.Size(180, 22)
+        Me.menuToolbarView.Size = New System.Drawing.Size(126, 22)
         Me.menuToolbarView.Text = "Toolbar"
         '
         'menuStatusBarView
@@ -83,7 +85,7 @@ Partial Class frmWIMEEditorMain
         Me.menuStatusBarView.CheckOnClick = True
         Me.menuStatusBarView.CheckState = System.Windows.Forms.CheckState.Checked
         Me.menuStatusBarView.Name = "menuStatusBarView"
-        Me.menuStatusBarView.Size = New System.Drawing.Size(180, 22)
+        Me.menuStatusBarView.Size = New System.Drawing.Size(126, 22)
         Me.menuStatusBarView.Text = "Status Bar"
         '
         'menWIMESaveGameEditor
@@ -94,7 +96,6 @@ Partial Class frmWIMEEditorMain
         Me.menWIMESaveGameEditor.Size = New System.Drawing.Size(1008, 24)
         Me.menWIMESaveGameEditor.TabIndex = 0
         Me.menWIMESaveGameEditor.Text = "MenuStrip1"
-        Me.menWIMESaveGameEditor.Visible = False
         '
         'FileMenu
         '
@@ -105,12 +106,14 @@ Partial Class frmWIMEEditorMain
         '
         'mnuOpenFile
         '
+        Me.mnuOpenFile.Image = Global.WIMEEditor.My.Resources.Resources.Open3232
         Me.mnuOpenFile.Name = "mnuOpenFile"
         Me.mnuOpenFile.Size = New System.Drawing.Size(171, 22)
         Me.mnuOpenFile.Text = "Open WIME Game"
         '
         'mnuSaveFile
         '
+        Me.mnuSaveFile.Image = Global.WIMEEditor.My.Resources.Resources.Floppy_disk3232
         Me.mnuSaveFile.Name = "mnuSaveFile"
         Me.mnuSaveFile.Size = New System.Drawing.Size(171, 22)
         Me.mnuSaveFile.Text = "&Save"
@@ -134,12 +137,14 @@ Partial Class frmWIMEEditorMain
         '
         'mnuProgramOptions
         '
+        Me.mnuProgramOptions.Image = Global.WIMEEditor.My.Resources.Resources.Settings3232
         Me.mnuProgramOptions.Name = "mnuProgramOptions"
         Me.mnuProgramOptions.Size = New System.Drawing.Size(171, 22)
         Me.mnuProgramOptions.Text = "Program &Options"
         '
         'mnuExitProgram
         '
+        Me.mnuExitProgram.Image = Global.WIMEEditor.My.Resources.Resources._exit
         Me.mnuExitProgram.Name = "mnuExitProgram"
         Me.mnuExitProgram.Size = New System.Drawing.Size(171, 22)
         Me.mnuExitProgram.Text = "E&xit"
@@ -263,8 +268,8 @@ Partial Class frmWIMEEditorMain
         Me.toolbarStrip.BackColor = System.Drawing.SystemColors.ControlDarkDark
         Me.toolbarStrip.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.toolbarStrip.ImageScalingSize = New System.Drawing.Size(32, 32)
-        Me.toolbarStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stpOpenFile, Me.stpSaveFile, Me.stpCopyProtection, Me.stpProgramSettings})
-        Me.toolbarStrip.Location = New System.Drawing.Point(0, 0)
+        Me.toolbarStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.stpOpenFile, Me.stpSaveFile, Me.stpCopyProtection, Me.stpProgramSettings, Me.ToolStripButton1})
+        Me.toolbarStrip.Location = New System.Drawing.Point(0, 24)
         Me.toolbarStrip.Name = "toolbarStrip"
         Me.toolbarStrip.Size = New System.Drawing.Size(1008, 39)
         Me.toolbarStrip.TabIndex = 3
@@ -279,13 +284,34 @@ Partial Class frmWIMEEditorMain
         Me.stpCopyProtection.Size = New System.Drawing.Size(36, 36)
         Me.stpCopyProtection.Text = "Copy Protection Codes"
         '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = Global.WIMEEditor.My.Resources.Resources._exit
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(36, 36)
+        Me.ToolStripButton1.Text = "Exit Program"
+        '
+        'ExitStripItem
+        '
+        Me.ExitStripItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ExitStripItem.Image = Global.WIMEEditor.My.Resources.Resources._exit
+        Me.ExitStripItem.ImageTransparentColor = System.Drawing.Color.Transparent
+        Me.ExitStripItem.Name = "ExitStripItem"
+        Me.ExitStripItem.Size = New System.Drawing.Size(36, 36)
+        Me.ExitStripItem.Text = "Exit Program"
+        Me.ExitStripItem.ToolTipText = "Exit Editor"
+        '
         'pnlEditor
         '
         Me.pnlEditor.BackColor = System.Drawing.Color.FromArgb(CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer), CType(CType(75, Byte), Integer))
+        Me.pnlEditor.BackgroundImage = Global.WIMEEditor.My.Resources.Resources.oldmapbg
+        Me.pnlEditor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.pnlEditor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlEditor.Location = New System.Drawing.Point(0, 39)
+        Me.pnlEditor.Location = New System.Drawing.Point(0, 63)
         Me.pnlEditor.Name = "pnlEditor"
-        Me.pnlEditor.Size = New System.Drawing.Size(1008, 691)
+        Me.pnlEditor.Size = New System.Drawing.Size(1008, 667)
         Me.pnlEditor.TabIndex = 10
         '
         'frmWIMEEditorMain
@@ -294,7 +320,7 @@ Partial Class frmWIMEEditorMain
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink
         Me.BackColor = System.Drawing.SystemColors.ControlDark
-        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
         Me.ClientSize = New System.Drawing.Size(1008, 730)
         Me.Controls.Add(Me.pnlEditor)
         Me.Controls.Add(Me.toolbarStrip)
@@ -347,5 +373,6 @@ Partial Class frmWIMEEditorMain
     Friend WithEvents toolbarStrip As System.Windows.Forms.ToolStrip
     Friend WithEvents pnlEditor As System.Windows.Forms.Panel
     Friend WithEvents stpCopyProtection As System.Windows.Forms.ToolStripButton
-
+    Friend WithEvents ExitStripItem As ToolStripButton
+    Friend WithEvents ToolStripButton1 As ToolStripButton
 End Class

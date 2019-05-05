@@ -47,20 +47,24 @@ Public Enum Endianness
 End Enum
 Public Class BinaryFile
     Inherits IO.FileStream
-    Private memFilename As String
-    Private memFile As IO.FileStream
+    Private ReadOnly MemFilename As String
+    Private ReadOnly MemFile As IO.FileStream
     Public Sub New(ByVal Filename As String)
         MyBase.New(Filename, IO.FileMode.OpenOrCreate)
-        memFilename = Filename
+        MemFilename = Filename
     End Sub
     Public ReadOnly Property Filename As String
         Get
-            Return memFilename
+            Return MemFilename
         End Get
     End Property
-    Protected Overrides Sub Finalize()
-        Close()
-        MyBase.Finalize()
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        If disposing = False Then
+            Close()
+            MyBase.Dispose(disposing:=False)
+        Else
+            MyBase.Dispose(disposing:=True)
+        End If
     End Sub
 
     Public Function ReadByteUnsigned() As Byte
