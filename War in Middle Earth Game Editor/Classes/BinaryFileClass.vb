@@ -41,7 +41,7 @@
 '   The SwapWord and SwapLongword just swap the bytes in the argument 
 '     so they toggle the Endian of the argument.
 Imports System.IO
-Public Enum Endianness
+Public Enum Endian
     endLittle
     endBig
 End Enum
@@ -99,11 +99,12 @@ Public Class BinaryFile
             Case Else ' -128..-1 => 128..255
                 ByteToWrite = Value + 256
         End Select
+        WriteByte(ByteToWrite)
     End Sub
-    Public Function ReadWordSigned(Optional ByVal Endianness As Endianness = Endianness.endLittle) As Short
+    Public Function ReadWordSigned(Optional ByVal Endianness As Endian = Endian.endLittle) As Short
         Dim Result As Short
         Dim LoByte, HiByte As Byte
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             LoByte = ReadByteUnsigned()
             HiByte = ReadByteUnsigned()
         Else ' big
@@ -113,10 +114,10 @@ Public Class BinaryFile
         Result = (CShort(HiByte) << 8) Or LoByte
         Return Result
     End Function
-    Public Function ReadWordUnsigned(Optional ByVal Endianness As Endianness = Endianness.endLittle) As UShort
+    Public Function ReadWordUnsigned(Optional ByVal Endianness As Endian = Endian.endLittle) As UShort
         Dim Result As UShort
         Dim LoByte, HiByte As Byte
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             LoByte = ReadByteUnsigned()
             HiByte = ReadByteUnsigned()
         Else ' big
@@ -126,11 +127,11 @@ Public Class BinaryFile
         Result = (CUShort(HiByte) << 8) Or LoByte
         Return Result
     End Function
-    Public Sub WriteWordSigned(ByVal Value As Short, Optional ByVal Endianness As Endianness = Endianness.endLittle)
+    Public Sub WriteWordSigned(ByVal Value As Short, Optional ByVal Endianness As Endian = Endian.endLittle)
         Dim HiByte, LoByte As Byte
         HiByte = Value >> 8
         LoByte = Value And &HFF
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             WriteByte(LoByte)
             WriteByte(HiByte)
         Else ' big
@@ -138,11 +139,11 @@ Public Class BinaryFile
             WriteByte(LoByte)
         End If
     End Sub
-    Public Sub WriteWordUnsigned(ByVal Value As UShort, Optional ByVal Endianness As Endianness = Endianness.endLittle)
+    Public Sub WriteWordUnsigned(ByVal Value As UShort, Optional ByVal Endianness As Endian = Endian.endLittle)
         Dim HiByte, LoByte As Byte
         HiByte = Value >> 8
         LoByte = Value And &HFF
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             WriteByte(LoByte)
             WriteByte(HiByte)
         Else ' big
@@ -150,10 +151,10 @@ Public Class BinaryFile
             WriteByte(LoByte)
         End If
     End Sub
-    Public Function ReadLongwordSigned(Optional ByVal Endianness As Endianness = Endianness.endLittle) As Integer
+    Public Function ReadLongwordSigned(Optional ByVal Endianness As Endian = Endian.endLittle) As Integer
         Dim Result As Integer
         Dim HiWord, LoWord As Short
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             LoWord = ReadWordSigned(Endianness)
             HiWord = ReadWordSigned(Endianness)
         Else ' big
@@ -163,10 +164,10 @@ Public Class BinaryFile
         Result = (CInt(HiWord) << 16) Or LoWord
         Return Result
     End Function
-    Public Function ReadLongwordUnsigned(Optional ByVal Endianness As Endianness = Endianness.endLittle) As UInteger
+    Public Function ReadLongwordUnsigned(Optional ByVal Endianness As Endian = Endian.endLittle) As UInteger
         Dim Result As UInteger
         Dim HiWord, LoWord As UShort
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             LoWord = ReadWordUnsigned(Endianness)
             HiWord = ReadWordUnsigned(Endianness)
         Else ' big
@@ -176,11 +177,11 @@ Public Class BinaryFile
         Result = (CUInt(HiWord) << 16) Or LoWord
         Return Result
     End Function
-    Public Sub WriteLongwordSigned(ByVal Value As Integer, Optional ByVal Endianness As Endianness = Endianness.endLittle)
+    Public Sub WriteLongwordSigned(ByVal Value As Integer, Optional ByVal Endianness As Endian = Endian.endLittle)
         Dim HiWord, LoWord As Short
         HiWord = Value >> 16
         LoWord = Value And &HFFFF
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             WriteWordSigned(LoWord, Endianness)
             WriteWordSigned(HiWord, Endianness)
         Else
@@ -188,11 +189,11 @@ Public Class BinaryFile
             WriteWordSigned(LoWord, Endianness)
         End If
     End Sub
-    Public Sub WriteLongwordUnsigned(ByVal Value As UInteger, Optional ByVal Endianness As Endianness = Endianness.endLittle)
+    Public Sub WriteLongwordUnsigned(ByVal Value As UInteger, Optional ByVal Endianness As Endian = Endian.endLittle)
         Dim HiWord, LoWord As UShort
         HiWord = Value >> 16
         LoWord = Value And &HFFFF
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             WriteWordUnsigned(LoWord, Endianness)
             WriteWordUnsigned(HiWord, Endianness)
         Else
@@ -241,10 +242,10 @@ Public Class BinaryFile
         byte2 = Convert.ToInt16(bRight, 16)
     End Sub
 
-    Public Shared Function ReadShort(byte1 As Byte, byte2 As Byte, Optional ByVal Endianness As Endianness = Endianness.endLittle) As Short
+    Public Shared Function ReadShort(byte1 As Byte, byte2 As Byte, Optional ByVal Endianness As Endian = Endian.endLittle) As Short
         Dim Result As Short
         Dim LoByte, HiByte As Byte
-        If Endianness = Endianness.endLittle Then
+        If Endianness = Endian.endLittle Then
             LoByte = byte1
             HiByte = byte2
         Else ' big

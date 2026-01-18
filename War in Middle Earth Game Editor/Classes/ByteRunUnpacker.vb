@@ -212,7 +212,7 @@
         Return decompressedChunkData
         ' }
     End Function
-    Public Function UnpackCSTR(ByVal Offset As UInteger, ByVal Endianness As Endianness) As String
+    Public Function UnpackCSTR(ByVal Offset As UInteger, ByVal Endianness As Endian) As String
         Dim Result As String = ""
         Dim RunText As String = ""
         Dim CharRead As Char = ""

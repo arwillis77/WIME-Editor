@@ -215,7 +215,7 @@ Public Class frmArcView
                     writebinary.Write(curCharData.unknownBlock)
                     writebinary.Write(curCharData.nameIdentifier)
                 Case Else
-                    MsgBox("Endianness Value is unknown: " & LoadedFile.Endian)
+                    MsgBox("Endian Value is unknown: " & LoadedFile.Endian)
             End Select
             writebinary.Write(curCharData.armyTotal)
             writebinary.Write(curCharData.armyQuantity)

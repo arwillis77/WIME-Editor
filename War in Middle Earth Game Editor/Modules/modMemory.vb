@@ -1,7 +1,7 @@
 ﻿Module modMemory
     Public Memory() As Byte
-    Public Function GetMemWord(ByVal Address As UInteger) As UShort
-        If Not Memory Is Nothing Then
+    Public Function GetMemWord(Address As UInteger) As UShort
+        If Memory IsNot Nothing Then
             If Address + 1 < Memory.Length Then
                 Dim HiByte, LoByte As UShort
                 HiByte = Memory(Address)
@@ -14,8 +14,8 @@
             Return 0
         End If
     End Function
-    Public Function GetMemByte(ByVal Address As UInteger) As Byte
-        If Not Memory Is Nothing Then
+    Public Function GetMemByte(Address As UInteger) As Byte
+        If Memory IsNot Nothing Then
             If Address < Memory.Length Then
                 Return Memory(Address)
             Else
@@ -25,10 +25,10 @@
             Return 0
         End If
     End Function
-    Public Function GetBit(ByVal Number As UInteger, ByVal Index As Byte) As Boolean
+    Public Function GetBit(Number As UInteger, Index As Byte) As Boolean
         Return (Number And (1 << Index)) > 0
     End Function
-    Public Sub SetBit(ByRef Number As UInteger, ByVal Index As Byte, ByVal Value As Boolean)
+    Public Sub SetBit(ByRef Number As UInteger, Index As Byte, Value As Boolean)
         If Value = True Then
             Number = Number Or (1 << Index)
         Else ' False

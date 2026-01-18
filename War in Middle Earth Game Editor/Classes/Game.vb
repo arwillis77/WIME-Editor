@@ -79,9 +79,9 @@ Public Class Game
     Public Shared Function EndianChecker(format As String) As UShort
         Dim tempVal As UShort
         If format = FORMAT_ID(0) Or format = FORMAT_ID(1) Or format = FORMAT_ID(2) Then
-            tempVal = Endianness.endLittle
+            tempVal = Endian.endLittle
         Else
-            tempVal = Endianness.endBig
+            tempVal = Endian.endBig
         End If
         Return tempVal
     End Function
@@ -585,7 +585,7 @@ Public Class Game
         Dim charRes As String
         Using resReader As New BinaryFile(filename)
             resReader.Position = fpoint
-            chunktype = resReader.ReadLongwordUnsigned(Endianness.endBig)
+            chunktype = resReader.ReadLongwordUnsigned(Endian.endBig)
             Dim abyte() As Byte = BitConverter.GetBytes(chunktype)
             If tempend = 1 Then
                 charRes = Chr(abyte(abyte.Length - 1))
@@ -724,11 +724,11 @@ Public Class Game
             tchunk.imagePlane = resreader.ReadByte
             If is16Bit Then
                 If tchunk.imagePlane = 3 Then
-                    tchunk.width = resreader.ReadWordUnsigned(Endianness.endBig)
-                    tchunk.height = resreader.ReadWordUnsigned(Endianness.endBig)
+                    tchunk.width = resreader.ReadWordUnsigned(Endian.endBig)
+                    tchunk.height = resreader.ReadWordUnsigned(Endian.endBig)
                 Else
                     tchunk.width = resreader.ReadByte
-                    tchunk.height = resreader.ReadWordUnsigned(Endianness.endBig)
+                    tchunk.height = resreader.ReadWordUnsigned(Endian.endBig)
                 End If
             Else
                 tchunk.width = resreader.ReadWordUnsigned(tempend)

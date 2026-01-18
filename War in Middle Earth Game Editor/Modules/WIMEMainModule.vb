@@ -172,7 +172,7 @@ Public Module WIMEMain
                             p_ReadArchive.unknownBlock = readsave.ReadWordUnsigned(endian)
                             p_ReadArchive.nameIdentifier = readsave.ReadWordUnsigned(endian)
                         Case Else
-                            MsgBox("Endianness Value is unknown: " & endian)
+                            MsgBox("Endian Value is unknown: " & endian)
                     End Select
 
                     p_ReadArchive.CharacterName = GetArmyName(p_ReadArchive.nameIdentifier, endian)
